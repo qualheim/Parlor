@@ -25,7 +25,8 @@ Legend: 🎨 = produces a **placeholder asset flagged "needs production art"** (
   `Packages/Games/TileRummy/{Rules,AI,Layout,Tutorial,Tests}` and `Packages/Games/TileRummyUI` per
   `structure.md`; conform `TileRummyDefinition` to `GameDefinition` with id `tile-rummy`, seat range 2–4,
   family/duration/complexity; wire package deps (rules → AIKit, EngineCore; UI → TileRummy, TableKit).
-  Reuse the `tile-rummy-106` `DeckDefinition`; add tile point semantics (no `Tile` edit). _(R-TR-RULES-1.1,
+  Reuse the `tile-rummy-106` `DeckDefinition`; supply tile point values through the existing
+  `CardSemantics` extension point (`points`), not a new parallel type (no `Tile` edit). _(R-TR-RULES-1.1,
   R-TR-RULES-1.3, R-ENG-5.1, R-TR-NFR-7)_
 - [ ] **1.3 State model + zones + redaction.** Implement `TileRummyState`, `Rack` (staging/main),
   `TableSet`, `TurnSnapshot`; pool = hidden, racks = owner-only, table = public; `redactedView` yields

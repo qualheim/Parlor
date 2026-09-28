@@ -69,8 +69,10 @@ definition, so I never redefine the piece type or its composition.
 - R-TR-RULES-1.2 Each of the 106 tiles SHALL retain a unique, stable `PieceID` distinct from its face, so
   the two identical faces (e.g. both red 7s) are distinguishable in the log and in views (R-ENG-1.2).
 - R-TR-RULES-1.3 Tile Rummy SHALL supply its own tile point values (a numbered tile is worth its number;
-  a joker's value is context-dependent, see R-TR-RULES-6 and R-TR-SCORE-1) as game semantics layered over
-  the face, never baked into `Tile` (R-ENG-2.3).
+  a joker's value is context-dependent, see R-TR-RULES-6 and R-TR-SCORE-1) through the **existing
+  `CardSemantics` extension point** (`points`, per the Architecture.md "How to add a new game" step 2), as
+  game semantics layered over the face — never baked into `Tile` and never a new parallel engine type
+  (R-ENG-2.3).
 
 ### R-TR-RULES-2 — Players, deal, and pool
 **User story:** As a player, I want a correct 2–4 player deal with a hidden pool, so the round starts
@@ -236,12 +238,14 @@ joker can be freed for a bigger play.
 **User story:** As a player, I want the winner scored by the classic convention, so the match total is
 correct.
 
-- R-TR-SCORE-2.1 The round **winner** (the seat that empties its rack, or the best board position if the
-  pool-exhaustion option ends play) SHALL score the total value of the tiles remaining in every
-  opponent's rack (R-TR-SCORE-1), and each opponent SHALL be scored the negative of their own remaining
-  total; the exact convention (whether the winner receives a positive sum equal to opponents' totals,
-  whether losers score their own negative totals only, or both) is **NEEDS REVIEW** and recorded in
-  `Docs/Rules/tile-rummy.md` (see Q-TR-2).
+- R-TR-SCORE-2.1 WHEN a round ends, each seat's remaining rack total SHALL be counted per R-TR-SCORE-1
+  (a numbered tile counts as its number; a racked joker counts as a 30-point penalty). The **round winner**
+  is the seat that empties its rack (or the best board position if the pool-exhaustion option ends play).
+  The **winner/loser scoring convention** — how those remaining-rack totals translate into each seat's
+  round score (whether the winner receives a positive sum equal to opponents' totals, whether losers score
+  their own remaining totals as negatives, or both in a zero-sum split) — is **NEEDS REVIEW** and recorded
+  in `Docs/Rules/tile-rummy.md` (see Q-TR-2); the engine SHALL implement whichever convention the rules
+  doc fixes, and a scenario test SHALL cover it (R-TR-QA-1).
 - R-TR-SCORE-2.2 A match SHALL be a sequence of rounds with cumulative scores and a configurable end
   condition (target score or fixed number of rounds), reusing the engine match model (R-ENG-6).
 
@@ -274,7 +278,11 @@ self-explanatory.
 tile.
 
 - R-TR-UX-3.1 TableKit interaction SHALL allow selecting multiple tiles and dragging a **contiguous run**
-  as a single unit, in addition to single-tile drag (R-TABLE-3.1).
+  as a single unit, in addition to single-tile drag. This SHALL map onto Spec 1's existing single-cards-
+  and-stacks drag capability (R-TABLE-3.1) via a Tile Rummy selection model, introducing no new TableKit
+  input path; IF the existing drag payload cannot carry an arbitrary multi-tile selection, THEN that is a
+  TableKit public-API change requiring an ADR (`Docs/ADR/0003-*.md`) per A-TR-2 (`tech.md` rule 9), to be
+  verified before implementation (see `design.md` §11).
 - R-TR-UX-3.2 Multi-tile selection and placement SHALL also be reachable by click-to-select-then-place and
   by keyboard (R-TABLE-3.2, R-TABLE-3.4; R-TR-UX-8).
 

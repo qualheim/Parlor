@@ -367,9 +367,17 @@ DesignSystem tokens; none requires a `TableKit` public-API change (§0):
 - **Live invalid-set outlining (R-TR-UX-2).** `TileRummyUI` derives per-set validity from the current
   `PlayerView` (via the same `isValidSet` used by the rules) and applies a **semantic warning token**
   border plus a non-color hazard style; this is view styling over existing set nodes, not a new event.
-- **Multi-select / contiguous-run drag (R-TR-UX-3).** Uses TableKit's existing stack-drag path
-  (R-TABLE-3.1) with a Tile Rummy selection model that groups a contiguous run into one drag payload;
-  also reachable by click-place and keyboard (R-TABLE-3.2/3.4).
+- **Multi-select / contiguous-run drag (R-TR-UX-3).** Spec 1's `R-TABLE-3.1` exposes drag and drop of
+  **single cards and stacks**. Tile Rummy's contiguous-run drag maps directly onto that existing
+  single-cards-and-stacks capability: a Tile Rummy **selection model** in `TileRummyUI` groups a
+  contiguous run into a single drag payload that rides the same stack-drag path, so no new TableKit input
+  path is introduced. Also reachable by click-place and keyboard (R-TABLE-3.2/3.4).
+  > **Verify before coding (A-TR-2; `tech.md` rule 9).** This design assumes the existing `R-TABLE-3.1`
+  > drag payload can carry an arbitrary multi-tile selection (a contiguous run) the same way it carries a
+  > stack. IF implementation finds the existing TableKit drag payload can only carry a single card or a
+  > homogeneous pile and **cannot** carry an arbitrary multi-tile Tile Rummy selection, THEN that is a
+  > `TableKit` public-API change and requires **ADR 0003** before coding proceeds (A-TR-2). No ADR is
+  > created now, because on the primitives as specified no such change is expected (§0).
 - **Two-tier rack (R-TR-UX-4).** The seat's rack is laid out as two declarative rows (`staging`, `main`)
   in the layout; moving a tile between rows is an ordinary `pieceMoved` within the owner-only zone.
 - **Rack sort toggles (R-TR-UX-5).** `sortRack(.byNumber|.byRun)` reorders the owner-only rack view; it is
@@ -384,7 +392,8 @@ DesignSystem tokens; none requires a `TableKit` public-API change (§0):
 ## 12. How this satisfies the "How to add a new game" checklist
 
 1. **Rules** — `TileRummyDefinition: GameDefinition` (§1–§5). 2. **Deck/set** — reuse `tile-rummy-106`; no
-new composition; supply tile point semantics only (R-TR-RULES-1.3). 3. **AI** — Easy/Medium/Hard + hint
+new composition; supply tile point values through the existing `CardSemantics` extension point
+(`points`) only — no new parallel engine type is added (R-TR-RULES-1.3; Architecture.md step 2). 3. **AI** — Easy/Medium/Hard + hint
 (§6). 4. **Layout** — declarative `TileRummyLayout` (§11). 5. **Rules doc** — author
 `Docs/Rules/tile-rummy.md` (tasks.md task 1). 6. **Catalog** — register behind a feature flag
 (R-TR-DOC-6). 7. **Tests** — scenario + sim + view-leak + save/restore + coverage (§10). 8. **Tutorial** —
