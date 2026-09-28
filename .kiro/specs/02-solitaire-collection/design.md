@@ -239,6 +239,14 @@ collapsed by the canonical hash (§2.7). This is the symmetry reduction referenc
   or already-visited); otherwise, when `maxNodes` is hit, `unknown` (R-SOLVER-1.1, R-SOLVER-3.2). The
   cross-check tests (§9) guarantee `winnable` is never returned for a provably-unwinnable deal and
   `unwinnable` is never returned for a provably-winnable deal (R-SOLVER-3.2, R-QA2-3.1).
+- **Feasibility of `unwinnable` by exhaustion.** Exhausting the reachable, non-dead state space within a
+  bounded node budget is genuinely reachable for the *removal* solitaires (Pyramid, TriPeaks) with their
+  28-bit masks and small state spaces. For the *building* solitaires (FreeCell, Spider, Klondike) the
+  reachable space is far too large to exhaust at any tractable node cap, so those deals in practice return
+  `winnable` or `unknown` and only rarely a proven `unwinnable`; the curated #11982 fixture
+  (R-FREECELL-4.4) is a known-answer anchor, not evidence that general unwinnability proofs scale on
+  building solitaires. This is acceptable because the winnable-pool pipeline (§4) consumes only `winnable`
+  and the hint path (§6) falls back to the heuristic on `unknown`.
 
 ### 2.7 Canonical hashing (ADR 0002 discipline)
 
@@ -311,10 +319,10 @@ Notes, all binding:
   state.
 - **Selection** is `idx = rand % remaining`; the chosen card is removed by **swap-with-last**
   (`deck[idx] = deck[remaining-1]; remaining -= 1`), so removal is O(1) and reproduces the classic order.
-- **Dealing** is **round-robin left-to-right** into the 8 columns; with 52 cards the fill is 7,7,7,7,7,7,5,5
-  (columns 0–3 get 7, columns 4–7 get 6 on the first six full rows then 5 on the last) — matching
-  R-FREECELL-1.1's four-7/four-6 shape (the exact per-column counts are asserted by the conformance
-  fixtures, §9).
+- **Dealing** is **round-robin left-to-right** into the 8 columns; with 52 cards this is six full rows of
+  8 (48 cards) plus a final partial row of 4 landing in columns 0–3, so the per-column fill is
+  **7,7,7,7,6,6,6,6** (columns 0–3 get 7, columns 4–7 get 6) — matching R-FREECELL-1.1's four-7/four-6
+  shape (the exact per-column counts are asserted by the conformance fixtures, §9).
 
 ### 3.3 Ranges, the Parlor path, and #11982
 
