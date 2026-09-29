@@ -35,6 +35,19 @@ note()  { printf '  %s\n' "$*"; }
 fail()  { printf '  [FAIL] %s\n' "$*"; FAILURES=$((FAILURES + 1)); }
 okay()  { printf '  [ok] %s\n' "$*"; }
 
+# Format a sanitized "path:lineno:code" record into "path:lineno  →  code" for a failure message.
+# strip_comments emits records as FILENAME:FNR:CODE, so field 1 = path, field 2 = line, rest = code.
+format_hit() {
+  local rec="$1" path lineno code
+  path="${rec%%:*}"
+  rec="${rec#*:}"
+  lineno="${rec%%:*}"
+  code="${rec#*:}"
+  # Collapse leading whitespace in the shown code.
+  code="$(printf '%s' "$code" | sed -E 's/^[[:space:]]+//')"
+  printf '%s:%s  ->  %s' "$path" "$lineno" "$code"
+}
+
 # ---------------------------------------------------------------------------------------------------
 # Source enumeration.
 #
@@ -120,11 +133,11 @@ check_forbidden() {
 
   # Forbidden module imports (networking / OS UI-adjacent frameworks).
   for m in $FORBIDDEN_IMPORT_MODULES $FORBIDDEN_ANALYTICS_MODULES; do
-    hits="$(printf '%s\n' "$sanitized" | grep -nE "^[^:]+:[0-9]+:[[:space:]]*(@[A-Za-z]+[[:space:]]+)?import[[:space:]]+(struct[[:space:]]+|class[[:space:]]+|enum[[:space:]]+|func[[:space:]]+|var[[:space:]]+|let[[:space:]]+|typealias[[:space:]]+|protocol[[:space:]]+)?${m}([[:space:]]|\.|$)" 2>/dev/null || true)"
+    hits="$(printf '%s\n' "$sanitized" | grep -E "^[^:]+:[0-9]+:[[:space:]]*(@[A-Za-z]+[[:space:]]+)?import[[:space:]]+(struct[[:space:]]+|class[[:space:]]+|enum[[:space:]]+|func[[:space:]]+|var[[:space:]]+|let[[:space:]]+|typealias[[:space:]]+|protocol[[:space:]]+)?${m}([[:space:]]|\.|$)" 2>/dev/null || true)"
     if [ -n "$hits" ]; then
       found=1
       while IFS= read -r line; do
-        [ -n "$line" ] && fail "forbidden import of '$m' → ${line#*:}  (${line%%:*})"
+        [ -n "$line" ] && fail "forbidden import of '$m' → $(format_hit "$line")"
       done <<EOF
 $hits
 EOF
@@ -133,11 +146,11 @@ EOF
 
   # Forbidden API symbols (may be reachable without an explicit import).
   for m in $FORBIDDEN_API_SYMBOLS; do
-    hits="$(printf '%s\n' "$sanitized" | grep -nE "(^|[^A-Za-z0-9_.])${m}([^A-Za-z0-9_]|$)" 2>/dev/null || true)"
+    hits="$(printf '%s\n' "$sanitized" | grep -E "(^|[^A-Za-z0-9_.])${m}([^A-Za-z0-9_]|$)" 2>/dev/null || true)"
     if [ -n "$hits" ]; then
       found=1
       while IFS= read -r line; do
-        [ -n "$line" ] && fail "forbidden API '$m' → ${line#*:}  (${line%%:*})"
+        [ -n "$line" ] && fail "forbidden API '$m' → $(format_hit "$line")"
       done <<EOF
 $hits
 EOF
@@ -167,11 +180,11 @@ check_ui_in_pure() {
       [ -n "$f" ] || continue
       sanitized="$(strip_comments "$f")"
       for m in $UI_FRAMEWORKS; do
-        hits="$(printf '%s\n' "$sanitized" | grep -nE "^[^:]+:[0-9]+:[[:space:]]*(@[A-Za-z]+[[:space:]]+)?import[[:space:]]+(struct[[:space:]]+|class[[:space:]]+|enum[[:space:]]+|func[[:space:]]+|var[[:space:]]+|let[[:space:]]+|typealias[[:space:]]+|protocol[[:space:]]+)?${m}([[:space:]]|\.|$)" 2>/dev/null || true)"
+        hits="$(printf '%s\n' "$sanitized" | grep -E "^[^:]+:[0-9]+:[[:space:]]*(@[A-Za-z]+[[:space:]]+)?import[[:space:]]+(struct[[:space:]]+|class[[:space:]]+|enum[[:space:]]+|func[[:space:]]+|var[[:space:]]+|let[[:space:]]+|typealias[[:space:]]+|protocol[[:space:]]+)?${m}([[:space:]]|\.|$)" 2>/dev/null || true)"
         if [ -n "$hits" ]; then
           found=1
           while IFS= read -r line; do
-            [ -n "$line" ] && fail "UI framework '$m' imported in pure layer → ${line#*:}  (${line%%:*})"
+            [ -n "$line" ] && fail "UI framework '$m' imported in pure layer → $(format_hit "$line")"
           done <<EOF
 $hits
 EOF
@@ -246,7 +259,7 @@ check_dependency_direction() {
       # Find every internal module imported by this file.
       for mod in $INTERNAL_MODULES; do
         [ "$mod" = "$target" ] && continue
-        hits="$(printf '%s\n' "$sanitized" | grep -nE "^[^:]+:[0-9]+:[[:space:]]*(@[A-Za-z]+[[:space:]]+)?import[[:space:]]+(struct[[:space:]]+|class[[:space:]]+|enum[[:space:]]+|func[[:space:]]+|var[[:space:]]+|let[[:space:]]+|typealias[[:space:]]+|protocol[[:space:]]+)?${mod}([[:space:]]|\.|$)" 2>/dev/null || true)"
+        hits="$(printf '%s\n' "$sanitized" | grep -E "^[^:]+:[0-9]+:[[:space:]]*(@[A-Za-z]+[[:space:]]+)?import[[:space:]]+(struct[[:space:]]+|class[[:space:]]+|enum[[:space:]]+|func[[:space:]]+|var[[:space:]]+|let[[:space:]]+|typealias[[:space:]]+|protocol[[:space:]]+)?${mod}([[:space:]]|\.|$)" 2>/dev/null || true)"
         [ -n "$hits" ] || continue
         # Is `mod` in the allowed set for `target`?
         is_allowed=0
@@ -256,7 +269,7 @@ check_dependency_direction() {
         if [ "$is_allowed" -eq 0 ]; then
           found=1
           while IFS= read -r line; do
-            [ -n "$line" ] && fail "$target imports '$mod' outside allowed direction (allowed: ${allowed:-none}) → ${line%%:*}"
+            [ -n "$line" ] && fail "$target imports '$mod' outside allowed direction (allowed: ${allowed:-none}) → $(format_hit "$line")"
           done <<EOF
 $hits
 EOF

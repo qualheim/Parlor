@@ -38,6 +38,8 @@ targets:
     type: application
     platform: macOS
     sources:
+      # App/Sources holds the Swift shell AND Assets.xcassets (placeholder AppIcon, task 1.5).
+      # XcodeGen/Xcode compile the asset catalog into the bundle automatically.
       - path: App/Sources
       # Privacy manifest bundled into the app (task 1.3; R-BUILD-3.3). It must ship inside the
       # .app bundle, so it is copied as a resource rather than compiled.
@@ -56,6 +58,9 @@ targets:
         PRODUCT_BUNDLE_IDENTIFIER: com.parlor.Parlor
         PRODUCT_NAME: Parlor
         GENERATE_INFOPLIST_FILE: YES
+        # Placeholder app icon (task 1.5; 🎨 needs production art — R-DS-6.1). The set lives in
+        # App/Sources/Assets.xcassets/AppIcon.appiconset.
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
         INFOPLIST_KEY_NSHumanReadableCopyright: ""
         INFOPLIST_KEY_LSApplicationCategoryType: "public.app-category.board-games"
         # Added in task 1.3:

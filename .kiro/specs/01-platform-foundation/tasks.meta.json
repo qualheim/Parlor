@@ -62,6 +62,21 @@
         "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
         "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
         "timestamp": 1790649669783
+      },
+      {
+        "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790694294525
+      },
+      {
+        "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790694302926
+      },
+      {
+        "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790697428755
       }
     ],
     "**1.5 Empty window + logging.** Thin SwiftUI app opens an empty window (min 1024×700), standard menu": [
@@ -69,6 +84,21 @@
         "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
         "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
         "timestamp": 1790570974838
+      },
+      {
+        "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790694294572
+      },
+      {
+        "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790697431720
+      },
+      {
+        "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790700835774
       }
     ],
     "**⛳ CHECKPOINT 1.** User runs `make bootstrap && make run`: an empty, sandboxed window launches;": [
@@ -76,6 +106,16 @@
         "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
         "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
         "timestamp": 1790570974859
+      },
+      {
+        "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790694294599
+      },
+      {
+        "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790700866933
       }
     ],
     "**2.1 Components + identity.** `PieceID`, `Card`/`CardFace`, `Tile`/`TileFace`; unique identity": [
@@ -83,6 +123,21 @@
         "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
         "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
         "timestamp": 1790570974885
+      },
+      {
+        "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790694294625
+      },
+      {
+        "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790700870144
+      },
+      {
+        "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790701027160
       }
     ],
     "**2.2 Deck/set definitions + composition tests.** `DeckDefinition` as data for standard-52, 52+jokers,": [
@@ -90,6 +145,21 @@
         "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
         "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
         "timestamp": 1790570974906
+      },
+      {
+        "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790694294649
+      },
+      {
+        "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790701029959
+      },
+      {
+        "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790701404689
       }
     ],
     "**2.3 Zones + visibility.** `Zone`, `ZoneID`, `Visibility` (hidden/ownerOnly/public/topCardOnly/": [
@@ -97,6 +167,21 @@
         "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
         "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
         "timestamp": 1790570974926
+      },
+      {
+        "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790694294673
+      },
+      {
+        "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790701407507
+      },
+      {
+        "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790705282720
       }
     ],
     "**2.4 RNG + Fisher–Yates + determinism test.** `SeededRNG` (SplitMix64→xoshiro256\\*\\* per ADR 0002),": [
@@ -104,6 +189,21 @@
         "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
         "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
         "timestamp": 1790570974949
+      },
+      {
+        "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790694294700
+      },
+      {
+        "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790705285905
+      },
+      {
+        "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790705661871
       }
     ],
     "**2.5 GameDefinition protocol + RuleViolation.** Metadata, options schema + presets, initial state,": [
@@ -111,6 +211,21 @@
         "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
         "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
         "timestamp": 1790570974971
+      },
+      {
+        "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790694294730
+      },
+      {
+        "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790705666769
+      },
+      {
+        "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790706067451
       }
     ],
     "**2.6 Events + Views/redaction + tokens.** Codable `GameEvent` set; `Viewer`, `ViewToken`,": [
@@ -118,6 +233,21 @@
         "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
         "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
         "timestamp": 1790570974993
+      },
+      {
+        "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790694294754
+      },
+      {
+        "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790706070667
+      },
+      {
+        "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790708187974
       }
     ],
     "**2.7 Match structure + action log.** Match→hands→phases→turns, dealer rotation, cumulative scores,": [
@@ -125,6 +255,21 @@
         "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
         "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
         "timestamp": 1790570975025
+      },
+      {
+        "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790694294777
+      },
+      {
+        "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790708190922
+      },
+      {
+        "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790712106248
       }
     ],
     "**2.8 View-leak property test.** Random states × every viewer → serialized view leaks no hidden": [
@@ -132,6 +277,21 @@
         "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
         "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
         "timestamp": 1790570975049
+      },
+      {
+        "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790694294800
+      },
+      {
+        "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790712110040
+      },
+      {
+        "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790715290069
       }
     ],
     "**3.1 Klondike rules.** `GameDefinition` for `klondike`: deal, tableau build-down alt-color,": [
@@ -139,6 +299,21 @@
         "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
         "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
         "timestamp": 1790570975071
+      },
+      {
+        "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790694294827
+      },
+      {
+        "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790715306289
+      },
+      {
+        "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790717431954
       }
     ],
     "**3.2 Klondike scenario tests.** Given/When/Then per rule/option, traceable to the rules doc.": [
@@ -146,6 +321,21 @@
         "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
         "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
         "timestamp": 1790570975092
+      },
+      {
+        "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790694294853
+      },
+      {
+        "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790717435172
+      },
+      {
+        "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790718404619
       }
     ],
     "**3.3 Minimal TableKit renderer.** Declarative layout → positions; event-stream-driven deal/move/": [
@@ -153,6 +343,21 @@
         "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
         "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
         "timestamp": 1790570975110
+      },
+      {
+        "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790694294878
+      },
+      {
+        "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790718408226
+      },
+      {
+        "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790719133610
       }
     ],
     "**3.4 Input paths + illegal feedback.** Drag single + stacks, click-select-then-place, double-click": [
@@ -160,6 +365,16 @@
         "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
         "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
         "timestamp": 1790570975132
+      },
+      {
+        "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790694294900
+      },
+      {
+        "executionId": "af47414a-6197-491b-8abe-bab8fad87974",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790722724082
       }
     ],
     "**3.5 Klondike features.** Auto-flip; auto-move Off/Safe/Always; smart move; auto-complete; no-moves": [
@@ -167,6 +382,21 @@
         "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
         "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
         "timestamp": 1790570975154
+      },
+      {
+        "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790694294923
+      },
+      {
+        "executionId": "af47414a-6197-491b-8abe-bab8fad87974",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790722727895
+      },
+      {
+        "executionId": "af47414a-6197-491b-8abe-bab8fad87974",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790723669515
       }
     ],
     "**⛳ CHECKPOINT 2.** User plays Klondike end-to-end with placeholder visuals via drag *and* keyboard,": [
@@ -174,6 +404,11 @@
         "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
         "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
         "timestamp": 1790570975175
+      },
+      {
+        "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790694294945
       }
     ],
     "**4.1 GameHost actor + transport envelope.** Sole state mutator owning RNG + log; Codable": [
@@ -181,6 +416,11 @@
         "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
         "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
         "timestamp": 1790570975199
+      },
+      {
+        "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790694294966
       }
     ],
     "**4.2 Controllers + turn models.** `PlayerController` async API; `LocalHumanController`,": [
@@ -188,6 +428,11 @@
         "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
         "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
         "timestamp": 1790570975221
+      },
+      {
+        "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790694294990
       }
     ],
     "**4.3 Profiles + concurrent sessions.** Player profiles (id/name/avatar/controller), editable local": [
@@ -195,6 +440,11 @@
         "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
         "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
         "timestamp": 1790570975242
+      },
+      {
+        "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790694295013
       }
     ],
     "**4.4 AIKit toolkit + information barrier.** Strategy API taking only `(PlayerView, publicLog,": [
@@ -202,6 +452,11 @@
         "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
         "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
         "timestamp": 1790570975266
+      },
+      {
+        "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790694295037
       }
     ],
     "**4.5 Crazy Eights rules.** `GameDefinition` for `crazy-eights`: 2–5 players, deal 7/5, starter": [
@@ -209,6 +464,11 @@
         "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
         "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
         "timestamp": 1790570975288
+      },
+      {
+        "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790694295061
       }
     ],
     "**4.6 Crazy Eights AI + scenario tests.** Easy/Medium/Hard (Hard = determinized Monte Carlo); hint;": [
@@ -216,6 +476,11 @@
         "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
         "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
         "timestamp": 1790570975309
+      },
+      {
+        "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790694295084
       }
     ],
     "**⛳ CHECKPOINT 3.** User plays a full Crazy Eights hand vs AI (hidden hands, per-viewer views, turn": [
@@ -223,6 +488,11 @@
         "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
         "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
         "timestamp": 1790570975332
+      },
+      {
+        "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790694295108
       }
     ],
     "**5.1 Tokens + chrome.** Color/type/spacing/radius/shadow/motion tokens; light/dark chrome; WCAG 2.2": [
@@ -230,6 +500,11 @@
         "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
         "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
         "timestamp": 1790570975354
+      },
+      {
+        "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790694295131
       }
     ],
     "**5.2 Themes + shaders.** ≥ 4 procedural table themes (Classic Felt, Midnight, Walnut Parlor,": [
@@ -237,6 +512,11 @@
         "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
         "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
         "timestamp": 1790570975376
+      },
+      {
+        "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790694295157
       }
     ],
     "**5.3 Deck styles + backs + card faces.** Classic/Modern/Four-Color/Jumbo Index; ≥ 6 backs; 🎨": [
@@ -244,6 +524,11 @@
         "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
         "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
         "timestamp": 1790570975399
+      },
+      {
+        "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790694295182
       }
     ],
     "**5.4 Theme-pack loader.** JSON manifest + vector assets + audio, runtime-switchable without restart;": [
@@ -251,6 +536,11 @@
         "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
         "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
         "timestamp": 1790570975421
+      },
+      {
+        "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790694295207
       }
     ],
     "**5.5 Animation queue polish.** Speed setting (Relaxed/Normal/Fast/Instant), click/keypress": [
@@ -258,6 +548,11 @@
         "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
         "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
         "timestamp": 1790570975442
+      },
+      {
+        "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790694295231
       }
     ],
     "**5.6 HUD components.** Seat plates (avatar/name/score/dealer/role/active-glow/thinking), scoreboard,": [
@@ -265,6 +560,11 @@
         "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
         "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
         "timestamp": 1790570975465
+      },
+      {
+        "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790694295257
       }
     ],
     "**5.7 Sound engine.** Event-driven cues (shuffle/deal/flip/place/chips/win) with randomized": [
@@ -272,6 +572,11 @@
         "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
         "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
         "timestamp": 1790570975490
+      },
+      {
+        "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790694295302
       }
     ],
     "**5.8 Klondike win celebration.** ≤ 3 s skippable cascading-cards homage + modern flourish": [
@@ -279,6 +584,11 @@
         "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
         "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
         "timestamp": 1790570975522
+      },
+      {
+        "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790694295327
       }
     ],
     "**⛳ CHECKPOINT 4.** User switches themes/decks live, hears sound, sees polished motion and the win": [
@@ -286,6 +596,11 @@
         "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
         "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
         "timestamp": 1790570975541
+      },
+      {
+        "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790694295349
       }
     ],
     "**6.1 Versioned save + autosave/resume.** Codable save (schema-versioned) written after every": [
@@ -293,6 +608,11 @@
         "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
         "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
         "timestamp": 1790570975562
+      },
+      {
+        "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790694295373
       }
     ],
     "**6.2 Migration + corruption handling + round-trip test.** Version migration registry + tests;": [
@@ -300,6 +620,11 @@
         "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
         "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
         "timestamp": 1790570975582
+      },
+      {
+        "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790694295395
       }
     ],
     "**6.3 Statistics + Swift Charts.** Per game/variant: played, won, win %, current/best streak, best": [
@@ -307,6 +632,11 @@
         "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
         "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
         "timestamp": 1790570975604
+      },
+      {
+        "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790694295416
       }
     ],
     "**6.4 Settings.** Appearance (theme/deck/back/card size S/M/L/XL), gameplay (animation speed, AI": [
@@ -314,6 +644,11 @@
         "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
         "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
         "timestamp": 1790570975625
+      },
+      {
+        "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790694295439
       }
     ],
     "**6.5 Library + catalog + setup sheet.** Continue hero, family groups, filters (family/count/": [
@@ -321,6 +656,11 @@
         "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
         "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
         "timestamp": 1790570975643
+      },
+      {
+        "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790694295462
       }
     ],
     "**6.6 Table screen + rules inspector + macOS integration.** Full-bleed table, quiet toolbar, HUD,": [
@@ -328,6 +668,11 @@
         "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
         "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
         "timestamp": 1790570975665
+      },
+      {
+        "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790694295487
       }
     ],
     "**⛳ CHECKPOINT 5.** User browses the library, configures a game, quits and resumes mid-hand, views": [
@@ -335,6 +680,11 @@
         "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
         "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
         "timestamp": 1790570975688
+      },
+      {
+        "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790694295507
       }
     ],
     "**7.1 VoiceOver.** Meaningful label/value/hint for every card/tile/pile/control; custom rotors for": [
@@ -342,6 +692,11 @@
         "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
         "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
         "timestamp": 1790570975708
+      },
+      {
+        "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790694295531
       }
     ],
     "**7.2 Keyboard-only play.** Full keyboard play for both games and every flow, visible focus": [
@@ -349,6 +704,11 @@
         "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
         "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
         "timestamp": 1790570975731
+      },
+      {
+        "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790694295556
       }
     ],
     "**7.3 Color independence + system settings.** Suit shapes always present, Four-Color deck; respect": [
@@ -356,6 +716,11 @@
         "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
         "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
         "timestamp": 1790570975749
+      },
+      {
+        "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790694295579
       }
     ],
     "**7.4 Accessibility UI tests.** Keyboard-only completion of Klondike (debug near-win) and a Crazy": [
@@ -363,6 +728,11 @@
         "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
         "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
         "timestamp": 1790570975771
+      },
+      {
+        "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790694295601
       }
     ],
     "**⛳ CHECKPOINT 6.** User completes both games with VoiceOver + keyboard only. Review before Phase 8.": [
@@ -370,6 +740,11 @@
         "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
         "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
         "timestamp": 1790570975791
+      },
+      {
+        "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790694295624
       }
     ],
     "**8.1 parlor-sim + invariants.** AI-vs-AI and random-legal runs checking piece conservation,": [
@@ -377,6 +752,11 @@
         "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
         "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
         "timestamp": 1790570975810
+      },
+      {
+        "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790694295647
       }
     ],
     "**8.2 Full UI test suite.** Library → setup → Klondike (drag + keyboard) → undo → win from debug": [
@@ -384,6 +764,11 @@
         "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
         "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
         "timestamp": 1790570975832
+      },
+      {
+        "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790694295674
       }
     ],
     "**8.3 Performance tests.** Launch, deal animation, AI decision time vs `tech.md` budgets; profile the": [
@@ -391,6 +776,11 @@
         "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
         "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
         "timestamp": 1790570975854
+      },
+      {
+        "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790694295696
       }
     ],
     "**8.4 Coverage gate.** ≥ 90% line coverage for EngineCore and both rules targets; enforce in": [
@@ -398,6 +788,11 @@
         "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
         "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
         "timestamp": 1790570975874
+      },
+      {
+        "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790694295716
       }
     ],
     "**8.5 Docs finalize + placeholder audit.** Update `Docs/Architecture.md` and both rules docs; confirm": [
@@ -405,6 +800,11 @@
         "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
         "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
         "timestamp": 1790570975898
+      },
+      {
+        "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790694295745
       }
     ],
     "**⛳ CHECKPOINT 7 (final).** User runs `make test-long`; all quality gates, performance budgets, and": [
@@ -412,6 +812,11 @@
         "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
         "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
         "timestamp": 1790570975921
+      },
+      {
+        "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790694295770
       }
     ]
   }
