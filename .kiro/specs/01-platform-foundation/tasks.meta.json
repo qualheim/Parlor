@@ -1,0 +1,418 @@
+{
+  "pbtResults": {},
+  "executionHistory": {
+    "**1.1 Repo scaffold + XcodeGen + package graph.** Create the `structure.md` layout: `project.yml`,": [
+      {
+        "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
+        "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
+        "timestamp": 1790570974706
+      },
+      {
+        "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
+        "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
+        "timestamp": 1790570982983
+      },
+      {
+        "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
+        "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
+        "timestamp": 1790571620935
+      }
+    ],
+    "**1.2 Makefile targets.** Implement `bootstrap`, `generate`, `build`, `test`, `test-long`, `lint`,": [
+      {
+        "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
+        "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
+        "timestamp": 1790570974764
+      },
+      {
+        "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
+        "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
+        "timestamp": 1790571624189
+      },
+      {
+        "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
+        "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
+        "timestamp": 1790648776049
+      }
+    ],
+    "**1.3 Entitlements + privacy manifest.** App Sandbox + Hardened Runtime on, no network entitlements;": [
+      {
+        "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
+        "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
+        "timestamp": 1790570974791
+      },
+      {
+        "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
+        "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
+        "timestamp": 1790648779292
+      },
+      {
+        "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
+        "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
+        "timestamp": 1790649666616
+      }
+    ],
+    "**1.4 Lint scripts.** `Scripts/` checks that fail on forbidden imports/APIs, on UI-framework imports": [
+      {
+        "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
+        "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
+        "timestamp": 1790570974815
+      },
+      {
+        "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
+        "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
+        "timestamp": 1790649669783
+      }
+    ],
+    "**1.5 Empty window + logging.** Thin SwiftUI app opens an empty window (min 1024×700), standard menu": [
+      {
+        "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
+        "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
+        "timestamp": 1790570974838
+      }
+    ],
+    "**⛳ CHECKPOINT 1.** User runs `make bootstrap && make run`: an empty, sandboxed window launches;": [
+      {
+        "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
+        "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
+        "timestamp": 1790570974859
+      }
+    ],
+    "**2.1 Components + identity.** `PieceID`, `Card`/`CardFace`, `Tile`/`TileFace`; unique identity": [
+      {
+        "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
+        "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
+        "timestamp": 1790570974885
+      }
+    ],
+    "**2.2 Deck/set definitions + composition tests.** `DeckDefinition` as data for standard-52, 52+jokers,": [
+      {
+        "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
+        "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
+        "timestamp": 1790570974906
+      }
+    ],
+    "**2.3 Zones + visibility.** `Zone`, `ZoneID`, `Visibility` (hidden/ownerOnly/public/topCardOnly/": [
+      {
+        "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
+        "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
+        "timestamp": 1790570974926
+      }
+    ],
+    "**2.4 RNG + Fisher–Yates + determinism test.** `SeededRNG` (SplitMix64→xoshiro256\\*\\* per ADR 0002),": [
+      {
+        "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
+        "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
+        "timestamp": 1790570974949
+      }
+    ],
+    "**2.5 GameDefinition protocol + RuleViolation.** Metadata, options schema + presets, initial state,": [
+      {
+        "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
+        "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
+        "timestamp": 1790570974971
+      }
+    ],
+    "**2.6 Events + Views/redaction + tokens.** Codable `GameEvent` set; `Viewer`, `ViewToken`,": [
+      {
+        "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
+        "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
+        "timestamp": 1790570974993
+      }
+    ],
+    "**2.7 Match structure + action log.** Match→hands→phases→turns, dealer rotation, cumulative scores,": [
+      {
+        "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
+        "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
+        "timestamp": 1790570975025
+      }
+    ],
+    "**2.8 View-leak property test.** Random states × every viewer → serialized view leaks no hidden": [
+      {
+        "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
+        "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
+        "timestamp": 1790570975049
+      }
+    ],
+    "**3.1 Klondike rules.** `GameDefinition` for `klondike`: deal, tableau build-down alt-color,": [
+      {
+        "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
+        "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
+        "timestamp": 1790570975071
+      }
+    ],
+    "**3.2 Klondike scenario tests.** Given/When/Then per rule/option, traceable to the rules doc.": [
+      {
+        "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
+        "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
+        "timestamp": 1790570975092
+      }
+    ],
+    "**3.3 Minimal TableKit renderer.** Declarative layout → positions; event-stream-driven deal/move/": [
+      {
+        "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
+        "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
+        "timestamp": 1790570975110
+      }
+    ],
+    "**3.4 Input paths + illegal feedback.** Drag single + stacks, click-select-then-place, double-click": [
+      {
+        "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
+        "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
+        "timestamp": 1790570975132
+      }
+    ],
+    "**3.5 Klondike features.** Auto-flip; auto-move Off/Safe/Always; smart move; auto-complete; no-moves": [
+      {
+        "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
+        "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
+        "timestamp": 1790570975154
+      }
+    ],
+    "**⛳ CHECKPOINT 2.** User plays Klondike end-to-end with placeholder visuals via drag *and* keyboard,": [
+      {
+        "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
+        "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
+        "timestamp": 1790570975175
+      }
+    ],
+    "**4.1 GameHost actor + transport envelope.** Sole state mutator owning RNG + log; Codable": [
+      {
+        "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
+        "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
+        "timestamp": 1790570975199
+      }
+    ],
+    "**4.2 Controllers + turn models.** `PlayerController` async API; `LocalHumanController`,": [
+      {
+        "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
+        "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
+        "timestamp": 1790570975221
+      }
+    ],
+    "**4.3 Profiles + concurrent sessions.** Player profiles (id/name/avatar/controller), editable local": [
+      {
+        "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
+        "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
+        "timestamp": 1790570975242
+      }
+    ],
+    "**4.4 AIKit toolkit + information barrier.** Strategy API taking only `(PlayerView, publicLog,": [
+      {
+        "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
+        "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
+        "timestamp": 1790570975266
+      }
+    ],
+    "**4.5 Crazy Eights rules.** `GameDefinition` for `crazy-eights`: 2–5 players, deal 7/5, starter": [
+      {
+        "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
+        "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
+        "timestamp": 1790570975288
+      }
+    ],
+    "**4.6 Crazy Eights AI + scenario tests.** Easy/Medium/Hard (Hard = determinized Monte Carlo); hint;": [
+      {
+        "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
+        "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
+        "timestamp": 1790570975309
+      }
+    ],
+    "**⛳ CHECKPOINT 3.** User plays a full Crazy Eights hand vs AI (hidden hands, per-viewer views, turn": [
+      {
+        "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
+        "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
+        "timestamp": 1790570975332
+      }
+    ],
+    "**5.1 Tokens + chrome.** Color/type/spacing/radius/shadow/motion tokens; light/dark chrome; WCAG 2.2": [
+      {
+        "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
+        "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
+        "timestamp": 1790570975354
+      }
+    ],
+    "**5.2 Themes + shaders.** ≥ 4 procedural table themes (Classic Felt, Midnight, Walnut Parlor,": [
+      {
+        "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
+        "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
+        "timestamp": 1790570975376
+      }
+    ],
+    "**5.3 Deck styles + backs + card faces.** Classic/Modern/Four-Color/Jumbo Index; ≥ 6 backs; 🎨": [
+      {
+        "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
+        "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
+        "timestamp": 1790570975399
+      }
+    ],
+    "**5.4 Theme-pack loader.** JSON manifest + vector assets + audio, runtime-switchable without restart;": [
+      {
+        "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
+        "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
+        "timestamp": 1790570975421
+      }
+    ],
+    "**5.5 Animation queue polish.** Speed setting (Relaxed/Normal/Fast/Instant), click/keypress": [
+      {
+        "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
+        "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
+        "timestamp": 1790570975442
+      }
+    ],
+    "**5.6 HUD components.** Seat plates (avatar/name/score/dealer/role/active-glow/thinking), scoreboard,": [
+      {
+        "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
+        "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
+        "timestamp": 1790570975465
+      }
+    ],
+    "**5.7 Sound engine.** Event-driven cues (shuffle/deal/flip/place/chips/win) with randomized": [
+      {
+        "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
+        "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
+        "timestamp": 1790570975490
+      }
+    ],
+    "**5.8 Klondike win celebration.** ≤ 3 s skippable cascading-cards homage + modern flourish": [
+      {
+        "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
+        "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
+        "timestamp": 1790570975522
+      }
+    ],
+    "**⛳ CHECKPOINT 4.** User switches themes/decks live, hears sound, sees polished motion and the win": [
+      {
+        "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
+        "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
+        "timestamp": 1790570975541
+      }
+    ],
+    "**6.1 Versioned save + autosave/resume.** Codable save (schema-versioned) written after every": [
+      {
+        "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
+        "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
+        "timestamp": 1790570975562
+      }
+    ],
+    "**6.2 Migration + corruption handling + round-trip test.** Version migration registry + tests;": [
+      {
+        "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
+        "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
+        "timestamp": 1790570975582
+      }
+    ],
+    "**6.3 Statistics + Swift Charts.** Per game/variant: played, won, win %, current/best streak, best": [
+      {
+        "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
+        "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
+        "timestamp": 1790570975604
+      }
+    ],
+    "**6.4 Settings.** Appearance (theme/deck/back/card size S/M/L/XL), gameplay (animation speed, AI": [
+      {
+        "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
+        "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
+        "timestamp": 1790570975625
+      }
+    ],
+    "**6.5 Library + catalog + setup sheet.** Continue hero, family groups, filters (family/count/": [
+      {
+        "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
+        "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
+        "timestamp": 1790570975643
+      }
+    ],
+    "**6.6 Table screen + rules inspector + macOS integration.** Full-bleed table, quiet toolbar, HUD,": [
+      {
+        "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
+        "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
+        "timestamp": 1790570975665
+      }
+    ],
+    "**⛳ CHECKPOINT 5.** User browses the library, configures a game, quits and resumes mid-hand, views": [
+      {
+        "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
+        "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
+        "timestamp": 1790570975688
+      }
+    ],
+    "**7.1 VoiceOver.** Meaningful label/value/hint for every card/tile/pile/control; custom rotors for": [
+      {
+        "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
+        "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
+        "timestamp": 1790570975708
+      }
+    ],
+    "**7.2 Keyboard-only play.** Full keyboard play for both games and every flow, visible focus": [
+      {
+        "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
+        "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
+        "timestamp": 1790570975731
+      }
+    ],
+    "**7.3 Color independence + system settings.** Suit shapes always present, Four-Color deck; respect": [
+      {
+        "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
+        "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
+        "timestamp": 1790570975749
+      }
+    ],
+    "**7.4 Accessibility UI tests.** Keyboard-only completion of Klondike (debug near-win) and a Crazy": [
+      {
+        "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
+        "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
+        "timestamp": 1790570975771
+      }
+    ],
+    "**⛳ CHECKPOINT 6.** User completes both games with VoiceOver + keyboard only. Review before Phase 8.": [
+      {
+        "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
+        "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
+        "timestamp": 1790570975791
+      }
+    ],
+    "**8.1 parlor-sim + invariants.** AI-vs-AI and random-legal runs checking piece conservation,": [
+      {
+        "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
+        "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
+        "timestamp": 1790570975810
+      }
+    ],
+    "**8.2 Full UI test suite.** Library → setup → Klondike (drag + keyboard) → undo → win from debug": [
+      {
+        "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
+        "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
+        "timestamp": 1790570975832
+      }
+    ],
+    "**8.3 Performance tests.** Launch, deal animation, AI decision time vs `tech.md` budgets; profile the": [
+      {
+        "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
+        "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
+        "timestamp": 1790570975854
+      }
+    ],
+    "**8.4 Coverage gate.** ≥ 90% line coverage for EngineCore and both rules targets; enforce in": [
+      {
+        "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
+        "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
+        "timestamp": 1790570975874
+      }
+    ],
+    "**8.5 Docs finalize + placeholder audit.** Update `Docs/Architecture.md` and both rules docs; confirm": [
+      {
+        "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
+        "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
+        "timestamp": 1790570975898
+      }
+    ],
+    "**⛳ CHECKPOINT 7 (final).** User runs `make test-long`; all quality gates, performance budgets, and": [
+      {
+        "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
+        "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
+        "timestamp": 1790570975921
+      }
+    ]
+  }
+}

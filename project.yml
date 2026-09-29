@@ -1,0 +1,77 @@
+# project.yml — XcodeGen project specification for Parlor.
+#
+# The Xcode project is GENERATED from this file via XcodeGen (`make generate`); the resulting
+# `Parlor.xcodeproj/project.pbxproj` is never hand-edited (R-BUILD-1.3). Nearly all code lives in the
+# local Swift package at the repo root; the `App` target here is a thin macOS shell that consumes the
+# package products GamesUI, Persistence, and DesignSystem — the App's allowed dependencies
+# (design.md §1; R-BUILD-1.2).
+#
+# NOTE: entitlements (`App/Parlor.entitlements`) and the privacy manifest
+# (`App/PrivacyInfo.xcprivacy`) are added in task 1.3; the settings below reference them so the
+# generated project is ready for that task. Swift 6 strict concurrency + warnings-as-errors mirror the
+# package settings (R-BUILD-5).
+
+name: Parlor
+
+options:
+  bundleIdPrefix: com.parlor
+  deploymentTarget:
+    macOS: "14.0"
+  createIntermediateGroups: true
+  generateEmptyDirectories: true
+
+# The whole repo is one local Swift package; the App links its UI-facing products.
+packages:
+  Parlor:
+    path: .
+
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    SWIFT_STRICT_CONCURRENCY: complete
+    SWIFT_TREAT_WARNINGS_AS_ERRORS: YES
+    GCC_TREAT_WARNINGS_AS_ERRORS: YES
+    MACOSX_DEPLOYMENT_TARGET: "14.0"
+
+targets:
+  Parlor:
+    type: application
+    platform: macOS
+    sources:
+      - path: App/Sources
+      # Privacy manifest bundled into the app (task 1.3; R-BUILD-3.3). It must ship inside the
+      # .app bundle, so it is copied as a resource rather than compiled.
+      - path: App/PrivacyInfo.xcprivacy
+        buildPhase: resources
+    dependencies:
+      # The App's only allowed package dependencies (design.md §1).
+      - package: Parlor
+        product: Games
+      - package: Parlor
+        product: Persistence
+      - package: Parlor
+        product: DesignSystem
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.parlor.Parlor
+        PRODUCT_NAME: Parlor
+        GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_KEY_NSHumanReadableCopyright: ""
+        INFOPLIST_KEY_LSApplicationCategoryType: "public.app-category.board-games"
+        # Added in task 1.3:
+        CODE_SIGN_ENTITLEMENTS: App/Parlor.entitlements
+        ENABLE_HARDENED_RUNTIME: YES
+        # Local (ad-hoc) signing for `make run` (R-BUILD-2.3).
+        CODE_SIGN_IDENTITY: "-"
+        CODE_SIGNING_REQUIRED: NO
+        CODE_SIGNING_ALLOWED: YES
+
+  # UI tests target (structure.md `UITests/`). Test sources land with Phase 3+ UI work; the target is
+  # declared here so the generated project has the slot (R-BUILD-1.1).
+  ParlorUITests:
+    type: bundle.ui-testing
+    platform: macOS
+    sources:
+      - path: UITests
+    dependencies:
+      - target: Parlor
