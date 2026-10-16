@@ -236,6 +236,8 @@ docs-only.
   encoding rules, implementation status.
 - `Docs/ADR/0003-trick-taking-core.md` — reusable trick-taking core (Spec 03) and its additive
   EngineCore/TableKit touchpoints; the core is a stable contract reused unchanged by Spec 07.
+- `Docs/ADR/0003-casino-cribbage-families.md` — Casino/Cribbage family targets, the `blackjack-shoe-6`
+  deck, and the Spec-6 poker-evaluator + chip/bet-UI reuse contract (spec `08-classics-and-casino`).
 
 ADRs are required for new dependencies, changes to the public APIs of EngineCore or TableKit,
 rendering-approach changes, and save-format changes (`structure.md`).
