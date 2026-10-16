@@ -1,4 +1,4 @@
-# ADR 0003 — Casino and Cribbage family targets and Spec-6 component reuse
+# ADR 0005 — Casino and Cribbage family targets and Spec-6 component reuse
 
 - **Status:** Accepted (spec-time; 08-classics-and-casino)
 - **Date:** 2026-09-28

@@ -4,7 +4,7 @@ This design realizes `requirements.md`. It is bounded by the steering documents 
 `structure.md`, `ux-guidelines.md`) and by the Spec 01 foundation (`/.kiro/specs/01-platform-foundation/
 design.md`), which define the public surfaces of `EngineCore`, `AIKit`, and `TableKit`. Requirement IDs
 (`R-…`, and `01:R-…` for Spec 01) are cited inline so every design element traces to an acceptance
-criterion. Load-bearing decisions are recorded in **ADR 0003** (`Docs/ADR/0003-trick-taking-core.md`).
+criterion. Load-bearing decisions are recorded in **ADR 0004** (`Docs/ADR/0004-trick-taking-core.md`).
 
 ## 1. Module placement and dependency direction
 
@@ -17,14 +17,14 @@ Spades) will depend on the **same** `TrickTaking` core **without modifying it** 
 graph TD
     subgraph UI["UI layer (SwiftUI)"]
       TTUI["Games/TrickTakingUI (Euchre + Sheepshead tables, bidding UI)"]
-      TableKit["TableKit (+ declaration input path — ADR 0003)"]
+      TableKit["TableKit (+ declaration input path — ADR 0004)"]
     end
     subgraph Pure["Pure layer (stdlib + Foundation only)"]
       Euchre["Games/Euchre (rules + AI + layout + tutorial)"]
       Sheepshead["Games/Sheepshead (rules + AI + layout + tutorial)"]
       TrickTaking["Games/TrickTaking (SHARED CORE)"]
       AIKit["AIKit"]
-      EngineCore["EngineCore (+ declaration/reveal events — ADR 0003)"]
+      EngineCore["EngineCore (+ declaration/reveal events — ADR 0004)"]
     end
     TTUI --> Euchre
     TTUI --> Sheepshead
@@ -47,7 +47,7 @@ per-game rules and the engine and imports nothing UI. Lint fails on any UI impor
 
 Signatures are illustrative of the intended public surface; final names may be refined during
 implementation, but the **shape and constraints are binding**, and once merged the surface is treated as a
-stable contract that Spec 07 consumes without modification (R-TT-*; ADR 0003). Everything crossing the host
+stable contract that Spec 07 consumes without modification (R-TT-*; ADR 0004). Everything crossing the host
 boundary is `Codable & Sendable` and schema-versioned (`01:R-ENG-8.5`).
 
 ### 2.1 Trump scheme, effective suit, and trick-rank (R-TT-1)
@@ -168,7 +168,7 @@ public protocol AuctionRules: Sendable {
 ```
 
 Auction state is included in the redacted view so UI and AI see exactly the declarations a human seat would
-(R-TT-5.2). Declaration and partner-reveal events are new `GameEvent` cases (ADR 0003 §A) so the caption
+(R-TT-5.2). Declaration and partner-reveal events are new `GameEvent` cases (ADR 0004 §A) so the caption
 bar can narrate "East ordered up hearts" / "South picks" / "West is the partner" (R-TT-5.4, R-UX-2.2).
 
 ### 2.6 What Spec 07 gets for free
@@ -177,7 +177,7 @@ Hearts and Spades are trick games with different trump/partnership/scoring rules
 mechanics. They reuse: `TrumpScheme` (Spades: fixed trump = spades; Hearts: no-trump, `trump == nil`),
 `TrickRules`, `Trick`/`TrickPlayState`, `Partnership.fixed` (Spades 2v2), `VoidTracker`, and `Auction`
 (Spades bidding). No change to the core is anticipated for Spec 07; if one is needed, that is an
-architecture smell requiring a new ADR (`tech.md` rule 9). This is the reuse contract ADR 0003 protects.
+architecture smell requiring a new ADR (`tech.md` rule 9). This is the reuse contract ADR 0004 protects.
 
 ## 3. Game definitions built on the core
 
@@ -365,9 +365,9 @@ the stronger tier wins by a statistically significant margin. Documented paramet
 - Reproducibility: injected seeded RNG (`01:R-AI-3.2`, R-QA-4.2) so a failure is debuggable and the test is
   not flaky. Seeds come from the seed pool (`Scripts/` seed-pool generation, Spec 01).
 
-## 8. TableKit and UX design (R-UX-*; ADR 0003 §B)
+## 8. TableKit and UX design (R-UX-*; ADR 0004 §B)
 
-- **Bidding/declaration UI (new TableKit input path — ADR 0003 §B).** A generic declaration panel renders
+- **Bidding/declaration UI (new TableKit input path — ADR 0004 §B).** A generic declaration panel renders
   the current `Auction`'s legal declarations from the view, each with its one-line explanation, and offers
   all three input paths plus keyboard focus (R-UX-1; `01:R-TABLE-3`). This is additive to TableKit; it does
   not change existing card input.
@@ -425,14 +425,14 @@ to zero.
    `Docs/Rules/euchre.md` and `Docs/Rules/sheepshead.md` (original writing), NEEDS REVIEW on §11 Open
    Questions. 6. **Catalog** — register both behind feature flags. 7. **Tests** — scenario + sim + view-leak
    + save/restore + coverage. 8. **Tutorial** — scripted deals + coach mode reusing the hint interface.
-   9. **Docs upkeep** — update `Docs/Architecture.md`; **write ADR 0003** for the additive EngineCore/
+   9. **Docs upkeep** — update `Docs/Architecture.md`; **write ADR 0004** for the additive EngineCore/
    TableKit touchpoints (§12; R-NFR-DOC).
 
-## 12. ADR 0003 summary (this spec)
+## 12. ADR 0004 summary (this spec)
 
-**ADR 0003 — Trick-taking core and its EngineCore/TableKit touchpoints** records:
+**ADR 0004 — Trick-taking core and its EngineCore/TableKit touchpoints** records:
 - **The stable public contract** of the `TrickTaking` core (§2), which Spec 07 reuses **without
-  modification** (the reuse guarantee ADR 0003 protects).
+  modification** (the reuse guarantee ADR 0004 protects).
 - **Additive EngineCore change (§A):** new `GameEvent` cases for declarations and partner reveals
   (`declared`, `trumpNamed`, `pickerChosen`, `partnerRevealed`) so bidding/reveal narration flows through
   the one event stream (R-TT-5.4). Additive and schema-versioned; no existing case changes.
@@ -446,5 +446,5 @@ to zero.
 - `/.kiro/specs/01-platform-foundation/design.md` — foundation public surfaces this spec reuses.
 - `Docs/Architecture.md` — living architecture overview (updated by this spec's tasks).
 - `Docs/ADR/0001-rendering-approach.md`, `Docs/ADR/0002-rng-and-determinism.md` — reused unchanged.
-- `Docs/ADR/0003-trick-taking-core.md` — introduced by this spec (§12).
+- `Docs/ADR/0004-trick-taking-core.md` — introduced by this spec (§12).
 - `Docs/Rules/euchre.md`, `Docs/Rules/sheepshead.md` — canonical rules (authored by this spec's tasks).

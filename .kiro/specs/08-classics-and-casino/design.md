@@ -343,7 +343,7 @@ Following `Docs/Architecture.md` and `01-platform-foundation/design.md` §11, pe
 
 ## 10. Architecture Decision Records
 
-- **ADR 0003 — Casino and Cribbage family targets and Spec-6 component reuse** (`Docs/ADR/0003-…`): records
+- **ADR 0005 — Casino and Cribbage family targets and Spec-6 component reuse** (`Docs/ADR/0005-…`): records
   the target layout (Cribbage family; Casino family holding Blackjack + Video Poker), the addition of the
   `blackjack-shoe-6` `DeckDefinition`, and the **reuse contract** with Spec 6 (evaluator + chip/bet UI)
   including the rule that any needed change to a shared API is made in the shared code with its own ADR,
@@ -360,5 +360,5 @@ Following `Docs/Architecture.md` and `01-platform-foundation/design.md` §11, pe
   GameDefinition, TableKit, AIKit, Persistence).
 - `06-poker-room/*` (prerequisite) — source of the reused 5-card evaluator and chip/bet UI (A-1).
 - `Docs/Architecture.md` — living architecture overview and the "How to add a new game" checklist.
-- `Docs/ADR/0001-rendering-approach.md`, `0002-rng-and-determinism.md`, `0003-casino-cribbage-families.md`.
+- `Docs/ADR/0001-rendering-approach.md`, `0002-rng-and-determinism.md`, `0005-casino-cribbage-families.md`.
 - `Docs/Rules/{cribbage,blackjack,video-poker}.md` — authored during implementation (original writing).

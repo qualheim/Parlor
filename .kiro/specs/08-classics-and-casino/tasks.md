@@ -17,7 +17,7 @@ resolved before task 0.2 / 2.1 / 3.1 respectively.
 - [ ] **0.1 Resolve blocking Open Questions.** Confirm Q-3 (game IDs `cribbage`/`blackjack`/`video-poker`
   and Cribbage-own-family / Casino-shared-family layout), and confirm Spec 6 completeness (A-1). Record
   answers in the rules docs and `design.md`. _(R-REUSE-3.1, R-REUSE-4.1; Q-3)_
-- [ ] **0.2 Write ADR 0003 + scaffold targets.** Write `Docs/ADR/0003-casino-cribbage-families.md` (family
+- [ ] **0.2 Write ADR 0005 + scaffold targets.** Write `Docs/ADR/0005-casino-cribbage-families.md` (family
   targets, `blackjack-shoe-6` deck, Spec-6 reuse contract). Scaffold `Packages/Games/Cribbage` (+
   `CribbageUI`) and `Packages/Games/Casino` (+ `CasinoUI`) with the fixed folder shape, wired into
   `project.yml` per the enforced dependency direction; lint confirms the Casino/Cribbage rules targets
@@ -152,7 +152,7 @@ resolved before task 0.2 / 2.1 / 3.1 respectively.
   performance tests for Cribbage Hard AI p95 (Q-5) and Video Poker EV-hint latency (Q-8) against
   R-NFR-PERF-08. _(R-QA-COV-1.1, R-NFR-PERF-08.2, R-NFR-PERF-08.3)_
 - [ ] **5.4 Docs finalize + Open-Question resolution + placeholder audit.** Update `Docs/Architecture.md`
-  (three new games, family targets, Spec-6 reuse note); confirm ADR 0003 matches implementation and write
+  (three new games, family targets, Spec-6 reuse note); confirm ADR 0005 matches implementation and write
   any triggered ADR (Q-1 evaluator API, Q-2 chip UI API, or a TableKit change for the peg board); resolve
   or re-affirm all Open Questions Q-1..Q-9 in the rules docs / design.md; verify every 🎨 placeholder is
   flagged for replacement. _(R-NFR-DOC-08.1, R-NFR-DOC-08.2, R-DS-6.1)_
@@ -167,7 +167,7 @@ resolved before task 0.2 / 2.1 / 3.1 respectively.
 Per `structure.md` / `R-NFR-DOC-08.1`, `Docs/Architecture.md` and the `Docs/Rules/*.md` are updated in the
 task that changes behavior — hence the rules docs are authored inside each game's phase (tasks 1.8, 3.7,
 4.5) and Architecture.md is finalized in task 5.4. Because this spec-authoring change introduces no
-behavior yet, only ADR 0003 (a family/target-registration decision) is written up front; behavior docs and
+behavior yet, only ADR 0005 (a family/target-registration decision) is written up front; behavior docs and
 any triggered ADRs are produced during implementation.
 
 ## Placeholder-art register (needs production art — R-DS-6)

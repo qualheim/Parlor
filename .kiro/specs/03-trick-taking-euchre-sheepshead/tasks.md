@@ -9,7 +9,7 @@ before continuing.
 
 This spec assumes the Spec 01 foundation exists (`EngineCore`, `AIKit`, `TableKit`, `parlor-sim`, the
 `Makefile` targets, the save/stats/settings/library shell). It reuses those surfaces unchanged except for
-the two **additive** touchpoints recorded in **ADR 0003**.
+the two **additive** touchpoints recorded in **ADR 0004**.
 
 Legend: 📝 = authors/updates a doc; ⚖️ = requires an ADR decision to be settled first; 🔎 = contains a
 NEEDS REVIEW item to resolve before the task is marked complete.
@@ -18,7 +18,7 @@ NEEDS REVIEW item to resolve before the task is marked complete.
 
 ## Phase 0 — ADR and module scaffold
 
-- [ ] **0.1 ADR 0003 + module scaffold.** ⚖️📝 Write `Docs/ADR/0003-trick-taking-core.md` (format matching
+- [ ] **0.1 ADR 0004 + module scaffold.** ⚖️📝 Write `Docs/ADR/0004-trick-taking-core.md` (format matching
   ADR 0001/0002): the stable `TrickTaking` public contract, the additive EngineCore declaration/reveal
   `GameEvent` cases (§A), and the additive TableKit declaration input path (§B). Create the pure package
   `Packages/Games/TrickTaking/` and empty `Euchre`/`Sheepshead` rules targets + a `TrickTakingUI` target,
@@ -43,7 +43,7 @@ NEEDS REVIEW item to resolve before the task is marked complete.
   void suit). _(R-TT-4.1, R-TT-4.2, R-TT-4.3, R-TT-4.4)_
 - [ ] **1.5 Auction/declaration framework.** Implement `Declaration`, `Auction`, `AuctionRules`
   (turn-ordered bidding, forced-declaration terminal rule), auction state in the redacted view, and
-  declaration events (per ADR 0003 §A); unit tests for turn order, pass-through, and a forced terminal.
+  declaration events (per ADR 0004 §A); unit tests for turn order, pass-through, and a forced terminal.
   _(R-TT-5.1, R-TT-5.2, R-TT-5.3, R-TT-5.4)_
 - [ ] **1.6 Core determinism + purity test.** Property test: same seed + action log over core-only
   scenarios → identical state hash; lint confirms stdlib+Foundation only and no force-unwraps/`try!`.
@@ -120,7 +120,7 @@ NEEDS REVIEW item to resolve before the task is marked complete.
 
 ## Phase 5 — Shared trick-taking UX (TableKit conventions)
 
-- [ ] **5.1 Bidding/declaration UI (ADR 0003 §B).** Generic declaration panel driven by the `Auction` view,
+- [ ] **5.1 Bidding/declaration UI (ADR 0004 §B).** Generic declaration panel driven by the `Auction` view,
   each option with a one-line explanation and three input paths + keyboard focus; reused by both games.
   _(R-UX-1.1, R-UX-1.2, R-TT-5.5; `01:R-TABLE-3`)_
 - [ ] **5.2 Center trick pile + collection + captions + role badges.** Center pile collects to winner via
@@ -165,7 +165,7 @@ NEEDS REVIEW item to resolve before the task is marked complete.
   confirm start ≤ 300 ms, ≥ 60 fps and ≤ 50 ms input on the trick table, memory ≤ 400 MB (extend ADR 0001
   with data only if a budget fails). _(R-NFR-DET.1, R-NFR-PERF.1, R-NFR-PERF.2)_
 - [ ] **7.5 Docs finalize + NEEDS REVIEW audit.** 📝🔎 Update `Docs/Architecture.md` (add the `TrickTaking`
-  core + the two games to the module map; note ADR 0003); confirm ADR 0003 matches the implementation;
+  core + the two games to the module map; note ADR 0004); confirm ADR 0004 matches the implementation;
   confirm both rules docs are complete; resolve or re-affirm every Q-EUC-\* and Q-SHP-\* NEEDS REVIEW item.
   _(R-NFR-DOC.1, R-NFR-DOC.2, R-DOD-1.2)_
 - [ ] **⛳ CHECKPOINT 4 (final, Definition of Done).** User runs `make test-long`; all quality gates

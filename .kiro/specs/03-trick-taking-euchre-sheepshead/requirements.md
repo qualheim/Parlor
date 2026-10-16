@@ -13,8 +13,8 @@ The trick-taking core is a **new, reusable rules module** that plugs into `Engin
 rule 9 and `Docs/Architecture.md` "How to add a new game," a game (or shared game-family core) must be
 game-specific modules only. **IF** the core or either game would require a change to the public API of
 `EngineCore` or `TableKit`, **THEN** that is an architecture smell and an ADR is required (§Assumptions;
-`structure.md`). This spec anticipates two such needs and records them in ADR 0003 (see §12 and
-`Docs/ADR/0003-trick-taking-core.md`).
+`structure.md`). This spec anticipates two such needs and records them in ADR 0004 (see §12 and
+`Docs/ADR/0004-trick-taking-core.md`).
 
 Both games must reach the **Game Definition of Done** (`product.md`): a canonical rules document, rules in
 the engine with traceable scenario tests, Easy/Medium/Hard opponents passing simulation invariants, hints
@@ -149,7 +149,7 @@ order-up and Sheepshead's pick/pass both fit and Spec 7 can add its own auctions
   same declarations a human seat would.
 - R-TT-5.3 The framework SHALL support a **forced-declaration** terminal rule (e.g. Euchre stick-the-dealer;
   Sheepshead forced pick) as a configurable outcome when all seats pass.
-- R-TT-5.4 The framework SHALL emit declaration events (`01:R-ENG-8.1`, extended per ADR 0003) for the
+- R-TT-5.4 The framework SHALL emit declaration events (`01:R-ENG-8.1`, extended per ADR 0004) for the
   caption bar (e.g. "East ordered up hearts," "South picks").
 - R-TT-5.5 The bidding/declaration UI framework (TableKit) SHALL be reusable across both games and SHALL
   present each legal declaration with three input paths (direct, click-to-select, keyboard) per
@@ -540,7 +540,7 @@ competitive.
 ### R-NFR-DOC — Documentation upkeep
 - R-NFR-DOC.1 `Docs/Architecture.md` SHALL be updated in the same task that changes behavior (add the
   TrickTaking core to the module map and note the two games) (`structure.md`).
-- R-NFR-DOC.2 IF any EngineCore/TableKit public-API change is made, THEN ADR 0003 SHALL record it before
+- R-NFR-DOC.2 IF any EngineCore/TableKit public-API change is made, THEN ADR 0004 SHALL record it before
   the change lands (`tech.md` rule 9; §12).
 
 ---
@@ -556,7 +556,7 @@ re-affirmed) before its dependent task is marked complete.
   `euchre` and `sheepshead` as rules targets that depend on it, mirroring the per-family folder shape in
   `structure.md`. Spec 07 (Hearts, Spades) will depend on the **same** core without modifying it.
 - A-2 `EngineCore` and `TableKit` public surfaces are as defined in Spec 01 `design.md`; two additive,
-  backward-compatible extensions are anticipated and captured in ADR 0003 (declaration/reveal events and a
+  backward-compatible extensions are anticipated and captured in ADR 0004 (declaration/reveal events and a
   declaration input path). No breaking changes are assumed.
 - A-3 Standard North American Euchre and 5-handed Called-Ace Sheepshead are the reference rulesets; house
   rules extend them via options.
@@ -588,12 +588,12 @@ re-affirmed) before its dependent task is marked complete.
 
 ## 12. Architecture Decision Records introduced by this spec
 
-- **ADR 0003 — Trick-taking core and its EngineCore/TableKit touchpoints.** Records (a) the new shared
+- **ADR 0004 — Trick-taking core and its EngineCore/TableKit touchpoints.** Records (a) the new shared
   TrickTaking rules module and its **stable public contract** (Spec 07 reuses it unchanged), and (b) two
   anticipated **additive** extensions to Spec 01 public APIs: declaration/partner-reveal `GameEvent` cases
   and a TableKit declaration input path for auctions. Per `tech.md` rule 9 and `structure.md`, any genuine
   EngineCore/TableKit public-API change requires an ADR; this ADR is the gate. See
-  `Docs/ADR/0003-trick-taking-core.md`.
+  `Docs/ADR/0004-trick-taking-core.md`.
 
 ## 13. Traceability note
 

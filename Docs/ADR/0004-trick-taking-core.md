@@ -1,4 +1,4 @@
-# ADR 0003 — Trick-taking core and its EngineCore/TableKit touchpoints
+# ADR 0004 — Trick-taking core and its EngineCore/TableKit touchpoints
 
 - **Status:** Accepted (Spec 03 baseline)
 - **Date:** 2026-09-28
