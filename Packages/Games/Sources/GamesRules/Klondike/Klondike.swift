@@ -85,6 +85,15 @@ public struct Klondike: GameDefinition {
     /// empty waste, and 4 empty foundations. Vegas seeds the score at −52 (R-KLON-2.2); other schemes
     /// start at 0. `passes` starts at 1 (the initial deal-down counts as the first pass, R-KLON-2.3).
     public func initialState(options: KlondikeOptions, seed: UInt64) -> KlondikeState {
+        // DEBUG near-win fixture (R-A11Y-5.1): when the app's DEBUG launch argument set `debugNearWin`,
+        // deal the deterministic near-win position instead of a random deal, so the accessibility UI suite
+        // can finish Klondike keyboard-only in a few moves. The fixture is fully determined by
+        // construction, so `seed` is intentionally ignored here. This flag defaults to `false` and is
+        // never enabled by a shipping build (see `KlondikeOptions.debugNearWin`).
+        if options.debugNearWin {
+            return Self.nearWinState(options: options)
+        }
+
         var cards = DeckDefinition.standard52.makeCards()
         var rng = SeededRNG(seed: seed)
         Shuffle.fisherYates(&cards, using: &rng)
@@ -161,11 +170,10 @@ public struct Klondike: GameDefinition {
     /// public; a hidden card appears only as an opaque token. The salt is derived from the state so the
     /// tokenization is stable within a view yet uncorrelated across views (R-QA-3.1).
     public func redactedView(of state: KlondikeState, for viewer: Viewer) -> PlayerView {
-        let salt = Self.viewSalt(for: state)
         let zones = Redaction.zoneViews(
             of: state.allZones,
             for: viewer,
-            salt: salt,
+            salt: Self.viewSalt,
             faceResolver: { piece in
                 state.faces[piece].map { KnownPiece.card(Card(id: piece, face: $0)) }
             }
@@ -186,14 +194,17 @@ public struct Klondike: GameDefinition {
         )
     }
 
-    /// A per-state salt for view tokenization — the count of hidden stock/tableau cards, mixed. Any
-    /// stable-per-state value works; this avoids a fixed salt without needing external entropy.
-    private static func viewSalt(for state: KlondikeState) -> UInt64 {
-        var salt: UInt64 = 0xA5A5_5A5A_1234_ABCD
-        salt = salt &+ UInt64(state.stock.contents.count) &* 0x1000_0001
-        for pile in state.tableau {
-            salt = salt &+ UInt64(pile.contents.count - pile.faceUp.count) &* 0x100_0007
-        }
-        return salt
-    }
+    /// The salt for view tokenization. It MUST be stable across every view of a single game so a hidden
+    /// piece keeps the SAME `ViewToken` from one redacted view to the next: the UI reconciles its render
+    /// model to each fresh view by `RenderKey`, so a face-down card that did not move must present the same
+    /// token both times or its on-screen node would be dropped and re-created (a flicker), and newly
+    /// exposed cards would never animate continuously (R-ENG-8.4; design.md §2.8/§6).
+    ///
+    /// A state-derived salt (e.g. the hidden-card count) breaks that: every draw changes the count, so the
+    /// same stock card gets a new token each turn and the stock "flickers" on every reconcile. A fixed salt
+    /// keeps tokens stable within the game. Cross-VIEWER correlation is still prevented because the
+    /// tokenizer mixes a per-viewer discriminator into the hash (see `ViewTokenizer`), and Klondike is
+    /// single-seat solitaire where the seat sees its own board anyway, so a constant salt leaks nothing
+    /// (R-QA-3.1).
+    private static let viewSalt: UInt64 = 0xA5A5_5A5A_1234_ABCD
 }

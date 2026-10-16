@@ -10,6 +10,7 @@
 // game (R-TABLE-1.2).
 
 import CoreGraphics
+import DesignSystem
 import EngineCore
 import Foundation
 
@@ -65,16 +66,26 @@ public struct LayoutResolver: Sendable {
     /// playing-card aspect), sized so a typical table shows a comfortable spread.
     public let cardWidthFraction: CGFloat
     public let cardAspect: CGFloat  // height / width
+    /// The accessibility card-size scale (S/M/L/XL) applied on top of the table-relative base size
+    /// (R-A11Y-4.1). Medium (1.0) leaves the default proportions unchanged; larger sizes enlarge every
+    /// card uniformly.
+    public let cardSizeScale: CardSizeScale
 
-    public init(cardWidthFraction: CGFloat = 0.072, cardAspect: CGFloat = 1.4) {
+    public init(
+        cardWidthFraction: CGFloat = 0.072,
+        cardAspect: CGFloat = 1.4,
+        cardSizeScale: CardSizeScale = .default
+    ) {
         self.cardWidthFraction = cardWidthFraction
         self.cardAspect = cardAspect
+        self.cardSizeScale = cardSizeScale
     }
 
     /// The resolved card size for a given table size, in points. Scales linearly with the table so a 6K
-    /// display and a small window keep the same proportions (R-APP-6.4).
+    /// display and a small window keep the same proportions (R-APP-6.4), then multiplied by the chosen
+    /// accessibility card-size scale so S/M/L/XL enlarges or shrinks every card uniformly (R-A11Y-4.1).
     public func cardSize(in tableSize: CGSize) -> CGSize {
-        let w = cardWidthFraction * tableSize.width
+        let w = cardWidthFraction * tableSize.width * cardSizeScale.multiplier
         return CGSize(width: w, height: w * cardAspect)
     }
 
@@ -135,6 +146,29 @@ public struct LayoutResolver: Sendable {
             }
         }
         return out
+    }
+
+    /// The anchor frame (a single card slot) for `zone`, whether or not it holds any pieces (R-A11Y-2.1,
+    /// R-KLON-1.4).
+    ///
+    /// Empty zones project no pieces (`zoneViews()` only emits zones with nodes), so an empty pile has no
+    /// `ResolvedPiece` to ring or hit-test. This pure helper resolves a zone's placement to the frame its
+    /// FIRST (bottom) piece would occupy, so the interaction view can draw a focus ring on a focused empty
+    /// pile and treat it as a keyboard place target. Returns `nil` when the layout has no placement for
+    /// the zone (nothing to focus). `ownerSeatIndex`/`seatCount` mirror `resolve`'s seating inputs.
+    public func zoneAnchorFrame(
+        layout: TableLayout,
+        zone: ZoneID,
+        tableSize: CGSize,
+        ownerSeatIndex: Int?,
+        seatCount: Int
+    ) -> CGRect? {
+        guard
+            let placement = resolvedPlacement(
+                layout: layout, zone: zone, ownerSeatIndex: ownerSeatIndex, seatCount: seatCount)
+        else { return nil }
+        let anchor = placement.region.resolved(in: tableSize).origin
+        return CGRect(origin: anchor, size: cardSize(in: tableSize))
     }
 
     /// Placement for a per-seat zone uses the seat arrangement to derive the anchor when the layout does

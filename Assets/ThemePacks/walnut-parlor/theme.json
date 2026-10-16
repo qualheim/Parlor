@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "id": "walnut-parlor",
+  "displayName": "Walnut Parlor",
+  "table": {
+    "material": "wood",
+    "shader": "parlorWood",
+    "base": "#5A3A22",
+    "accent": "#3A2414",
+    "grainScale": 90,
+    "grainStrength": 0.50,
+    "sheenStrength": 0.35,
+    "vignette": 0.25,
+    "shadowInk": "#1A0E06"
+  },
+  "decks": {
+    "styles": ["classic", "modern", "four-color", "jumbo-index"],
+    "backs": ["lattice", "art-deco", "linen", "checker", "wave", "crest"]
+  },
+  "assets": { "kind": "procedural", "shaderSource": "Shaders/TableMaterials.metal" },
+  "placeholder": true
+}

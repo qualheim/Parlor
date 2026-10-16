@@ -732,3 +732,20 @@ must be resolved before the corresponding task is implemented.
   undo is used, or only the affected hand? NEEDS REVIEW. (Trace: R-ENG-7.4.)
 - Q-8 **"Replay last game" scope** (Should) — replay of the last hand only, or the full match? And is it
   a passive playback or an interactive re-entry? NEEDS REVIEW. (Trace: R-PERS-4.1.)
+
+### Status at foundation sign-off (task 8.5)
+
+None of Q-1..Q-8 has been answered by the product owner, so none is **resolved**. Each is **re-affirmed
+NEEDS REVIEW** with the default below, which is what the code does today. Changing a default is a product
+decision for the user, not an implementation fix.
+
+| Q | Status | Chosen default (current behavior) | Where |
+| --- | --- | --- | --- |
+| Q-1 | Re-affirmed, NEEDS REVIEW | Provisional Standard table: +5 waste→tableau, +10 to foundation, +5 flip, −15 foundation→tableau, −20 on every recycle. Score not floored. No time bonus, so Timed has no scoring effect yet. | `KlondikeStandardScoring`; `Docs/Rules/klondike.md` §Scoring |
+| Q-2 | Re-affirmed, NEEDS REVIEW | `vegasCumulative` is recorded but not applied. Every Vegas game starts at −52, and nothing persists across games or launches. | `KlondikeOptions`; klondike.md §Options |
+| Q-3 | Re-affirmed, NEEDS REVIEW | No numeric cap. Draw-until stops when the stock is exhausted, then the player passes if still stuck. | `CrazyEightsApply`; crazy-eights.md §Passing; scenario `passIsLegalWhenStuck` |
+| Q-4 | Re-affirmed, NEEDS REVIEW | At 2 players a Jack gives the player another turn, and an Ace flips direction but still passes to the opponent. An 8 is only wild. A 2 drawn to pay a debt cannot stack it, because paying ends the turn. | `CrazyEightsApply`; crazy-eights.md §Action cards; `CrazyEightsActionCardEdgeScenarios` |
+| Q-5 | Re-affirmed, NEEDS REVIEW | A starter's action effect never applies. Seat 0 starts, clockwise, nothing owed. | `CrazyEights.initialState`; `CrazyEightsActionCardEdgeScenarios` |
+| Q-6 | Re-affirmed, NEEDS REVIEW | No display face is bundled. All text uses the system font through the `Typography` tokens, and no font files or font licenses ship. | `DesignSystem/Tokens.swift` |
+| Q-7 | Re-affirmed, NEEDS REVIEW | Exclusion is per recorded `GameResult`, set from `UndoEngine.isExcludedFromStatistics` (any session whose policy is `.practiceMode`, whether or not undo was used). No app UI offers Practice Mode yet, so this does not apply in the shipped flows. | `EngineCore/Match.swift`; `Persistence/StatisticsStore.swift` |
+| Q-8 | Re-affirmed, NEEDS REVIEW | "Replay Last Game" in the Library toolbar reopens the most recently played saved game at its last recorded point (interactive re-entry through the resume path). `GameReplay.hostAtStep(_:)` supports passive step-through playback, but no UI uses it. | `LibraryNavigation.replayLastGame`; `Persistence/GameReplay.swift` |

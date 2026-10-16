@@ -281,11 +281,16 @@ public actor GameHost {                                   // sole mutator of sta
 }
 
 public protocol PlayerController: Sendable {              // async seam (R-SESS-2.1)
-    func decide(view: PlayerView, publicLog: [PublicLogEntry], legal: [AnyGameAction]) async -> AnyGameAction
+    // Redacted view only (R-SESS-1.2); its own `legalActions` are carried on the PlayerView. `nil` passes.
+    func decide(view: PlayerView, seat: SeatID) async -> AnyGameAction?
 }
-public struct LocalHumanController: PlayerController { /* driven by UI intents (R-SESS-2.2) */ }
-public struct AIController: PlayerController { /* wraps an AIKit Strategy (R-SESS-2.2) */ }
-// RemoteController: NOT implemented here; see §3 note (R-SESS-2.3).
+public actor  LocalHumanController: PlayerController { /* decide awaits UI-provided move (R-SESS-2.2) */ }
+public struct AIController: PlayerController { /* wraps an injected async strategy (R-SESS-2.2) */ }
+// RemoteController: NOT implemented here; see the RemoteController-seam note below (R-SESS-2.3).
+//
+// The AI's fuller information barrier — a Strategy over (PlayerView, publicLog, legal) — is task 4.4 (§5);
+// here AIController just wraps a `@Sendable (PlayerView, SeatID) async -> AnyGameAction?` those strategies
+// drop into. A superseded or timed-out decision is a cancelled Task (structured concurrency; R-NFR-PERF.4).
 
 /// Codable envelope used exactly as a network client would use it (R-SESS-4).
 public enum ClientMessage: Codable, Sendable { case submit(ActionEnvelope), requestView(Viewer) }
@@ -297,16 +302,45 @@ public protocol Transport: Sendable {                     // in-process now, net
 }
 ```
 
-**Turn models (R-SESS-3).** The host's turn loop supports: *sequential* (await one seat), *simultaneous*
-(await all required seats, then resolve as one transition), and *out-of-turn windows* (a bounded window in
-which specific seats may act). Each carries an optional timeout; default none (R-SESS-3.4). The loop only
-ever `await`s a `PlayerController`, so a `RemoteController` slots in unchanged (R-SESS-2.4).
+**Turn models (R-SESS-3).** A `TurnCoordinator` (EngineCore — pure orchestration over controllers + the
+host boundary, no UI) runs three turn models, each carrying an optional `TurnTimeout` whose default is
+`.none` (R-SESS-3.4):
 
-**RemoteController seam (documented, not built).** A future `RemoteController` would implement
-`PlayerController.decide` by serializing the `PlayerView`/legal actions over a network `Transport` to a
-remote seat and awaiting a `ClientMessage.submit`. Because the local UI already round-trips through
-`Transport` + `ClientMessage`/`HostMessage`, no host, rules, or UI restructuring is required — only a new
-`Transport` conformance. No networking code is written in this spec (R-SESS-2.3; `product.md` non-goals).
+```swift
+public enum TurnModel: Sendable {
+    case sequential(seat: SeatID, timeout: TurnTimeout = .none)      // one seat acts, then advance (3.1)
+    case simultaneous(seats: [SeatID], timeout: TurnTimeout = .none) // collect all, THEN resolve (3.2)
+    case outOfTurn(seat: SeatID, timeout: TurnTimeout = .none)       // bounded interrupt window (3.3)
+}
+public struct TurnCoordinator: Sendable {                           // binds seats→controllers + Transport
+    public init(controllers: [SeatID: any PlayerController], transport: any Transport)
+    public func run(_ model: TurnModel) async -> TurnStepOutcome     // awaits controllers, submits via host
+}
+```
+
+- *Sequential* (R-SESS-3.1): ask the active seat, submit, advance.
+- *Simultaneous* (R-SESS-3.2): ask every required seat **concurrently** (a `TaskGroup`), collect all
+  decisions, and only **then** submit them as an ordered batch — nothing resolves until every seat decided.
+- *Out-of-turn* (R-SESS-3.3): offer a bounded window to a non-active seat; submit its action if it acts,
+  otherwise the window closes with nothing done.
+- *Timeouts* (R-SESS-3.4): `.none` (default) awaits indefinitely. A positive budget races the decision
+  against a timer in a `TaskGroup`; on expiry the decision `Task` is **cancelled** and the model's
+  `onTimeout` fallback (a pass when `nil`) is submitted.
+
+The coordinator only ever `await`s a `PlayerController` and only ever advances state via
+`ClientMessage.submit` (never mutating state itself, R-SESS-1.1), so a `RemoteController` slots in unchanged
+(R-SESS-2.4; `tech.md` rule 6).
+
+**RemoteController seam (documented, not built — R-SESS-2.3).** A future `RemoteController` conforms to
+`PlayerController` and implements `decide(view:seat:)` by serializing the redacted `PlayerView` over a
+future network `Transport` to the remote seat and awaiting the `ClientMessage.submit` that peer sends back,
+returning its `AnyGameAction`. Two facts make this a drop-in with **no** host/rules/UI/turn-loop
+restructuring: (1) the coordinator already `await`s an async `decide`, so a network round-trip is just a
+slower suspension; and (2) the entire boundary — `ActionEnvelope`, `PlayerView`, `ClientMessage`,
+`HostMessage` — is already `Codable`, so a network transport ships it unchanged. Multiplayer therefore
+becomes a new `Transport` conformance, not a rewrite. **No networking code is written in this spec**
+(R-SESS-2.3; `product.md` non-goals); the seam is a documented sketch only (see the comment at the foot of
+`PlayerController.swift`).
 
 **Concurrency (R-SESS-6).** No `static`/singleton game state. Each session is an independent `GameHost`
 actor instance; two windows and `parlor-sim` can run simultaneously.

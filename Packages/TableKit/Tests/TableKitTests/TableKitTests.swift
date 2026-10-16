@@ -1,4 +1,5 @@
 import CoreGraphics
+import DesignSystem
 import EngineCore
 import Testing
 
@@ -64,6 +65,68 @@ struct CardSizeTests {
         #expect(abs(a.width - 72) < 1e-9)
         #expect(abs(a.height - 72 * 1.4) < 1e-9)
         #expect(abs(b.width - 2 * a.width) < 1e-9)  // linear in table width
+    }
+
+    @Test(
+        "the accessibility card-size scale enlarges cards monotonically S < M < L < XL (R-A11Y-4.1)"
+    )
+    func cardSizeScaleMonotonic() {
+        let table = CGSize(width: 1200, height: 800)
+        let ordered: [CardSizeScale] = [.small, .medium, .large, .extraLarge]
+        let widths = ordered.map { scale in
+            LayoutResolver(cardSizeScale: scale).cardSize(in: table).width
+        }
+        for i in 1..<widths.count {
+            #expect(
+                widths[i] > widths[i - 1], "\(ordered[i]) must render wider than \(ordered[i - 1])")
+        }
+    }
+
+    @Test("medium scale leaves the base card size unchanged")
+    func mediumScaleIsBaseline() {
+        let table = CGSize(width: 1000, height: 700)
+        let base = LayoutResolver().cardSize(in: table)
+        let medium = LayoutResolver(cardSizeScale: .medium).cardSize(in: table)
+        #expect(base == medium)
+    }
+
+    @Test("scaled frames also grow: XL pieces resolve larger than S pieces")
+    func scaledFramesGrow() {
+        let layout = TableLayout.example()
+        let table = CGSize(width: 1000, height: 800)
+        let zones = [
+            ZoneView(
+                id: ZoneID(name: "waste"),
+                visibility: .publicAll,
+                pieces: [.known(.card(card(1)))])
+        ]
+        func firstFrame(_ scale: CardSizeScale) -> CGRect {
+            LayoutResolver(cardSizeScale: scale).resolve(
+                layout: layout, zones: zones, tableSize: table, seatCount: 1,
+                seatIndexForOwner: { _ in nil }
+            )[0].frame
+        }
+        let small = firstFrame(.small)
+        let extraLarge = firstFrame(.extraLarge)
+        #expect(extraLarge.width > small.width)
+        #expect(extraLarge.height > small.height)
+    }
+}
+
+// MARK: - Reduce Transparency fallback (R-A11Y-4.1)
+
+@Suite("Reduce transparency backdrop")
+struct ReduceTransparencyTests {
+    @Test("translucent opacity is preserved when transparency is not reduced")
+    func translucentWhenNotReduced() {
+        #expect(backdropOpacity(reduceTransparency: false, translucent: 0.94) == 0.94)
+        #expect(backdropOpacity(reduceTransparency: false, translucent: 0.5) == 0.5)
+    }
+
+    @Test("backdrop becomes fully opaque when transparency is reduced")
+    func opaqueWhenReduced() {
+        #expect(backdropOpacity(reduceTransparency: true, translucent: 0.94) == 1.0)
+        #expect(backdropOpacity(reduceTransparency: true, translucent: 0.1) == 1.0)
     }
 }
 

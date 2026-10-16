@@ -397,6 +397,11 @@
         "executionId": "af47414a-6197-491b-8abe-bab8fad87974",
         "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
         "timestamp": 1790723669515
+      },
+      {
+        "executionId": "9dea5d11-5c7a-44e2-9645-31868f78e45d",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790724599885
       }
     ],
     "**⛳ CHECKPOINT 2.** User plays Klondike end-to-end with placeholder visuals via drag *and* keyboard,": [
@@ -409,6 +414,11 @@
         "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
         "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
         "timestamp": 1790694294945
+      },
+      {
+        "executionId": "9dea5d11-5c7a-44e2-9645-31868f78e45d",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790724584894
       }
     ],
     "**4.1 GameHost actor + transport envelope.** Sole state mutator owning RNG + log; Codable": [
@@ -421,6 +431,16 @@
         "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
         "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
         "timestamp": 1790694294966
+      },
+      {
+        "executionId": "9dea5d11-5c7a-44e2-9645-31868f78e45d",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790724614050
+      },
+      {
+        "executionId": "9dea5d11-5c7a-44e2-9645-31868f78e45d",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790725292006
       }
     ],
     "**4.2 Controllers + turn models.** `PlayerController` async API; `LocalHumanController`,": [
@@ -433,6 +453,16 @@
         "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
         "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
         "timestamp": 1790694294990
+      },
+      {
+        "executionId": "9dea5d11-5c7a-44e2-9645-31868f78e45d",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790725299666
+      },
+      {
+        "executionId": "9dea5d11-5c7a-44e2-9645-31868f78e45d",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790725727589
       }
     ],
     "**4.3 Profiles + concurrent sessions.** Player profiles (id/name/avatar/controller), editable local": [
@@ -445,6 +475,16 @@
         "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
         "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
         "timestamp": 1790694295013
+      },
+      {
+        "executionId": "9dea5d11-5c7a-44e2-9645-31868f78e45d",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790725735614
+      },
+      {
+        "executionId": "9dea5d11-5c7a-44e2-9645-31868f78e45d",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790726283087
       }
     ],
     "**4.4 AIKit toolkit + information barrier.** Strategy API taking only `(PlayerView, publicLog,": [
@@ -457,6 +497,16 @@
         "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
         "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
         "timestamp": 1790694295037
+      },
+      {
+        "executionId": "9dea5d11-5c7a-44e2-9645-31868f78e45d",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790726300681
+      },
+      {
+        "executionId": "9dea5d11-5c7a-44e2-9645-31868f78e45d",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790727244329
       }
     ],
     "**4.5 Crazy Eights rules.** `GameDefinition` for `crazy-eights`: 2–5 players, deal 7/5, starter": [
@@ -469,6 +519,26 @@
         "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
         "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
         "timestamp": 1790694295061
+      },
+      {
+        "executionId": "9dea5d11-5c7a-44e2-9645-31868f78e45d",
+        "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
+        "timestamp": 1790727254160
+      },
+      {
+        "executionId": "6a5aca5d-6e57-425b-bf20-b06dec46c23c",
+        "chatSessionId": "sess_2845d03f-efea-40ce-abf7-f6258d2a723f",
+        "timestamp": 1790736154018
+      },
+      {
+        "executionId": "6a5aca5d-6e57-425b-bf20-b06dec46c23c",
+        "chatSessionId": "sess_2845d03f-efea-40ce-abf7-f6258d2a723f",
+        "timestamp": 1790736162122
+      },
+      {
+        "executionId": "6a5aca5d-6e57-425b-bf20-b06dec46c23c",
+        "chatSessionId": "sess_2845d03f-efea-40ce-abf7-f6258d2a723f",
+        "timestamp": 1790736424065
       }
     ],
     "**4.6 Crazy Eights AI + scenario tests.** Easy/Medium/Hard (Hard = determinized Monte Carlo); hint;": [
@@ -481,6 +551,21 @@
         "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
         "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
         "timestamp": 1790694295084
+      },
+      {
+        "executionId": "6a5aca5d-6e57-425b-bf20-b06dec46c23c",
+        "chatSessionId": "sess_2845d03f-efea-40ce-abf7-f6258d2a723f",
+        "timestamp": 1790736154064
+      },
+      {
+        "executionId": "6a5aca5d-6e57-425b-bf20-b06dec46c23c",
+        "chatSessionId": "sess_2845d03f-efea-40ce-abf7-f6258d2a723f",
+        "timestamp": 1790736427583
+      },
+      {
+        "executionId": "6a5aca5d-6e57-425b-bf20-b06dec46c23c",
+        "chatSessionId": "sess_2845d03f-efea-40ce-abf7-f6258d2a723f",
+        "timestamp": 1790738105183
       }
     ],
     "**⛳ CHECKPOINT 3.** User plays a full Crazy Eights hand vs AI (hidden hands, per-viewer views, turn": [
@@ -493,6 +578,16 @@
         "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
         "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
         "timestamp": 1790694295108
+      },
+      {
+        "executionId": "6a5aca5d-6e57-425b-bf20-b06dec46c23c",
+        "chatSessionId": "sess_2845d03f-efea-40ce-abf7-f6258d2a723f",
+        "timestamp": 1790736154098
+      },
+      {
+        "executionId": "5898eb25-ebea-423d-9f27-90ba54a7d560",
+        "chatSessionId": "sess_429c76ae-d863-4ae3-a3de-dab9a07128b1",
+        "timestamp": 1790738370665
       }
     ],
     "**5.1 Tokens + chrome.** Color/type/spacing/radius/shadow/motion tokens; light/dark chrome; WCAG 2.2": [
@@ -505,6 +600,26 @@
         "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
         "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
         "timestamp": 1790694295131
+      },
+      {
+        "executionId": "6a5aca5d-6e57-425b-bf20-b06dec46c23c",
+        "chatSessionId": "sess_2845d03f-efea-40ce-abf7-f6258d2a723f",
+        "timestamp": 1790736154122
+      },
+      {
+        "executionId": "5898eb25-ebea-423d-9f27-90ba54a7d560",
+        "chatSessionId": "sess_429c76ae-d863-4ae3-a3de-dab9a07128b1",
+        "timestamp": 1790738373177
+      },
+      {
+        "executionId": "5898eb25-ebea-423d-9f27-90ba54a7d560",
+        "chatSessionId": "sess_429c76ae-d863-4ae3-a3de-dab9a07128b1",
+        "timestamp": 1790738380064
+      },
+      {
+        "executionId": "5898eb25-ebea-423d-9f27-90ba54a7d560",
+        "chatSessionId": "sess_429c76ae-d863-4ae3-a3de-dab9a07128b1",
+        "timestamp": 1790738777330
       }
     ],
     "**5.2 Themes + shaders.** ≥ 4 procedural table themes (Classic Felt, Midnight, Walnut Parlor,": [
@@ -517,6 +632,26 @@
         "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
         "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
         "timestamp": 1790694295157
+      },
+      {
+        "executionId": "6a5aca5d-6e57-425b-bf20-b06dec46c23c",
+        "chatSessionId": "sess_2845d03f-efea-40ce-abf7-f6258d2a723f",
+        "timestamp": 1790736154155
+      },
+      {
+        "executionId": "5898eb25-ebea-423d-9f27-90ba54a7d560",
+        "chatSessionId": "sess_429c76ae-d863-4ae3-a3de-dab9a07128b1",
+        "timestamp": 1790738373209
+      },
+      {
+        "executionId": "5898eb25-ebea-423d-9f27-90ba54a7d560",
+        "chatSessionId": "sess_429c76ae-d863-4ae3-a3de-dab9a07128b1",
+        "timestamp": 1790738780276
+      },
+      {
+        "executionId": "5898eb25-ebea-423d-9f27-90ba54a7d560",
+        "chatSessionId": "sess_429c76ae-d863-4ae3-a3de-dab9a07128b1",
+        "timestamp": 1790739403186
       }
     ],
     "**5.3 Deck styles + backs + card faces.** Classic/Modern/Four-Color/Jumbo Index; ≥ 6 backs; 🎨": [
@@ -529,6 +664,26 @@
         "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
         "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
         "timestamp": 1790694295182
+      },
+      {
+        "executionId": "6a5aca5d-6e57-425b-bf20-b06dec46c23c",
+        "chatSessionId": "sess_2845d03f-efea-40ce-abf7-f6258d2a723f",
+        "timestamp": 1790736154190
+      },
+      {
+        "executionId": "5898eb25-ebea-423d-9f27-90ba54a7d560",
+        "chatSessionId": "sess_429c76ae-d863-4ae3-a3de-dab9a07128b1",
+        "timestamp": 1790738373236
+      },
+      {
+        "executionId": "5898eb25-ebea-423d-9f27-90ba54a7d560",
+        "chatSessionId": "sess_429c76ae-d863-4ae3-a3de-dab9a07128b1",
+        "timestamp": 1790739405948
+      },
+      {
+        "executionId": "5898eb25-ebea-423d-9f27-90ba54a7d560",
+        "chatSessionId": "sess_429c76ae-d863-4ae3-a3de-dab9a07128b1",
+        "timestamp": 1790740302863
       }
     ],
     "**5.4 Theme-pack loader.** JSON manifest + vector assets + audio, runtime-switchable without restart;": [
@@ -541,6 +696,26 @@
         "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
         "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
         "timestamp": 1790694295207
+      },
+      {
+        "executionId": "6a5aca5d-6e57-425b-bf20-b06dec46c23c",
+        "chatSessionId": "sess_2845d03f-efea-40ce-abf7-f6258d2a723f",
+        "timestamp": 1790736154216
+      },
+      {
+        "executionId": "5898eb25-ebea-423d-9f27-90ba54a7d560",
+        "chatSessionId": "sess_429c76ae-d863-4ae3-a3de-dab9a07128b1",
+        "timestamp": 1790738373265
+      },
+      {
+        "executionId": "5898eb25-ebea-423d-9f27-90ba54a7d560",
+        "chatSessionId": "sess_429c76ae-d863-4ae3-a3de-dab9a07128b1",
+        "timestamp": 1790740306029
+      },
+      {
+        "executionId": "5898eb25-ebea-423d-9f27-90ba54a7d560",
+        "chatSessionId": "sess_429c76ae-d863-4ae3-a3de-dab9a07128b1",
+        "timestamp": 1790740802310
       }
     ],
     "**5.5 Animation queue polish.** Speed setting (Relaxed/Normal/Fast/Instant), click/keypress": [
@@ -553,6 +728,26 @@
         "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
         "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
         "timestamp": 1790694295231
+      },
+      {
+        "executionId": "6a5aca5d-6e57-425b-bf20-b06dec46c23c",
+        "chatSessionId": "sess_2845d03f-efea-40ce-abf7-f6258d2a723f",
+        "timestamp": 1790736154241
+      },
+      {
+        "executionId": "5898eb25-ebea-423d-9f27-90ba54a7d560",
+        "chatSessionId": "sess_429c76ae-d863-4ae3-a3de-dab9a07128b1",
+        "timestamp": 1790738373300
+      },
+      {
+        "executionId": "5898eb25-ebea-423d-9f27-90ba54a7d560",
+        "chatSessionId": "sess_429c76ae-d863-4ae3-a3de-dab9a07128b1",
+        "timestamp": 1790740804901
+      },
+      {
+        "executionId": "5898eb25-ebea-423d-9f27-90ba54a7d560",
+        "chatSessionId": "sess_429c76ae-d863-4ae3-a3de-dab9a07128b1",
+        "timestamp": 1790741336072
       }
     ],
     "**5.6 HUD components.** Seat plates (avatar/name/score/dealer/role/active-glow/thinking), scoreboard,": [
@@ -565,6 +760,26 @@
         "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
         "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
         "timestamp": 1790694295257
+      },
+      {
+        "executionId": "6a5aca5d-6e57-425b-bf20-b06dec46c23c",
+        "chatSessionId": "sess_2845d03f-efea-40ce-abf7-f6258d2a723f",
+        "timestamp": 1790736154268
+      },
+      {
+        "executionId": "5898eb25-ebea-423d-9f27-90ba54a7d560",
+        "chatSessionId": "sess_429c76ae-d863-4ae3-a3de-dab9a07128b1",
+        "timestamp": 1790738373325
+      },
+      {
+        "executionId": "5898eb25-ebea-423d-9f27-90ba54a7d560",
+        "chatSessionId": "sess_429c76ae-d863-4ae3-a3de-dab9a07128b1",
+        "timestamp": 1790741338933
+      },
+      {
+        "executionId": "5898eb25-ebea-423d-9f27-90ba54a7d560",
+        "chatSessionId": "sess_429c76ae-d863-4ae3-a3de-dab9a07128b1",
+        "timestamp": 1790741990378
       }
     ],
     "**5.7 Sound engine.** Event-driven cues (shuffle/deal/flip/place/chips/win) with randomized": [
@@ -577,6 +792,26 @@
         "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
         "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
         "timestamp": 1790694295302
+      },
+      {
+        "executionId": "6a5aca5d-6e57-425b-bf20-b06dec46c23c",
+        "chatSessionId": "sess_2845d03f-efea-40ce-abf7-f6258d2a723f",
+        "timestamp": 1790736154309
+      },
+      {
+        "executionId": "5898eb25-ebea-423d-9f27-90ba54a7d560",
+        "chatSessionId": "sess_429c76ae-d863-4ae3-a3de-dab9a07128b1",
+        "timestamp": 1790738373351
+      },
+      {
+        "executionId": "5898eb25-ebea-423d-9f27-90ba54a7d560",
+        "chatSessionId": "sess_429c76ae-d863-4ae3-a3de-dab9a07128b1",
+        "timestamp": 1790741993547
+      },
+      {
+        "executionId": "5898eb25-ebea-423d-9f27-90ba54a7d560",
+        "chatSessionId": "sess_429c76ae-d863-4ae3-a3de-dab9a07128b1",
+        "timestamp": 1790742461012
       }
     ],
     "**5.8 Klondike win celebration.** ≤ 3 s skippable cascading-cards homage + modern flourish": [
@@ -589,6 +824,26 @@
         "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
         "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
         "timestamp": 1790694295327
+      },
+      {
+        "executionId": "6a5aca5d-6e57-425b-bf20-b06dec46c23c",
+        "chatSessionId": "sess_2845d03f-efea-40ce-abf7-f6258d2a723f",
+        "timestamp": 1790736154338
+      },
+      {
+        "executionId": "5898eb25-ebea-423d-9f27-90ba54a7d560",
+        "chatSessionId": "sess_429c76ae-d863-4ae3-a3de-dab9a07128b1",
+        "timestamp": 1790738373377
+      },
+      {
+        "executionId": "5898eb25-ebea-423d-9f27-90ba54a7d560",
+        "chatSessionId": "sess_429c76ae-d863-4ae3-a3de-dab9a07128b1",
+        "timestamp": 1790742463717
+      },
+      {
+        "executionId": "5898eb25-ebea-423d-9f27-90ba54a7d560",
+        "chatSessionId": "sess_429c76ae-d863-4ae3-a3de-dab9a07128b1",
+        "timestamp": 1790742907725
       }
     ],
     "**⛳ CHECKPOINT 4.** User switches themes/decks live, hears sound, sees polished motion and the win": [
@@ -601,6 +856,21 @@
         "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
         "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
         "timestamp": 1790694295349
+      },
+      {
+        "executionId": "6a5aca5d-6e57-425b-bf20-b06dec46c23c",
+        "chatSessionId": "sess_2845d03f-efea-40ce-abf7-f6258d2a723f",
+        "timestamp": 1790736154363
+      },
+      {
+        "executionId": "5898eb25-ebea-423d-9f27-90ba54a7d560",
+        "chatSessionId": "sess_429c76ae-d863-4ae3-a3de-dab9a07128b1",
+        "timestamp": 1790738373402
+      },
+      {
+        "executionId": "5898eb25-ebea-423d-9f27-90ba54a7d560",
+        "chatSessionId": "sess_429c76ae-d863-4ae3-a3de-dab9a07128b1",
+        "timestamp": 1790742950345
       }
     ],
     "**6.1 Versioned save + autosave/resume.** Codable save (schema-versioned) written after every": [
@@ -613,6 +883,26 @@
         "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
         "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
         "timestamp": 1790694295373
+      },
+      {
+        "executionId": "6a5aca5d-6e57-425b-bf20-b06dec46c23c",
+        "chatSessionId": "sess_2845d03f-efea-40ce-abf7-f6258d2a723f",
+        "timestamp": 1790736154392
+      },
+      {
+        "executionId": "5898eb25-ebea-423d-9f27-90ba54a7d560",
+        "chatSessionId": "sess_429c76ae-d863-4ae3-a3de-dab9a07128b1",
+        "timestamp": 1790738373427
+      },
+      {
+        "executionId": "5898eb25-ebea-423d-9f27-90ba54a7d560",
+        "chatSessionId": "sess_429c76ae-d863-4ae3-a3de-dab9a07128b1",
+        "timestamp": 1790742952996
+      },
+      {
+        "executionId": "5898eb25-ebea-423d-9f27-90ba54a7d560",
+        "chatSessionId": "sess_429c76ae-d863-4ae3-a3de-dab9a07128b1",
+        "timestamp": 1790743599009
       }
     ],
     "**6.2 Migration + corruption handling + round-trip test.** Version migration registry + tests;": [
@@ -625,6 +915,26 @@
         "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
         "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
         "timestamp": 1790694295395
+      },
+      {
+        "executionId": "6a5aca5d-6e57-425b-bf20-b06dec46c23c",
+        "chatSessionId": "sess_2845d03f-efea-40ce-abf7-f6258d2a723f",
+        "timestamp": 1790736154422
+      },
+      {
+        "executionId": "5898eb25-ebea-423d-9f27-90ba54a7d560",
+        "chatSessionId": "sess_429c76ae-d863-4ae3-a3de-dab9a07128b1",
+        "timestamp": 1790738373451
+      },
+      {
+        "executionId": "5898eb25-ebea-423d-9f27-90ba54a7d560",
+        "chatSessionId": "sess_429c76ae-d863-4ae3-a3de-dab9a07128b1",
+        "timestamp": 1790743602888
+      },
+      {
+        "executionId": "5898eb25-ebea-423d-9f27-90ba54a7d560",
+        "chatSessionId": "sess_429c76ae-d863-4ae3-a3de-dab9a07128b1",
+        "timestamp": 1790743984592
       }
     ],
     "**6.3 Statistics + Swift Charts.** Per game/variant: played, won, win %, current/best streak, best": [
@@ -637,6 +947,26 @@
         "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
         "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
         "timestamp": 1790694295416
+      },
+      {
+        "executionId": "6a5aca5d-6e57-425b-bf20-b06dec46c23c",
+        "chatSessionId": "sess_2845d03f-efea-40ce-abf7-f6258d2a723f",
+        "timestamp": 1790736154451
+      },
+      {
+        "executionId": "5898eb25-ebea-423d-9f27-90ba54a7d560",
+        "chatSessionId": "sess_429c76ae-d863-4ae3-a3de-dab9a07128b1",
+        "timestamp": 1790738373486
+      },
+      {
+        "executionId": "5898eb25-ebea-423d-9f27-90ba54a7d560",
+        "chatSessionId": "sess_429c76ae-d863-4ae3-a3de-dab9a07128b1",
+        "timestamp": 1790743987501
+      },
+      {
+        "executionId": "5898eb25-ebea-423d-9f27-90ba54a7d560",
+        "chatSessionId": "sess_429c76ae-d863-4ae3-a3de-dab9a07128b1",
+        "timestamp": 1790748117404
       }
     ],
     "**6.4 Settings.** Appearance (theme/deck/back/card size S/M/L/XL), gameplay (animation speed, AI": [
@@ -649,6 +979,26 @@
         "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
         "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
         "timestamp": 1790694295439
+      },
+      {
+        "executionId": "6a5aca5d-6e57-425b-bf20-b06dec46c23c",
+        "chatSessionId": "sess_2845d03f-efea-40ce-abf7-f6258d2a723f",
+        "timestamp": 1790736154481
+      },
+      {
+        "executionId": "5898eb25-ebea-423d-9f27-90ba54a7d560",
+        "chatSessionId": "sess_429c76ae-d863-4ae3-a3de-dab9a07128b1",
+        "timestamp": 1790738373509
+      },
+      {
+        "executionId": "5898eb25-ebea-423d-9f27-90ba54a7d560",
+        "chatSessionId": "sess_429c76ae-d863-4ae3-a3de-dab9a07128b1",
+        "timestamp": 1790748122010
+      },
+      {
+        "executionId": "5898eb25-ebea-423d-9f27-90ba54a7d560",
+        "chatSessionId": "sess_429c76ae-d863-4ae3-a3de-dab9a07128b1",
+        "timestamp": 1790748512273
       }
     ],
     "**6.5 Library + catalog + setup sheet.** Continue hero, family groups, filters (family/count/": [
@@ -661,6 +1011,36 @@
         "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
         "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
         "timestamp": 1790694295462
+      },
+      {
+        "executionId": "6a5aca5d-6e57-425b-bf20-b06dec46c23c",
+        "chatSessionId": "sess_2845d03f-efea-40ce-abf7-f6258d2a723f",
+        "timestamp": 1790736154516
+      },
+      {
+        "executionId": "5898eb25-ebea-423d-9f27-90ba54a7d560",
+        "chatSessionId": "sess_429c76ae-d863-4ae3-a3de-dab9a07128b1",
+        "timestamp": 1790738373533
+      },
+      {
+        "executionId": "5898eb25-ebea-423d-9f27-90ba54a7d560",
+        "chatSessionId": "sess_429c76ae-d863-4ae3-a3de-dab9a07128b1",
+        "timestamp": 1790748515750
+      },
+      {
+        "executionId": "5898eb25-ebea-423d-9f27-90ba54a7d560",
+        "chatSessionId": "sess_429c76ae-d863-4ae3-a3de-dab9a07128b1",
+        "timestamp": 1790749076970
+      },
+      {
+        "executionId": "6b6d03e9-673c-4c77-81ba-f2ba17dd3916",
+        "chatSessionId": "sess_04f90620-4aef-479b-b906-586799803f6a",
+        "timestamp": 1790883245578
+      },
+      {
+        "executionId": "6b6d03e9-673c-4c77-81ba-f2ba17dd3916",
+        "chatSessionId": "sess_04f90620-4aef-479b-b906-586799803f6a",
+        "timestamp": 1790883618795
       }
     ],
     "**6.6 Table screen + rules inspector + macOS integration.** Full-bleed table, quiet toolbar, HUD,": [
@@ -673,6 +1053,36 @@
         "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
         "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
         "timestamp": 1790694295487
+      },
+      {
+        "executionId": "6a5aca5d-6e57-425b-bf20-b06dec46c23c",
+        "chatSessionId": "sess_2845d03f-efea-40ce-abf7-f6258d2a723f",
+        "timestamp": 1790736154559
+      },
+      {
+        "executionId": "5898eb25-ebea-423d-9f27-90ba54a7d560",
+        "chatSessionId": "sess_429c76ae-d863-4ae3-a3de-dab9a07128b1",
+        "timestamp": 1790738373557
+      },
+      {
+        "executionId": "5898eb25-ebea-423d-9f27-90ba54a7d560",
+        "chatSessionId": "sess_429c76ae-d863-4ae3-a3de-dab9a07128b1",
+        "timestamp": 1790749080568
+      },
+      {
+        "executionId": "5898eb25-ebea-423d-9f27-90ba54a7d560",
+        "chatSessionId": "sess_429c76ae-d863-4ae3-a3de-dab9a07128b1",
+        "timestamp": 1790749871192
+      },
+      {
+        "executionId": "dbc2bb82-3e33-45f1-8f0d-4a03852fb449",
+        "chatSessionId": "sess_bba0e470-6a64-4142-b8c5-0ec1d23a5509",
+        "timestamp": 1790883631845
+      },
+      {
+        "executionId": "dbc2bb82-3e33-45f1-8f0d-4a03852fb449",
+        "chatSessionId": "sess_bba0e470-6a64-4142-b8c5-0ec1d23a5509",
+        "timestamp": 1790883862039
       }
     ],
     "**⛳ CHECKPOINT 5.** User browses the library, configures a game, quits and resumes mid-hand, views": [
@@ -685,6 +1095,21 @@
         "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
         "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
         "timestamp": 1790694295507
+      },
+      {
+        "executionId": "6a5aca5d-6e57-425b-bf20-b06dec46c23c",
+        "chatSessionId": "sess_2845d03f-efea-40ce-abf7-f6258d2a723f",
+        "timestamp": 1790736154617
+      },
+      {
+        "executionId": "5898eb25-ebea-423d-9f27-90ba54a7d560",
+        "chatSessionId": "sess_429c76ae-d863-4ae3-a3de-dab9a07128b1",
+        "timestamp": 1790738373582
+      },
+      {
+        "executionId": "5898eb25-ebea-423d-9f27-90ba54a7d560",
+        "chatSessionId": "sess_429c76ae-d863-4ae3-a3de-dab9a07128b1",
+        "timestamp": 1790749886166
       }
     ],
     "**7.1 VoiceOver.** Meaningful label/value/hint for every card/tile/pile/control; custom rotors for": [
@@ -697,6 +1122,26 @@
         "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
         "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
         "timestamp": 1790694295531
+      },
+      {
+        "executionId": "6a5aca5d-6e57-425b-bf20-b06dec46c23c",
+        "chatSessionId": "sess_2845d03f-efea-40ce-abf7-f6258d2a723f",
+        "timestamp": 1790736154648
+      },
+      {
+        "executionId": "5898eb25-ebea-423d-9f27-90ba54a7d560",
+        "chatSessionId": "sess_429c76ae-d863-4ae3-a3de-dab9a07128b1",
+        "timestamp": 1790738373606
+      },
+      {
+        "executionId": "5898eb25-ebea-423d-9f27-90ba54a7d560",
+        "chatSessionId": "sess_429c76ae-d863-4ae3-a3de-dab9a07128b1",
+        "timestamp": 1790749889117
+      },
+      {
+        "executionId": "5898eb25-ebea-423d-9f27-90ba54a7d560",
+        "chatSessionId": "sess_429c76ae-d863-4ae3-a3de-dab9a07128b1",
+        "timestamp": 1790750431471
       }
     ],
     "**7.2 Keyboard-only play.** Full keyboard play for both games and every flow, visible focus": [
@@ -709,6 +1154,26 @@
         "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
         "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
         "timestamp": 1790694295556
+      },
+      {
+        "executionId": "6a5aca5d-6e57-425b-bf20-b06dec46c23c",
+        "chatSessionId": "sess_2845d03f-efea-40ce-abf7-f6258d2a723f",
+        "timestamp": 1790736154675
+      },
+      {
+        "executionId": "5898eb25-ebea-423d-9f27-90ba54a7d560",
+        "chatSessionId": "sess_429c76ae-d863-4ae3-a3de-dab9a07128b1",
+        "timestamp": 1790738373631
+      },
+      {
+        "executionId": "5898eb25-ebea-423d-9f27-90ba54a7d560",
+        "chatSessionId": "sess_429c76ae-d863-4ae3-a3de-dab9a07128b1",
+        "timestamp": 1790750434351
+      },
+      {
+        "executionId": "5898eb25-ebea-423d-9f27-90ba54a7d560",
+        "chatSessionId": "sess_429c76ae-d863-4ae3-a3de-dab9a07128b1",
+        "timestamp": 1790754608887
       }
     ],
     "**7.3 Color independence + system settings.** Suit shapes always present, Four-Color deck; respect": [
@@ -721,6 +1186,21 @@
         "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
         "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
         "timestamp": 1790694295579
+      },
+      {
+        "executionId": "6a5aca5d-6e57-425b-bf20-b06dec46c23c",
+        "chatSessionId": "sess_2845d03f-efea-40ce-abf7-f6258d2a723f",
+        "timestamp": 1790736154705
+      },
+      {
+        "executionId": "5898eb25-ebea-423d-9f27-90ba54a7d560",
+        "chatSessionId": "sess_429c76ae-d863-4ae3-a3de-dab9a07128b1",
+        "timestamp": 1790738373653
+      },
+      {
+        "executionId": "5898eb25-ebea-423d-9f27-90ba54a7d560",
+        "chatSessionId": "sess_429c76ae-d863-4ae3-a3de-dab9a07128b1",
+        "timestamp": 1790754612502
       }
     ],
     "**7.4 Accessibility UI tests.** Keyboard-only completion of Klondike (debug near-win) and a Crazy": [
@@ -733,6 +1213,46 @@
         "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
         "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
         "timestamp": 1790694295601
+      },
+      {
+        "executionId": "6a5aca5d-6e57-425b-bf20-b06dec46c23c",
+        "chatSessionId": "sess_2845d03f-efea-40ce-abf7-f6258d2a723f",
+        "timestamp": 1790736154733
+      },
+      {
+        "executionId": "5898eb25-ebea-423d-9f27-90ba54a7d560",
+        "chatSessionId": "sess_429c76ae-d863-4ae3-a3de-dab9a07128b1",
+        "timestamp": 1790738373677
+      },
+      {
+        "executionId": "5898eb25-ebea-423d-9f27-90ba54a7d560",
+        "chatSessionId": "sess_429c76ae-d863-4ae3-a3de-dab9a07128b1",
+        "timestamp": 1790755223567
+      },
+      {
+        "executionId": "d5419490-3f12-49cb-b1f3-1b2dfcb4c277",
+        "chatSessionId": "sess_16118d19-23dd-45f2-9358-a6b2e5f16b6d",
+        "timestamp": 1790778080664
+      },
+      {
+        "executionId": "d5419490-3f12-49cb-b1f3-1b2dfcb4c277",
+        "chatSessionId": "sess_16118d19-23dd-45f2-9358-a6b2e5f16b6d",
+        "timestamp": 1790778084520
+      },
+      {
+        "executionId": "1c4dc5da-6c16-4f01-a546-20c362d38b7c",
+        "chatSessionId": "sess_51930cf8-43a4-4978-afa6-32bd33349bbe",
+        "timestamp": 1790782976431
+      },
+      {
+        "executionId": "1c4dc5da-6c16-4f01-a546-20c362d38b7c",
+        "chatSessionId": "sess_51930cf8-43a4-4978-afa6-32bd33349bbe",
+        "timestamp": 1790782983342
+      },
+      {
+        "executionId": "1c4dc5da-6c16-4f01-a546-20c362d38b7c",
+        "chatSessionId": "sess_51930cf8-43a4-4978-afa6-32bd33349bbe",
+        "timestamp": 1790801799002
       }
     ],
     "**⛳ CHECKPOINT 6.** User completes both games with VoiceOver + keyboard only. Review before Phase 8.": [
@@ -745,6 +1265,26 @@
         "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
         "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
         "timestamp": 1790694295624
+      },
+      {
+        "executionId": "6a5aca5d-6e57-425b-bf20-b06dec46c23c",
+        "chatSessionId": "sess_2845d03f-efea-40ce-abf7-f6258d2a723f",
+        "timestamp": 1790736154764
+      },
+      {
+        "executionId": "5898eb25-ebea-423d-9f27-90ba54a7d560",
+        "chatSessionId": "sess_429c76ae-d863-4ae3-a3de-dab9a07128b1",
+        "timestamp": 1790738373701
+      },
+      {
+        "executionId": "32eec660-1e6e-43da-896c-66e026229d20",
+        "chatSessionId": "sess_283a1537-7b0d-4db1-b75b-4eb632908222",
+        "timestamp": 1790884190731
+      },
+      {
+        "executionId": "32eec660-1e6e-43da-896c-66e026229d20",
+        "chatSessionId": "sess_283a1537-7b0d-4db1-b75b-4eb632908222",
+        "timestamp": 1790884195313
       }
     ],
     "**8.1 parlor-sim + invariants.** AI-vs-AI and random-legal runs checking piece conservation,": [
@@ -757,18 +1297,93 @@
         "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
         "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
         "timestamp": 1790694295647
+      },
+      {
+        "executionId": "6a5aca5d-6e57-425b-bf20-b06dec46c23c",
+        "chatSessionId": "sess_2845d03f-efea-40ce-abf7-f6258d2a723f",
+        "timestamp": 1790736154790
+      },
+      {
+        "executionId": "5898eb25-ebea-423d-9f27-90ba54a7d560",
+        "chatSessionId": "sess_429c76ae-d863-4ae3-a3de-dab9a07128b1",
+        "timestamp": 1790738373725
+      },
+      {
+        "executionId": "32eec660-1e6e-43da-896c-66e026229d20",
+        "chatSessionId": "sess_283a1537-7b0d-4db1-b75b-4eb632908222",
+        "timestamp": 1790884190771
+      },
+      {
+        "executionId": "0387b0b3-753a-4e8f-ad17-4960473068cd",
+        "chatSessionId": "sess_39994c86-b735-441f-b9af-b25c639a40d6",
+        "timestamp": 1790913196333
+      },
+      {
+        "executionId": "3c60b614-1308-46a1-81a4-d7275aabf540",
+        "chatSessionId": "sess_f42cba48-2c2b-48d5-837e-62a6c5d96297",
+        "timestamp": 1791003032827
+      },
+      {
+        "executionId": "3c60b614-1308-46a1-81a4-d7275aabf540",
+        "chatSessionId": "sess_f42cba48-2c2b-48d5-837e-62a6c5d96297",
+        "timestamp": 1791003036700
+      },
+      {
+        "executionId": "3c60b614-1308-46a1-81a4-d7275aabf540",
+        "chatSessionId": "sess_f42cba48-2c2b-48d5-837e-62a6c5d96297",
+        "timestamp": 1791078663812
       }
     ],
     "**8.2 Full UI test suite.** Library → setup → Klondike (drag + keyboard) → undo → win from debug": [
       {
-        "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
-        "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
-        "timestamp": 1790570975832
-      },
-      {
         "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
         "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
         "timestamp": 1790694295674
+      },
+      {
+        "executionId": "6a5aca5d-6e57-425b-bf20-b06dec46c23c",
+        "chatSessionId": "sess_2845d03f-efea-40ce-abf7-f6258d2a723f",
+        "timestamp": 1790736154838
+      },
+      {
+        "executionId": "5898eb25-ebea-423d-9f27-90ba54a7d560",
+        "chatSessionId": "sess_429c76ae-d863-4ae3-a3de-dab9a07128b1",
+        "timestamp": 1790738373749
+      },
+      {
+        "executionId": "32eec660-1e6e-43da-896c-66e026229d20",
+        "chatSessionId": "sess_283a1537-7b0d-4db1-b75b-4eb632908222",
+        "timestamp": 1790884190799
+      },
+      {
+        "executionId": "3c60b614-1308-46a1-81a4-d7275aabf540",
+        "chatSessionId": "sess_f42cba48-2c2b-48d5-837e-62a6c5d96297",
+        "timestamp": 1791003032904
+      },
+      {
+        "executionId": "3c60b614-1308-46a1-81a4-d7275aabf540",
+        "chatSessionId": "sess_f42cba48-2c2b-48d5-837e-62a6c5d96297",
+        "timestamp": 1791078667664
+      },
+      {
+        "executionId": "bd09794c-911b-4b01-bb68-61f4a43a0849",
+        "chatSessionId": "sess_6c566a5c-cd8c-4a39-afa0-4caeca142948",
+        "timestamp": 1791088414712
+      },
+      {
+        "executionId": "d787f6b7-a546-449e-83db-f6ec08da0388",
+        "chatSessionId": "sess_0d4bcf13-932a-4496-ab42-c823276c39ae",
+        "timestamp": 1791131560646
+      },
+      {
+        "executionId": "d787f6b7-a546-449e-83db-f6ec08da0388",
+        "chatSessionId": "sess_0d4bcf13-932a-4496-ab42-c823276c39ae",
+        "timestamp": 1791131564433
+      },
+      {
+        "executionId": "d787f6b7-a546-449e-83db-f6ec08da0388",
+        "chatSessionId": "sess_0d4bcf13-932a-4496-ab42-c823276c39ae",
+        "timestamp": 1791140269715
       }
     ],
     "**8.3 Performance tests.** Launch, deal animation, AI decision time vs `tech.md` budgets; profile the": [
@@ -781,18 +1396,88 @@
         "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
         "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
         "timestamp": 1790694295696
+      },
+      {
+        "executionId": "6a5aca5d-6e57-425b-bf20-b06dec46c23c",
+        "chatSessionId": "sess_2845d03f-efea-40ce-abf7-f6258d2a723f",
+        "timestamp": 1790736154865
+      },
+      {
+        "executionId": "5898eb25-ebea-423d-9f27-90ba54a7d560",
+        "chatSessionId": "sess_429c76ae-d863-4ae3-a3de-dab9a07128b1",
+        "timestamp": 1790738373772
+      },
+      {
+        "executionId": "32eec660-1e6e-43da-896c-66e026229d20",
+        "chatSessionId": "sess_283a1537-7b0d-4db1-b75b-4eb632908222",
+        "timestamp": 1790884190833
+      },
+      {
+        "executionId": "3c60b614-1308-46a1-81a4-d7275aabf540",
+        "chatSessionId": "sess_f42cba48-2c2b-48d5-837e-62a6c5d96297",
+        "timestamp": 1791003032949
+      },
+      {
+        "executionId": "d787f6b7-a546-449e-83db-f6ec08da0388",
+        "chatSessionId": "sess_0d4bcf13-932a-4496-ab42-c823276c39ae",
+        "timestamp": 1791131560707
+      },
+      {
+        "executionId": "d787f6b7-a546-449e-83db-f6ec08da0388",
+        "chatSessionId": "sess_0d4bcf13-932a-4496-ab42-c823276c39ae",
+        "timestamp": 1791140274618
       }
     ],
     "**8.4 Coverage gate.** ≥ 90% line coverage for EngineCore and both rules targets; enforce in": [
       {
-        "executionId": "d6f30e43-1895-4109-899c-27edbad2e004",
-        "chatSessionId": "sess_89dc032f-5aaa-4c84-8b77-ae2f95171ff1",
-        "timestamp": 1790570975874
-      },
-      {
         "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
         "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
         "timestamp": 1790694295716
+      },
+      {
+        "executionId": "6a5aca5d-6e57-425b-bf20-b06dec46c23c",
+        "chatSessionId": "sess_2845d03f-efea-40ce-abf7-f6258d2a723f",
+        "timestamp": 1790736154888
+      },
+      {
+        "executionId": "5898eb25-ebea-423d-9f27-90ba54a7d560",
+        "chatSessionId": "sess_429c76ae-d863-4ae3-a3de-dab9a07128b1",
+        "timestamp": 1790738373798
+      },
+      {
+        "executionId": "32eec660-1e6e-43da-896c-66e026229d20",
+        "chatSessionId": "sess_283a1537-7b0d-4db1-b75b-4eb632908222",
+        "timestamp": 1790884190859
+      },
+      {
+        "executionId": "3c60b614-1308-46a1-81a4-d7275aabf540",
+        "chatSessionId": "sess_f42cba48-2c2b-48d5-837e-62a6c5d96297",
+        "timestamp": 1791003032983
+      },
+      {
+        "executionId": "d787f6b7-a546-449e-83db-f6ec08da0388",
+        "chatSessionId": "sess_0d4bcf13-932a-4496-ab42-c823276c39ae",
+        "timestamp": 1791131560812
+      },
+      {
+        "executionId": "4cc01a30-dfc8-4266-9b56-9f86854a6a7d",
+        "chatSessionId": "sess_163a5111-87be-4da2-bff5-43fdab831ab7",
+        "timestamp": 1791144654280
+      },
+      {
+        "executionId": "86ed95f3-1aa4-43e4-aa6d-26e13fd53cac",
+        "chatSessionId": "sess_5ac77a11-7d86-47a9-9a7e-e18376c50015",
+        "timestamp": 1791169698545
+      },
+      {
+        "executionId": "ec8a302c-8c88-4aec-a2f8-d6546f58ce37",
+        "chatSessionId": "sess_f0ef2acc-97d5-482a-8063-aa8c60fbe4b3",
+        "timestamp": 1791204876357
+      },
+      {
+        "executionId": "ec8a302c-8c88-4aec-a2f8-d6546f58ce37",
+        "chatSessionId": "sess_f0ef2acc-97d5-482a-8063-aa8c60fbe4b3",
+        "timestamp": 1791207296063
       }
     ],
     "**8.5 Docs finalize + placeholder audit.** Update `Docs/Architecture.md` and both rules docs; confirm": [
@@ -805,6 +1490,41 @@
         "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
         "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
         "timestamp": 1790694295745
+      },
+      {
+        "executionId": "6a5aca5d-6e57-425b-bf20-b06dec46c23c",
+        "chatSessionId": "sess_2845d03f-efea-40ce-abf7-f6258d2a723f",
+        "timestamp": 1790736154915
+      },
+      {
+        "executionId": "5898eb25-ebea-423d-9f27-90ba54a7d560",
+        "chatSessionId": "sess_429c76ae-d863-4ae3-a3de-dab9a07128b1",
+        "timestamp": 1790738373822
+      },
+      {
+        "executionId": "32eec660-1e6e-43da-896c-66e026229d20",
+        "chatSessionId": "sess_283a1537-7b0d-4db1-b75b-4eb632908222",
+        "timestamp": 1790884190884
+      },
+      {
+        "executionId": "3c60b614-1308-46a1-81a4-d7275aabf540",
+        "chatSessionId": "sess_f42cba48-2c2b-48d5-837e-62a6c5d96297",
+        "timestamp": 1791003033025
+      },
+      {
+        "executionId": "d787f6b7-a546-449e-83db-f6ec08da0388",
+        "chatSessionId": "sess_0d4bcf13-932a-4496-ab42-c823276c39ae",
+        "timestamp": 1791131560836
+      },
+      {
+        "executionId": "60466e7e-4007-48cd-8972-68d1109033fd",
+        "chatSessionId": "sess_a7767dad-2701-41d9-a169-196ff80e887b",
+        "timestamp": 1791207527944
+      },
+      {
+        "executionId": "60466e7e-4007-48cd-8972-68d1109033fd",
+        "chatSessionId": "sess_a7767dad-2701-41d9-a169-196ff80e887b",
+        "timestamp": 1791209484974
       }
     ],
     "**⛳ CHECKPOINT 7 (final).** User runs `make test-long`; all quality gates, performance budgets, and": [
@@ -817,6 +1537,31 @@
         "executionId": "da34c35f-2c63-4f0f-97e1-7492a6619a11",
         "chatSessionId": "sess_f00dfac1-5898-4725-ab7e-cb4ccc4c4010",
         "timestamp": 1790694295770
+      },
+      {
+        "executionId": "6a5aca5d-6e57-425b-bf20-b06dec46c23c",
+        "chatSessionId": "sess_2845d03f-efea-40ce-abf7-f6258d2a723f",
+        "timestamp": 1790736154939
+      },
+      {
+        "executionId": "5898eb25-ebea-423d-9f27-90ba54a7d560",
+        "chatSessionId": "sess_429c76ae-d863-4ae3-a3de-dab9a07128b1",
+        "timestamp": 1790738373847
+      },
+      {
+        "executionId": "32eec660-1e6e-43da-896c-66e026229d20",
+        "chatSessionId": "sess_283a1537-7b0d-4db1-b75b-4eb632908222",
+        "timestamp": 1790884190905
+      },
+      {
+        "executionId": "3c60b614-1308-46a1-81a4-d7275aabf540",
+        "chatSessionId": "sess_f42cba48-2c2b-48d5-837e-62a6c5d96297",
+        "timestamp": 1791003033051
+      },
+      {
+        "executionId": "d787f6b7-a546-449e-83db-f6ec08da0388",
+        "chatSessionId": "sess_0d4bcf13-932a-4496-ab42-c823276c39ae",
+        "timestamp": 1791131560868
       }
     ]
   }

@@ -108,6 +108,50 @@ public struct KlondikeState: GameState {
     public func face(of piece: PieceID) -> CardFace? { faces[piece] }
 }
 
+// MARK: - Deterministic Codable state encoding
+
+/// A sorted face entry keeps state hashes stable across dictionary iteration order.
+private struct KlondikeFaceEntry: Codable {
+    let id: PieceID
+    let face: CardFace
+}
+
+extension KlondikeState {
+    private enum CodingKeys: String, CodingKey {
+        case stock, waste, tableau, foundations, faces, score, passes, options
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        stock = try container.decode(Zone.self, forKey: .stock)
+        waste = try container.decode(Zone.self, forKey: .waste)
+        tableau = try container.decode([Zone].self, forKey: .tableau)
+        foundations = try container.decode([Zone].self, forKey: .foundations)
+        let entries = try container.decode([KlondikeFaceEntry].self, forKey: .faces)
+        var decodedFaces: [PieceID: CardFace] = [:]
+        decodedFaces.reserveCapacity(entries.count)
+        for entry in entries { decodedFaces[entry.id] = entry.face }
+        faces = decodedFaces
+        score = try container.decode(Int.self, forKey: .score)
+        passes = try container.decode(Int.self, forKey: .passes)
+        options = try container.decode(KlondikeOptions.self, forKey: .options)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(stock, forKey: .stock)
+        try container.encode(waste, forKey: .waste)
+        try container.encode(tableau, forKey: .tableau)
+        try container.encode(foundations, forKey: .foundations)
+        let entries = faces.map { KlondikeFaceEntry(id: $0.key, face: $0.value) }
+            .sorted { $0.id.raw < $1.id.raw }
+        try container.encode(entries, forKey: .faces)
+        try container.encode(score, forKey: .score)
+        try container.encode(passes, forKey: .passes)
+        try container.encode(options, forKey: .options)
+    }
+}
+
 // MARK: - Action
 
 /// A single move a player can make in Klondike (R-ENG-5.4). Conforms to `GameAction` so it is

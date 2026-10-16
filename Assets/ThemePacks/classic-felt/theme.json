@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "id": "classic-felt",
+  "displayName": "Classic Felt",
+  "table": {
+    "material": "felt",
+    "shader": "parlorFelt",
+    "base": "#1B5E20",
+    "accent": "#2E7D32",
+    "grainScale": 220,
+    "grainStrength": 0.35,
+    "sheenStrength": 0.12,
+    "vignette": 0.30,
+    "shadowInk": "#06180A"
+  },
+  "decks": {
+    "styles": ["classic", "modern", "four-color", "jumbo-index"],
+    "backs": ["lattice", "art-deco", "linen", "checker", "wave", "crest"]
+  },
+  "assets": { "kind": "procedural", "shaderSource": "Shaders/TableMaterials.metal" },
+  "placeholder": true
+}

@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "id": "minimal",
+  "displayName": "Minimal",
+  "table": {
+    "material": "matte",
+    "shader": "parlorMatte",
+    "base": "#2B2E33",
+    "accent": "#33373D",
+    "grainScale": 60,
+    "grainStrength": 0.06,
+    "sheenStrength": 0.05,
+    "vignette": 0.18,
+    "shadowInk": "#0B0C0E"
+  },
+  "decks": {
+    "styles": ["classic", "modern", "four-color", "jumbo-index"],
+    "backs": ["lattice", "art-deco", "linen", "checker", "wave", "crest"]
+  },
+  "assets": { "kind": "procedural", "shaderSource": "Shaders/TableMaterials.metal" },
+  "placeholder": true
+}

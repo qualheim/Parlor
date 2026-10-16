@@ -11,7 +11,8 @@
 // SwiftUI view (`TableView`) resolves this model through `LayoutResolver` into frames and wraps state
 // changes in `withAnimation`, letting matched geometry interpolate a piece from its old frame to its new
 // one. No game writes any of this. The full animation QUEUE (speed setting, fast-forward, reduce-motion)
-// is task 5.5 — see `AnimationSettings` for the seam.
+// lives in `AnimationQueue.swift` / `AnimationDriver.swift` (task 5.5); the render model stays a pure
+// reducer and knows nothing about timing.
 
 import EngineCore
 import Foundation
@@ -116,6 +117,35 @@ public struct TableRenderModel: Sendable, Hashable {
         }
     }
 
+    // MARK: Reconciliation to a fresh view (single source of truth)
+
+    /// Rebuild the node set so it is EXACTLY what `playerView` describes, preserving each surviving node's
+    /// `RenderKey` so matched geometry animates the difference (slides for moved pieces, a crossfade for a
+    /// hidden→known reveal). This is the "single source of truth" primitive (design.md §2.8/§6): after the
+    /// host accepts an action, the client reconciles its render model to the host's fresh redacted view
+    /// instead of trying to re-derive the board from the raw omniscient event stream.
+    ///
+    /// Why reconcile rather than replace: a plain `TableRenderModel(playerView:)` would be a brand-new value
+    /// with no identity continuity, so SwiftUI could not animate a card from its old frame to its new one.
+    /// By computing the target nodes from the view and assigning them to a model that already keys pieces by
+    /// the SAME stable `RenderKey`s, every piece that survived keeps its matched-geometry id and animates;
+    /// pieces that left the viewer's sight are dropped and new ones appear. Hidden pieces keep their node iff
+    /// their `ViewToken` is stable across views (it is, once the game uses a stable tokenizer salt), so an
+    /// untouched face-down pile does not flicker.
+    ///
+    /// Pure: computes the next node map and swaps it in. No event replay, no ghost nodes, no stale
+    /// face-down cards — the model after this call projects back to exactly `playerView`'s zones.
+    public mutating func reconcile(to playerView: PlayerView) {
+        self.nodes = TableRenderModel(playerView: playerView).nodes
+    }
+
+    /// Non-mutating form of `reconcile(to:)`.
+    public func reconciling(to playerView: PlayerView) -> TableRenderModel {
+        var copy = self
+        copy.reconcile(to: playerView)
+        return copy
+    }
+
     // MARK: Projection to zones
 
     /// Project the live nodes back into ordered `ZoneView`s so `LayoutResolver` (which consumes zones)
@@ -192,26 +222,6 @@ public struct TableRenderModel: Sendable, Hashable {
     }
 }
 
-// MARK: - Animation settings seam (task 5.5)
-
-/// Placeholder for the animation-queue settings built in task 5.5 (R-TABLE-5).
-///
-/// TODO(task 5.5): the real animation QUEUE lives here — a speed setting (Relaxed/Normal/Fast/Instant),
-/// click/keypress fast-forward, non-blocking sequencing, and a Reduce-Motion mode that crossfades instead
-/// of sliding (R-TABLE-5.1–5.3). For the MINIMAL renderer this only carries a base spring duration the
-/// SwiftUI view uses in `withAnimation`; the queue itself is intentionally NOT built yet. This type is the
-/// seam so nothing downstream has to change shape when 5.5 lands.
-public struct AnimationSettings: Sendable, Hashable {
-    /// Base spring duration in seconds for a move/flip (design.md §6: 150–350 ms springs).
-    public var baseDuration: Double
-    /// Whether motion is reduced (crossfade instead of slide). Wired fully in task 5.5.
-    public var reduceMotion: Bool
-
-    public init(baseDuration: Double = 0.25, reduceMotion: Bool = false) {
-        self.baseDuration = baseDuration
-        self.reduceMotion = reduceMotion
-    }
-
-    /// The default minimal settings used until task 5.5 replaces this with the real queue.
-    public static let minimal = AnimationSettings()
-}
+// The animation-settings seam that used to be a placeholder here is now the real animation queue: see
+// `AnimationSettings`, `AnimationQueue`, and the SwiftUI `AnimationDriver` in `AnimationQueue.swift` /
+// `AnimationDriver.swift` (task 5.5; R-TABLE-5).

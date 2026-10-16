@@ -125,27 +125,30 @@ waste turns it back into a fresh face-down stock and counts as beginning another
 - **Unlimited** — recycle as often as you like. The default.
 - **Three passes** — you may run through the stock three times in total.
 - **One pass** — a single run through the stock; no recycling.
-- **Vegas override:** when Scoring is Vegas, passes default to **one** with Draw 1 and **three** with
-  Draw 3, matching the usual Vegas convention. This override applies unless a different explicit choice is
-  made for that game.
+- **Vegas override:** when Scoring is Vegas, the pass limit is **one** with Draw 1 and **three** with
+  Draw 3, matching the usual Vegas convention. While Vegas is selected this override always wins: the
+  Stock passes choice is kept but ignored, and applies again if scoring is switched away from Vegas.
 
 ### Timed scoring — **default: Off** (R-KLON-2.4)
 
 Whether the game keeps a clock that can influence the score.
 
 - **Off** — no time pressure. The default.
-- **On** — a timer runs; under Standard scoring, time can contribute to the final score (see the Standard
-  table's time bonus, which is **NEEDS REVIEW (Q-1)**).
+- **On** — under Standard scoring, time is meant to contribute to the final score via a time bonus.
+- **Current behavior (pending Q-1):** the choice is recorded with the game, but no time bonus is applied
+  yet because its formula is **NEEDS REVIEW (Q-1)**. Turning Timed on does not change the score today.
+  The on-screen timer (see [Features](#features)) runs either way.
 
 ### Vegas cumulative bankroll — **default: Off** (R-KLON-2.2)
 
 Whether a Vegas balance carries from one game into the next instead of each game starting fresh at −52.
 
 - **Off** — every Vegas game starts its own bankroll at −52. The default.
-- **On** — the bankroll carries across games.
-- **NEEDS REVIEW (Q-2):** whether the carried bankroll also persists across app launches, and how a
-  player resets it, is deferred to the persistence work. Parlor models the on/off choice now; the
-  persistence behavior is not yet settled.
+- **On** — the bankroll is meant to carry across games.
+- **Current behavior (pending Q-2):** the on/off choice is recorded with the game, but carry-over is not
+  implemented yet: every Vegas game, cumulative or not, starts at −52.
+- **NEEDS REVIEW (Q-2):** whether the carried bankroll persists across app launches, and how a player
+  resets it, is not settled. Carry-over will be built once Q-2 is answered.
 
 ### Presets (R-KLON-2.5)
 
@@ -166,10 +169,12 @@ they cannot help you cheat; they just save clicks. Each lists its **default**.
 Whether a newly exposed tableau top card is turned face up automatically.
 
 - **On** — an exposed face-down top flips up on its own the moment it is uncovered. The default.
-- **Off** — the card is turned up on a tap instead.
+- **Off** — intended to leave the card for a tap instead.
 
 The exposed top always *becomes* face up either way (that is the rule above); this toggle governs only
 whether it happens automatically or on a tap, and it never affects the authoritative state or replay.
+**Current behavior:** the choice is recorded with the game, but the table does not read it yet, so the
+exposed card is always turned up automatically. The tap-to-flip presentation is a known follow-up.
 
 ### Auto-move to foundations — **default: Safe only** (R-KLON-3.2)
 
@@ -242,9 +247,12 @@ adjustable table in the code so a confirmed set of numbers drops in without touc
 | Face-down tableau card turned face up       | +5                         |
 | Card moved back from a foundation to tableau| −15                        |
 | Recycling the waste into the stock          | −20 (which passes it applies to is also Q-1) |
-| Time bonus (when Timed is on)               | formula **NEEDS REVIEW (Q-1)** |
+| Time bonus (when Timed is on)               | formula **NEEDS REVIEW (Q-1)** — not applied yet |
 
 These magnitudes are a fresh table authored for Parlor pending review; do not treat them as final.
+Current behavior: the recycle penalty applies on **every** recycle, the score is not floored at zero,
+and no time bonus is added. All of these values live in `KlondikeStandardScoring`, so a confirmed table
+drops in without touching the move logic.
 
 ### Vegas
 
@@ -280,9 +288,13 @@ machinery.
 
 ## Open questions
 
+Both remain **NEEDS REVIEW** as of the foundation sign-off (task 8.5). Each ships with the default below
+so the game is fully playable while the question is open.
+
 - **Q-1 — Standard scoring exact values.** The per-move points, the timed-play bonus formula, and the
-  recycle-waste penalty in the Standard table above are provisional. They must be confirmed before
-  Standard scoring is treated as final.
-- **Q-2 — Vegas cumulative persistence.** The cumulative-bankroll option exists, but whether the balance
-  persists across app launches (and how it is reset) is deferred to the persistence phase and not yet
-  settled.
+  recycle-waste penalty in the Standard table above are provisional. **Chosen default:** the provisional
+  table (+5 / +10 / +5 / −15 / −20 on every recycle), no time bonus. Must be confirmed before Standard
+  scoring is treated as final.
+- **Q-2 — Vegas cumulative persistence.** The cumulative-bankroll option is recorded, but whether the
+  balance persists across app launches (and how it is reset) is not settled. **Chosen default:** no
+  carry-over; every Vegas game starts at −52 whether or not the option is on.

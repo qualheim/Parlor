@@ -55,22 +55,119 @@ public enum KlondikeTableAdapter {
         return game.smartDestination(for: id, in: state)
     }
 
-    /// Assemble the full `TableInteractionInput` for the current frame (R-TABLE-3): legal targets +
-    /// smart-target closure, plus the host's `resolve` closure that actually submits a chosen move.
+    // MARK: - Non-drag stock zone actions (R-KLON-2.1, R-KLON-2.3; R-A11Y-2.1)
+
+    /// The opaque ids TableKit carries for Klondike's two non-drag stock actions. Stable strings so the
+    /// view (mouse tap / keyboard activation) and `performZoneAction` agree without importing rules.
+    public enum ZoneActionID {
+        /// Turn cards from the stock onto the waste (R-KLON-2.1).
+        public static let draw = "klondike.draw"
+        /// Recycle the waste back under the stock when the stock is empty (R-KLON-2.3).
+        public static let recycle = "klondike.recycle"
+    }
+
+    /// The non-drag actions offered on the STOCK zone for the current state (R-A11Y-2.1).
     ///
-    /// `resolve` is supplied by the caller (the screen/host that owns the `GameHost`), because submitting a
-    /// move is a session-layer effect, not a pure mapping. The smart-target closure captures a snapshot of
-    /// `state`, matching TableKit's per-frame model (the input is rebuilt when the view refreshes).
+    /// The stock draw and recycle are not moves a player can drag — no single piece travels to a
+    /// destination — so, exactly like `legalTargets` feeds draggable moves, these feed the tap/keyboard
+    /// path for the stock. At most one is legal at a time (draw when the stock has cards; recycle when it
+    /// is empty and the option permits another pass), so the returned array holds zero or one action.
+    /// Both are attached to the stock zone; a click/tap on the stock or space/return on the focused stock
+    /// invokes the first (and only) one present.
+    public static func zoneActions(for game: Klondike, in state: KlondikeState) -> [ZoneAction] {
+        var actions: [ZoneAction] = []
+        let legal = game.legalActions(for: klondikeSeat, in: state)
+        if legal.contains(.drawFromStock) {
+            actions.append(
+                ZoneAction(
+                    zone: KlondikeZone.stockID, id: ZoneActionID.draw, title: "Draw from stock"))
+        }
+        if legal.contains(.recycleWaste) {
+            actions.append(
+                ZoneAction(
+                    zone: KlondikeZone.stockID, id: ZoneActionID.recycle, title: "Recycle waste"))
+        }
+        return actions
+    }
+
+    /// The Klondike action a non-drag zone-action `id` maps to, or `nil` for an unknown id (R-A11Y-2.1).
+    /// Pure inverse of `zoneActions`' id assignment; the caller submits the returned action.
+    public static func zoneAction(forID id: String) -> KlondikeAction? {
+        switch id {
+        case ZoneActionID.draw: return .drawFromStock
+        case ZoneActionID.recycle: return .recycleWaste
+        default: return nil
+        }
+    }
+
+    /// Assemble the full `TableInteractionInput` for the current frame (R-TABLE-3): legal targets +
+    /// smart-target closure, the stock's non-drag zone actions, plus the host closures that submit a chosen
+    /// move (`resolve`) or a chosen non-drag action (`performAction`).
+    ///
+    /// `resolve`/`performAction` are supplied by the caller (the screen/host that owns the `GameHost`),
+    /// because submitting is a session-layer effect, not a pure mapping. The smart-target closure captures
+    /// a snapshot of `state`, matching TableKit's per-frame model (the input is rebuilt when the view
+    /// refreshes). `zoneActions` wires the stock draw/recycle so the core Klondike loop is reachable by
+    /// mouse AND keyboard (R-KLON-2.1, R-KLON-2.3; R-A11Y-2.1) — previously omitted, which left the stock
+    /// non-interactive.
     public static func interactionInput(
         for game: Klondike,
         in state: KlondikeState,
-        resolve: @escaping @Sendable (TableMove) -> MoveResult
+        resolve: @escaping @Sendable (TableMove) -> MoveResult,
+        performAction: @escaping @Sendable (KlondikeAction) -> MoveResult = { _ in
+            .failure(RuleViolation(code: "no-action", reason: "No action available."))
+        }
     ) -> TableInteractionInput {
-        TableInteractionInput(
+        // The READ-ONLY move verdict for the "why can't I play this?" explainer: validate the move against
+        // THIS frame's state purely (does it map to a legal action?) and return the verdict WITHOUT
+        // submitting anything. Captured over the same `state` snapshot as `legalTargets`/`smartTarget`, so
+        // it is a pure function of the frame — never a committing host round-trip (that is `resolve`, which
+        // only a discrete user gesture may call). This is what stops the context-menu explainer from
+        // driving an infinite self-resubmit loop.
+        let dryRun: @Sendable (TableMove) -> MoveResult = { move in
+            if action(for: move, in: state) != nil {
+                return .success(())
+            }
+            return .failure(
+                RuleViolation(code: "no-such-move", reason: "That move isn't available."))
+        }
+        return TableInteractionInput(
             legalTargets: legalTargets(for: game, in: state),
             resolve: resolve,
-            smartTarget: { key in smartTarget(for: game, piece: key, in: state) }
+            dryRunResolve: dryRun,
+            smartTarget: { key in smartTarget(for: game, piece: key, in: state) },
+            zoneActions: zoneActions(for: game, in: state),
+            performZoneAction: { id in
+                guard let action = zoneAction(forID: id) else {
+                    return .failure(
+                        RuleViolation(
+                            code: "no-such-action", reason: "That action isn't available."))
+                }
+                return performAction(action)
+            }
         )
+    }
+
+    /// The Klondike action a generic `TableMove` corresponds to in `state`, or `nil` if the move maps to
+    /// no legal Klondike action (R-TABLE-3). This is the inverse of `pieceAndDestination`: the table hands
+    /// back the piece's `RenderKey`, source, and destination zone the player expressed, and this finds the
+    /// single legal action that moves that concrete piece to that destination.
+    ///
+    /// Legality is delegated to `legalActions` — only an action already enumerated as legal can match — so
+    /// a move onto an illegal target yields `nil` (the caller surfaces the gentle rejection, R-TABLE-4.1).
+    /// A hidden token has no known identity to move, so it never maps to an action.
+    public static func action(for move: TableMove, in state: KlondikeState) -> KlondikeAction? {
+        guard case .known(let movingID) = move.piece else { return nil }
+        // The one legal action whose (piece, destination) matches what the table expressed.
+        for action in Klondike().legalActions(for: klondikeSeat, in: state) {
+            guard let (piece, destination) = pieceAndDestination(of: action, in: state) else {
+                continue
+            }
+            if piece == movingID && destination == move.destination {
+                return action
+            }
+        }
+        return nil
     }
 
     // MARK: - Action → (piece, destination) mapping

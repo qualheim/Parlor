@@ -1,4 +1,6 @@
+import EngineCore
 import Testing
+
 @testable import AIKit
 
 @Suite("AIKit scaffold")

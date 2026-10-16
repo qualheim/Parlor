@@ -118,3 +118,30 @@ extension Zone {
     /// Whether a given piece is currently face-up in this zone (R-ENG-3.3).
     public func isFaceUp(_ piece: PieceID) -> Bool { faceUp.contains(piece) }
 }
+
+// MARK: - Stable Codable order for state hashing
+
+extension Zone {
+    /// Encode the set as a sorted array. Swift's synthesized Set encoding has no ordering guarantee, so
+    /// two equal replay states could otherwise produce different canonical JSON and final hashes
+    /// (R-ENG-4.4, R-QA-2.1).
+    private enum CodingKeys: String, CodingKey {
+        case id, visibility, contents, faceUp
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.id = try container.decode(ZoneID.self, forKey: .id)
+        self.visibility = try container.decode(Visibility.self, forKey: .visibility)
+        self.contents = try container.decode([PieceID].self, forKey: .contents)
+        self.faceUp = try container.decodeIfPresent(Set<PieceID>.self, forKey: .faceUp) ?? []
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(id, forKey: .id)
+        try container.encode(visibility, forKey: .visibility)
+        try container.encode(contents, forKey: .contents)
+        try container.encode(faceUp.sorted { $0.raw < $1.raw }, forKey: .faceUp)
+    }
+}

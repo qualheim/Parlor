@@ -92,7 +92,7 @@ let package = Package(
         ),
         .testTarget(
             name: "GamesRulesTests",
-            dependencies: ["GamesRules"],
+            dependencies: ["GamesRules", "AIKit"],
             path: "Packages/Games/Tests/GamesRulesTests",
             swiftSettings: sharedSwiftSettings
         ),
@@ -102,6 +102,14 @@ let package = Package(
         .target(
             name: "DesignSystem",
             path: "Packages/DesignSystem/Sources/DesignSystem",
+            // The table-material Metal shaders (task 5.2) ship as SOURCE, copied into the bundle. SwiftPM
+            // cannot reliably compile `.metal` files headless, and SwiftUI's `ShaderLibrary.default`
+            // resolves stitchable functions from the *host app's* default Metal library (ADR 0001 §3);
+            // the app compiles this source at build time. Copying (not processing) keeps `swift build`
+            // headless-green while the shader source travels with the design system for the app to build.
+            resources: [
+                .copy("Shaders/TableMaterials.metal")
+            ],
             swiftSettings: sharedSwiftSettings
         ),
         .testTarget(
@@ -149,7 +157,7 @@ let package = Package(
         ),
         .testTarget(
             name: "PersistenceTests",
-            dependencies: ["Persistence"],
+            dependencies: ["Persistence", "GamesRules"],
             path: "Packages/Persistence/Tests/PersistenceTests",
             swiftSettings: sharedSwiftSettings
         ),

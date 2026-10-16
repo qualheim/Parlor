@@ -29,10 +29,19 @@ public struct PieceView: View {
     public let content: PieceFaceContent
     /// The size to draw at, in points (comes from `LayoutResolver`).
     public let size: CGSize
+    /// The VoiceOver description (label/value/hint) for this piece (R-A11Y-1.1). Defaults to the pure
+    /// derivation from `content` with no game context; callers pass a context-enriched description (e.g.
+    /// "Queen of clubs, trump, playable") when they know playability/selection/trump.
+    private let accessibility: AccessibilityDescription
 
-    public init(content: PieceFaceContent, size: CGSize) {
+    public init(
+        content: PieceFaceContent,
+        size: CGSize,
+        accessibility: AccessibilityDescription? = nil
+    ) {
         self.content = content
         self.size = size
+        self.accessibility = accessibility ?? PieceAccessibility.description(for: content)
     }
 
     public var body: some View {
@@ -46,6 +55,10 @@ public struct PieceView: View {
             .overlay(faceLabel)
             .frame(width: size.width, height: size.height)
             .shadow(color: .black.opacity(0.25), radius: 2, x: 0, y: 1)
+            .accessibilityElement(children: .ignore)
+            .accessibilityLabel(Text(accessibility.label))
+            .accessibilityValue(Text(accessibility.value))
+            .accessibilityHint(Text(accessibility.hint))
     }
 
     // MARK: Drawing

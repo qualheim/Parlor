@@ -26,9 +26,18 @@ XCODEPROJ         := $(APP_NAME).xcodeproj
 CONFIGURATION     ?= Debug
 DERIVED_DATA      := .build/DerivedData
 
-# parlor-sim game-count gates (R-QA-2.2). Wired here; enforced by the sim harness in task 8.1.
+# parlor-sim game-count and reproducibility gates (R-QA-2.2).
 SIM_GAMES_FAST    ?= 500
 SIM_GAMES_LONG    ?= 10000
+SIM_GAMES_SIM     ?= 1
+SIM_MAX_ACTIONS   ?= 512
+SIM_SEED_BASE     ?= 20240601
+SIM_SEED_POOL     ?= .build/parlor-sim-seeds.txt
+SIM_CONFIGURATION ?= release
+
+# Line-coverage gate (R-QA-7.1): minimum % of executable lines covered in each scope Scripts/
+# check-coverage.sh enforces (EngineCore, the GamesRules target, Klondike, Crazy Eights).
+COVERAGE_MIN      ?= 90
 
 # swift-format resolution (R-BUILD-4.1). Prefer a standalone `swift-format` binary; otherwise fall back
 # to the `swift format` subcommand bundled with the Swift 6 toolchain. Empty if neither is available.
@@ -48,7 +57,7 @@ SWIFT_SOURCES     := App Packages Package.swift
 
 .DEFAULT_GOAL := build
 
-.PHONY: bootstrap generate build test test-long lint format run sim help \
+.PHONY: bootstrap generate build test test-long lint format run sim seed-pool help \
         _require-xcodegen _require-xcode _check-swift-format
 
 help: ## List the available targets.
@@ -56,12 +65,13 @@ help: ## List the available targets.
 	@echo "  bootstrap   Install missing tools (Xcode CLT, XcodeGen, swift-format) then generate the project"
 	@echo "  generate    Generate $(XCODEPROJ) from project.yml via XcodeGen"
 	@echo "  build       Build all packages headless (swift build)"
-	@echo "  test        Run the fast test sample headless (swift test)"
-	@echo "  test-long   Run the full-volume suite ($(SIM_GAMES_LONG) games/game — task 8.1)"
+	@echo "  test        Unit tests + coverage gate (>= $(COVERAGE_MIN)% lines) + parlor-sim ($(SIM_GAMES_FAST) games/game)"
+	@echo "  test-long   Unit tests + coverage gate + full-volume parlor-sim ($(SIM_GAMES_LONG) games/game)"
 	@echo "  lint        swift-format --check + architecture/entitlement checks (task 1.4)"
 	@echo "  format      Format all Swift sources in place"
 	@echo "  run         Build and launch the app with local (ad-hoc) signing (needs full Xcode)"
-	@echo "  sim         Run the parlor-sim harness (swift run parlor-sim)"
+	@echo "  sim         Run a small parlor-sim smoke suite"
+	@echo "  seed-pool   Generate the deterministic parlor-sim seed pool"
 
 # ---------------------------------------------------------------------------------------------------
 # bootstrap — check for / install required tools, then generate the project (R-BUILD-2.2)
@@ -132,18 +142,29 @@ build: ## Build all packages headless.
 	@echo "==> swift build (all packages)"
 	@swift build
 
-test: ## Run the fast test sample headless (R-BUILD-2.4, R-QA-2).
-	@echo "==> swift test"
-	@swift test
+# Unit tests run once, instrumented, so the coverage gate (R-QA-7.1) reads the same run that passed.
+test: ## Unit tests + coverage gate (R-QA-7.1) + the fast simulation sample (500 games/game — R-QA-2).
+	@echo "==> swift test (with code coverage)"
+	@swift test --enable-code-coverage
+	@Scripts/check-coverage.sh --min "$(COVERAGE_MIN)"
+	@echo "==> Generating simulation seed pool ($(SIM_GAMES_FAST) seeds)"
+	@Scripts/generate-seed-pool.sh --count "$(SIM_GAMES_FAST)" --base "$(SIM_SEED_BASE)" --output "$(SIM_SEED_POOL)"
+	@echo "==> parlor-sim (AI-vs-AI + random-legal, $(SIM_GAMES_FAST) games/game)"
+	@swift run -c "$(SIM_CONFIGURATION)" parlor-sim --games "$(SIM_GAMES_FAST)" --max-actions "$(SIM_MAX_ACTIONS)" --seed-file "$(SIM_SEED_POOL)"
 
-# Full-volume suite (R-BUILD-2.4): parlor-sim runs $(SIM_GAMES_LONG) games/game. The harness and its
-# PARLOR_SIM_GAMES gate are implemented in task 8.1; this target wires the entry point now so that work
-# fills it in without touching the Makefile.
-test-long: ## Run the full-volume suite (10,000 games/game — task 8.1).
-	@echo "==> swift test (full suite) + parlor-sim x $(SIM_GAMES_LONG) games/game"
-	@swift test
-	@PARLOR_SIM_GAMES=$(SIM_GAMES_LONG) swift run parlor-sim || \
-		echo "  [note] parlor-sim volume gate ($(SIM_GAMES_LONG) games) is completed in task 8.1."
+# Full-volume suite (R-BUILD-2.4, R-QA-2.2): the same unit tests + coverage gate, with the invariant suite
+# at 10,000 seeds/game.
+test-long: ## Unit tests + coverage gate + the full-volume suite (10,000 games/game — task 8.1).
+	@echo "==> swift test (full suite, with code coverage)"
+	@swift test --enable-code-coverage
+	@Scripts/check-coverage.sh --min "$(COVERAGE_MIN)"
+	@echo "==> Generating simulation seed pool ($(SIM_GAMES_LONG) seeds)"
+	@Scripts/generate-seed-pool.sh --count "$(SIM_GAMES_LONG)" --base "$(SIM_SEED_BASE)" --output "$(SIM_SEED_POOL)"
+	@echo "==> parlor-sim (AI-vs-AI + random-legal, $(SIM_GAMES_LONG) games/game)"
+	@swift run -c "$(SIM_CONFIGURATION)" parlor-sim --games "$(SIM_GAMES_LONG)" --max-actions "$(SIM_MAX_ACTIONS)" --seed-file "$(SIM_SEED_POOL)"
+
+seed-pool: ## Generate a deterministic seed pool for parlor-sim.
+	@Scripts/generate-seed-pool.sh --count "$(SIM_GAMES_FAST)" --base "$(SIM_SEED_BASE)" --output "$(SIM_SEED_POOL)"
 
 # ---------------------------------------------------------------------------------------------------
 # lint / format — swift-format + architecture checks (R-BUILD-4.1; full checks in task 1.4)
@@ -200,9 +221,9 @@ _require-xcode:
 		exit 1; fi
 
 # ---------------------------------------------------------------------------------------------------
-# sim — parlor-sim harness (R-QA-2; fleshed out in task 8.1)
+# sim — parlor-sim harness (R-QA-2.1; task 8.1)
 # ---------------------------------------------------------------------------------------------------
 
-sim: ## Run the parlor-sim harness.
-	@echo "==> swift run parlor-sim"
-	@swift run parlor-sim
+sim: ## Run a one-seed parlor-sim smoke suite.
+	@echo "==> swift run parlor-sim (smoke)"
+	@swift run -c "$(SIM_CONFIGURATION)" parlor-sim --games "$(SIM_GAMES_SIM)" --max-actions "$(SIM_MAX_ACTIONS)"

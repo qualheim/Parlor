@@ -46,20 +46,23 @@ private func makeInput(
     smart: [RenderKey: ZoneID] = [:],
     explain: [RenderKey: RuleViolation] = [:]
 ) -> TableInteractionInput {
-    let resolve: @Sendable (TableMove) -> MoveResult = { move in
+    let verdict: @Sendable (TableMove) -> MoveResult = { move in
         if accepting.contains(move.destination) {
             return .success(())
         } else {
             return .failure(rejection)
         }
     }
+    // `resolve` COMMITS; `dryRunResolve` is the READ-ONLY verdict the explainer uses. Both mirror the same
+    // accept/reject logic here so a test can exercise either path with the same `accepting`/`rejection`.
     let explainClosure: @Sendable (RenderKey) -> RuleViolation? = { renderKey in explain[renderKey]
     }
     let explainHook: (@Sendable (RenderKey) -> RuleViolation?)? =
         explain.isEmpty ? nil : explainClosure
     return TableInteractionInput(
         legalTargets: legal,
-        resolve: resolve,
+        resolve: verdict,
+        dryRunResolve: verdict,
         smartTarget: { (renderKey: RenderKey) in smart[renderKey] },
         explain: explainHook
     )
@@ -353,6 +356,48 @@ struct WhyNotTests {
         _ = model.explanation(for: key(1), from: zone("waste"), using: input)
         #expect(model.selection?.piece == key(2))  // unchanged
         #expect(model.feedback == nil)  // the probe did not set feedback
+    }
+
+    @Test("explanation NEVER calls the committing resolve — only the read-only dryRunResolve")
+    func explanationNeverCommits() {
+        // Regression guard for the Klondike self-resubmit loop: the explainer ran while SwiftUI built a
+        // piece's context menu, and its fallback called the COMMITTING `resolve`, submitting a move with no
+        // user gesture (looping forever for a card whose smart destination oscillates). The explainer must
+        // consult `dryRunResolve` only; `resolve` must never fire from this read-only query.
+        let resolveCalls = Counter()
+        let dryRunCalls = Counter()
+        let violation = RuleViolation(code: "wrong-suit", reason: "Foundations build up by suit.")
+        let input = TableInteractionInput(
+            legalTargets: [],
+            resolve: { _ in
+                resolveCalls.bump(); return .failure(violation)
+            },
+            dryRunResolve: { _ in
+                dryRunCalls.bump(); return .failure(violation)
+            },
+            smartTarget: { _ in zone("foundation-0") })
+        let model = TableInteractionModel()
+        for _ in 0..<100 {
+            _ = model.explanation(for: key(1), from: zone("waste"), using: input)
+        }
+        #expect(resolveCalls.value == 0, "the explainer committed a move via resolve")
+        #expect(dryRunCalls.value == 100, "the explainer should probe via dryRunResolve")
+    }
+}
+
+/// A tiny reference counter for asserting how many times a `@Sendable` closure was invoked.
+private final class Counter: @unchecked Sendable {
+    private let lock = NSLock()
+    private var count = 0
+    func bump() {
+        lock.lock()
+        count += 1
+        lock.unlock()
+    }
+    var value: Int {
+        lock.lock()
+        defer { lock.unlock() }
+        return count
     }
 }
 

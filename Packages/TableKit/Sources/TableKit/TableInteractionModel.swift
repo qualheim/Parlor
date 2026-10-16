@@ -48,14 +48,15 @@ public struct TableSelection: Sendable, Hashable {
 /// on the next successful interaction or when explicitly dismissed. A minimal caption bar lives in the
 /// interaction view; the full caption/HUD polish is task 5.6.
 public struct IllegalMoveFeedback: Sendable, Hashable {
-    /// The piece that must spring back to its origin (the attempted move's lead piece).
-    public let springBack: RenderKey
+    /// The piece that must spring back to its origin (the attempted move's lead piece), or `nil` when the
+    /// feedback came from a non-drag zone action (draw/recycle/pass), which has no piece in flight.
+    public let springBack: RenderKey?
     /// The short caption built from `RuleViolation.reason` (R-TABLE-4.1).
     public let caption: String
     /// The stable violation code, for tests and styling (never surfaced as a dialog).
     public let code: String
 
-    public init(springBack: RenderKey, caption: String, code: String) {
+    public init(springBack: RenderKey?, caption: String, code: String) {
         self.springBack = springBack
         self.caption = caption
         self.code = code
@@ -191,26 +192,55 @@ public struct TableInteractionModel: Sendable, Hashable {
         return attempt(move, using: input)
     }
 
+    // MARK: Non-drag zone actions (R-A11Y-2.1)
+
+    /// Invoke a host non-drag zone action by its opaque `id` (stock draw/recycle, pass) (R-A11Y-2.1).
+    ///
+    /// This is the keyboard path for actions that are not moves and so cannot be dragged. On `.success`
+    /// any selection and prior caption clear (a successful draw/pass ends the current interaction). On
+    /// rejection the model captions the `RuleViolation.reason` with no spring-back piece — there is no
+    /// piece in flight for a zone action — so the view shows the same non-modal caption used for rejected
+    /// moves (R-TABLE-4.1) without shaking anything.
+    @discardableResult
+    public mutating func performZoneAction(
+        _ id: String, using input: TableInteractionInput
+    ) -> MoveResult {
+        let result = input.performZoneAction(id)
+        switch result {
+        case .success:
+            selection = nil
+            feedback = nil
+        case .failure(let violation):
+            feedback = IllegalMoveFeedback(
+                springBack: nil, caption: violation.reason, code: violation.code)
+        }
+        return result
+    }
+
     // MARK: Why can't I play this? (R-TABLE-3.5)
 
     /// Build the "why can't I play this?" explanation for `piece` in `source` (R-TABLE-3.5).
     ///
-    /// Prefers the host's dedicated `explain` hook when provided; otherwise falls back to asking the seam
-    /// to `resolve` the piece's intended (smart) move and surfacing the returned `RuleViolation.reason`.
-    /// The view knows the piece's current zone, so it passes `source` explicitly. Returns `nil` when the
-    /// piece actually *can* be played (no violation to explain) or when there is no intended move to
-    /// evaluate. This is a pure QUERY — it does not mutate selection or feedback, and the fallback
-    /// `resolve` is consulted only for its rejection reason, never to commit a move on success.
+    /// Prefers the host's dedicated `explain` hook when provided; otherwise falls back to probing the
+    /// piece's intended (smart) move with the seam's READ-ONLY `dryRunResolve` and surfacing the returned
+    /// `RuleViolation.reason`. The view knows the piece's current zone, so it passes `source` explicitly.
+    /// Returns `nil` when the piece actually *can* be played (no violation to explain) or when there is no
+    /// intended move to evaluate. This is a pure QUERY — it does not mutate selection or feedback, and it
+    /// never commits a move (it uses `dryRunResolve`, not the committing `resolve`).
     public func explanation(
         for piece: RenderKey, from source: ZoneID, using input: TableInteractionInput
     ) -> RuleViolation? {
         if let explain = input.explain {
             return explain(piece)
         }
-        // Fallback: probe the intended (smart) move; a rejection carries the reason to show.
+        // Fallback: probe the intended (smart) move with the READ-ONLY `dryRunResolve`, NOT the committing
+        // `resolve`. The explainer runs while SwiftUI builds the piece's context menu — a view-evaluation
+        // side effect — so submitting here would move a card with no user gesture (and, when the piece's
+        // smart destination oscillates between two legal piles, loop forever). `dryRunResolve` returns the
+        // same verdict without touching the host.
         guard let destination = input.smartTarget(piece) else { return nil }
         let move = TableMove(piece: piece, source: source, destination: destination)
-        if case .failure(let violation) = input.resolve(move) {
+        if case .failure(let violation) = input.dryRunResolve(move) {
             return violation
         }
         return nil

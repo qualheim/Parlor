@@ -102,3 +102,31 @@ struct KlondikeTableAdapterTests {
         #expect(input.isLegalTarget(KlondikeZone.foundation(0), for: .known(ace.id)))
     }
 }
+
+// MARK: - Diagnostic Tests for Stock Draw Bug
+
+@Suite("Diagnostic: Ace move after draw")
+struct DiagnosticAceMoveTests {
+    let game = Klondike()
+
+    @Test("Ace in waste can move to foundation")
+    func aceCanMoveToFoundation() {
+        let ace = KA.card(.ace, .spades, id: 1)
+        let s = KA.state(waste: [ace], tableau: Array(repeating: [], count: 7))
+
+        // Check legalTargets includes Ace to foundation
+        let targets = KlondikeTableAdapter.legalTargets(for: game, in: s)
+        #expect(!targets.isEmpty, "Ace should have targets")
+
+        let aceTargets = targets.filter { $0.piece == .known(ace.id) }
+        #expect(!aceTargets.isEmpty, "Ace should have targets")
+
+        // Check adapter can map the move
+        let move = TableMove(
+            piece: .known(ace.id),
+            source: KlondikeZone.wasteID,
+            destination: KlondikeZone.foundation(0))
+        let action = KlondikeTableAdapter.action(for: move, in: s)
+        #expect(action != nil, "Adapter should map Ace move")
+    }
+}

@@ -120,6 +120,18 @@ public struct KlondikeOptions: GameOptions, Hashable {
     /// each accepted player move; see `Klondike.autoMoves(in:)`.
     public var autoMove: KlondikeAutoMove
 
+    /// DEBUG-ONLY: deal the deterministic near-win fixture instead of a random deal (R-A11Y-5.1).
+    ///
+    /// When `true`, `Klondike.initialState(options:seed:)` returns `Klondike.nearWinState(options:)` —
+    /// every foundation built A→Q with the four Kings sitting face-up on tableau piles 0–3 — so the game
+    /// is exactly four `tableauToFoundation` moves from a win. This lets the accessibility UI suite finish
+    /// Klondike keyboard-only in a handful of key presses (task 7.4) WITHOUT a state-injection backdoor in
+    /// the engine: the deal still flows through the normal `initialState` → `GameHost` → `AutosaveSession`
+    /// path, so submit/undo/redo/save all behave exactly as in a real game. It defaults to `false` and is
+    /// only ever set by the app's DEBUG launch-argument reader; a shipping build never enables it. The
+    /// `seed` is ignored when this is on because the fixture is fully determined by construction.
+    public var debugNearWin: Bool
+
     public init(
         drawCount: KlondikeDrawCount = .one,
         scoring: KlondikeScoring = .standard,
@@ -127,7 +139,8 @@ public struct KlondikeOptions: GameOptions, Hashable {
         timed: Bool = false,
         vegasCumulative: Bool = false,
         autoFlip: Bool = true,
-        autoMove: KlondikeAutoMove = .safeOnly
+        autoMove: KlondikeAutoMove = .safeOnly,
+        debugNearWin: Bool = false
     ) {
         self.drawCount = drawCount
         self.scoring = scoring
@@ -136,6 +149,7 @@ public struct KlondikeOptions: GameOptions, Hashable {
         self.vegasCumulative = vegasCumulative
         self.autoFlip = autoFlip
         self.autoMove = autoMove
+        self.debugNearWin = debugNearWin
     }
 
     /// The passes limit that applies given the scoring scheme (R-KLON-2.3).

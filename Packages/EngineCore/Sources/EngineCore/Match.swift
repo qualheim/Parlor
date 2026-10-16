@@ -482,6 +482,19 @@ public struct UndoEngine: Sendable {
         policy == .unlimited && !redoStack.isEmpty
     }
 
+    /// Record an accepted action in the undo log and invalidate any pending redo. The host calls this
+    /// immediately after appending the same entry to its authoritative action log, keeping the two logs in
+    /// lockstep without exposing the host's state (R-ENG-7.2).
+    public mutating func recordAccepted(_ entry: LogEntry) {
+        guard policy != .none else { return }
+        _ = log.append(
+            seat: entry.seat,
+            action: entry.action,
+            resultingStateHash: entry.resultingStateHash,
+            metadata: entry.metadata)
+        redoStack.removeAll(keepingCapacity: false)
+    }
+
     /// Record that a fresh action was appended to the log, diverging the timeline and invalidating any
     /// pending redo (R-ENG-7.2).
     ///

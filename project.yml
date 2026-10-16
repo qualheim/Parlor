@@ -45,6 +45,20 @@ targets:
       # .app bundle, so it is copied as a resource rather than compiled.
       - path: App/PrivacyInfo.xcprivacy
         buildPhase: resources
+      # The bundled rules docs the in-place rules inspector renders (task 6.6; R-APP-3.2). Copied as a
+      # folder reference so `<game-id>.md` files land under a "Rules" subdirectory in the bundle, which
+      # `BundleRulesDocumentSource(bundle: .main, subdirectory: "Rules")` resolves.
+      - path: Docs/Rules
+        buildPhase: resources
+        type: folder
+      # The third-party notices shown in the standard About window (task 6.6; R-APP-6.3). Bundled so the
+      # About panel can read and display it offline.
+      - path: THIRD_PARTY_NOTICES.md
+        buildPhase: resources
+      # Theme packs (task 5.4, gap 6). Bundled so the app can load custom themes.
+      - path: Assets/ThemePacks
+        buildPhase: resources
+        type: folder
     dependencies:
       # The App's only allowed package dependencies (design.md §1).
       - package: Parlor
@@ -80,3 +94,12 @@ targets:
       - path: UITests
     dependencies:
       - target: Parlor
+    settings:
+      base:
+        # The UI-test bundle needs a generated Info.plist to code sign (task 7.4). Ad-hoc signing mirrors
+        # the app target so the suite builds and runs headless without a developer certificate.
+        GENERATE_INFOPLIST_FILE: YES
+        PRODUCT_BUNDLE_IDENTIFIER: com.parlor.ParlorUITests
+        CODE_SIGN_IDENTITY: "-"
+        CODE_SIGNING_REQUIRED: NO
+        CODE_SIGNING_ALLOWED: YES

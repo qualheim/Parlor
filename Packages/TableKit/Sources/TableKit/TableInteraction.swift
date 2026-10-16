@@ -96,7 +96,23 @@ public struct TableInteractionInput: Sendable {
     public let legalTargets: [MoveTarget]
 
     /// Attempt a move; returns `.success` or the rejecting `RuleViolation` (R-TABLE-4.1).
+    ///
+    /// IMPORTANT: `resolve` COMMITS — it submits the move to the authoritative host. It must be called ONLY
+    /// from a discrete user gesture (drag-end, click-to-place, double-click smart move, keyboard place).
+    /// Never call it from a view-evaluation side effect (e.g. building a context menu): doing so submits a
+    /// move with no user input, which — for a piece whose smart destination oscillates between two legal
+    /// piles — produces an infinite self-driving move loop. The read-only "would this move be rejected?"
+    /// question has its own non-committing closure, `dryRunResolve`.
     public let resolve: @Sendable (TableMove) -> MoveResult
+
+    /// A READ-ONLY validation of a move: returns the same verdict `resolve` would (`.success` if the move
+    /// is legal, `.failure(RuleViolation)` if not) WITHOUT submitting anything to the host (R-TABLE-3.5).
+    ///
+    /// This is what the "why can't I play this?" explainer uses to discover a rejection reason without
+    /// moving a card. The host validates against its current authoritative snapshot and returns a verdict;
+    /// no state is mutated, nothing is submitted. When a host does not supply one, the default is a
+    /// permissive `.success` (no reason to show) — crucially NOT a committing `resolve` call.
+    public let dryRunResolve: @Sendable (TableMove) -> MoveResult
 
     /// The preferred smart destination for a piece on double-click, if the host defines one
     /// (R-TABLE-3.3). `nil` → double-click is a no-op for that piece.
@@ -106,16 +122,51 @@ public struct TableInteractionInput: Sendable {
     /// model derives the explanation from a rejected `resolve` attempt.
     public let explain: (@Sendable (RenderKey) -> RuleViolation?)?
 
+    /// The host-supplied NON-DRAG actions attached to zones, reachable by focusing a zone and pressing
+    /// space/return (R-A11Y-2.1). These cover actions dragging cannot express — Klondike stock draw /
+    /// recycle, Crazy Eights draw-from-stock or pass. The host derives them from `legalActions`, exactly
+    /// as it derives `legalTargets`; TableKit resolves which one the focused zone activates via
+    /// `KeyboardActivation` and calls `performZoneAction` with the chosen action's opaque `id`.
+    public let zoneActions: [ZoneAction]
+
+    /// Invoke the non-drag zone action with the given opaque `id` (as carried by a `ZoneAction`)
+    /// (R-A11Y-2.1). The host maps the id back to a concrete game action and submits it, returning
+    /// `.success` or the rejecting `RuleViolation` (so an illegal activation gets the same gentle
+    /// feedback as a rejected move, R-TABLE-4.1).
+    public let performZoneAction: @Sendable (String) -> MoveResult
+
+    /// Select the choice option with the given opaque `id` from a pending `ChoicePrompt` (e.g. naming a
+    /// suit after playing an 8, R-CE-2.\*). The host maps the id back to a concrete action and submits it.
+    /// Absent when the game never prompts for a choice.
+    public let selectChoice: (@Sendable (String) -> MoveResult)?
+
     public init(
         legalTargets: [MoveTarget],
         resolve: @escaping @Sendable (TableMove) -> MoveResult,
+        dryRunResolve: (@Sendable (TableMove) -> MoveResult)? = nil,
         smartTarget: @escaping @Sendable (RenderKey) -> ZoneID? = { _ in nil },
-        explain: (@Sendable (RenderKey) -> RuleViolation?)? = nil
+        explain: (@Sendable (RenderKey) -> RuleViolation?)? = nil,
+        zoneActions: [ZoneAction] = [],
+        performZoneAction: @escaping @Sendable (String) -> MoveResult = { _ in
+            .failure(RuleViolation(code: "no-action", reason: "No action available."))
+        },
+        selectChoice: (@Sendable (String) -> MoveResult)? = nil
     ) {
         self.legalTargets = legalTargets
         self.resolve = resolve
+        // Default to a permissive, NON-committing verdict when no dry-run is supplied. Never fall back to
+        // `resolve` here — that is the committing path and must never run off a view evaluation.
+        self.dryRunResolve = dryRunResolve ?? { _ in .success(()) }
         self.smartTarget = smartTarget
         self.explain = explain
+        self.zoneActions = zoneActions
+        self.performZoneAction = performZoneAction
+        self.selectChoice = selectChoice
+    }
+
+    /// The primary non-drag action offered on `zone`, if any (R-A11Y-2.1). Pure query over `zoneActions`.
+    public func zoneAction(for zone: ZoneID) -> ZoneAction? {
+        KeyboardActivation.action(for: .zone(zone), in: zoneActions)
     }
 
     /// The set of zones the given piece may legally move to, per the current legal targets (R-TABLE-3.6).

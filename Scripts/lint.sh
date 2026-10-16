@@ -283,7 +283,114 @@ EOF
 }
 
 # ---------------------------------------------------------------------------------------------------
-# Check 4 — Unexpected entitlements (R-BUILD-4.4 / R-BUILD-3.4).
+# Check 4 — Forbidden RNG APIs in pure layer (ADR 0002 / gap 8).
+# ---------------------------------------------------------------------------------------------------
+# In the pure layer (EngineCore, AIKit, GamesRules), only the seeded SplitMix64+xoshiro256** RNG
+# from EngineCore is allowed. Int.random, shuffle(), SystemRandomNumberGenerator are forbidden.
+
+check_rng_api() {
+  CHECKS_RUN=$((CHECKS_RUN + 1))
+  echo "==> [4/5] Forbidden RNG APIs in pure layer (ADR 0002)"
+  local found=0
+  
+  # Check EngineCore, AIKit, GamesRules for forbidden APIs
+  for dir in $PURE_LAYER_DIRS; do
+    [ -d "$dir" ] || continue
+    for f in $(find "$dir" -type f -name '*.swift' 2>/dev/null | LC_ALL=C sort); do
+      [ -n "$f" ] || continue
+      local file_sanitized="$(strip_comments "$f")"
+      
+      # Check Int.random
+      hits="$(printf '%s
+' "$file_sanitized" | grep -E '(^|[^A-Za-z0-9_.])Int\.random' 2>/dev/null || true)"
+      if [ -n "$hits" ]; then
+        found=1
+        while IFS= read -r line; do
+          [ -n "$line" ] && fail "forbidden RNG API 'Int.random' in pure layer → $(format_hit "$line")"
+        done <<EOF
+$hits
+EOF
+      fi
+      
+      # Check Double.random
+      hits="$(printf '%s
+' "$file_sanitized" | grep -E '(^|[^A-Za-z0-9_.])Double\.random' 2>/dev/null || true)"
+      if [ -n "$hits" ]; then
+        found=1
+        while IFS= read -r line; do
+          [ -n "$line" ] && fail "forbidden RNG API 'Double.random' in pure layer → $(format_hit "$line")"
+        done <<EOF
+$hits
+EOF
+      fi
+      
+      # Check Bool.random
+      hits="$(printf '%s
+' "$file_sanitized" | grep -E '(^|[^A-Za-z0-9_.])Bool\.random' 2>/dev/null || true)"
+      if [ -n "$hits" ]; then
+        found=1
+        while IFS= read -r line; do
+          [ -n "$line" ] && fail "forbidden RNG API 'Bool.random' in pure layer → $(format_hit "$line")"
+        done <<EOF
+$hits
+EOF
+      fi
+      
+      # Check UInt64.random
+      hits="$(printf '%s
+' "$file_sanitized" | grep -E '(^|[^A-Za-z0-9_.])UInt64\.random' 2>/dev/null || true)"
+      if [ -n "$hits" ]; then
+        found=1
+        while IFS= read -r line; do
+          [ -n "$line" ] && fail "forbidden RNG API 'UInt64.random' in pure layer → $(format_hit "$line")"
+        done <<EOF
+$hits
+EOF
+      fi
+      
+      # Check UInt32.random  
+      hits="$(printf '%s
+' "$file_sanitized" | grep -E '(^|[^A-Za-z0-9_.])UInt32\.random' 2>/dev/null || true)"
+      if [ -n "$hits" ]; then
+        found=1
+        while IFS= read -r line; do
+          [ -n "$line" ] && fail "forbidden RNG API 'UInt32.random' in pure layer → $(format_hit "$line")"
+        done <<EOF
+$hits
+EOF
+      fi
+      
+      # Check shuffle()
+      hits="$(printf '%s
+' "$file_sanitized" | grep -E '(^|[^A-Za-z0-9_.])shuffle\(\):' 2>/dev/null || true)"
+      if [ -n "$hits" ]; then
+        found=1
+        while IFS= read -r line; do
+          [ -n "$line" ] && fail "forbidden RNG API 'shuffle()' in pure layer → $(format_hit "$line")"
+        done <<EOF
+$hits
+EOF
+      fi
+      
+      # Check SystemRandomNumberGenerator
+      hits="$(printf '%s
+' "$file_sanitized" | grep -E '(^|[^A-Za-z0-9_.])SystemRandomNumberGenerator' 2>/dev/null || true)"
+      if [ -n "$hits" ]; then
+        found=1
+        while IFS= read -r line; do
+          [ -n "$line" ] && fail "forbidden RNG API 'SystemRandomNumberGenerator' in pure layer → $(format_hit "$line")"
+        done <<EOF
+$hits
+EOF
+      fi
+    done
+  done
+  
+  [ "$found" -eq 0 ] && okay "no forbidden RNG APIs in pure layer"
+}
+
+# ---------------------------------------------------------------------------------------------------
+# Check 5 — Unexpected entitlements (R-BUILD-4.4 / R-BUILD-3.4).
 # ---------------------------------------------------------------------------------------------------
 # Only com.apple.security.app-sandbox is expected. Any other entitlement key fails the check. Network
 # entitlements (client/server) are specifically forbidden (R-BUILD-3.2). Parsed with plutil.
@@ -292,7 +399,7 @@ EXPECTED_ENTITLEMENTS="com.apple.security.app-sandbox"
 
 check_entitlements() {
   CHECKS_RUN=$((CHECKS_RUN + 1))
-  echo "==> [4/4] Entitlements (R-BUILD-4.4 / R-BUILD-3.4)"
+  echo "==> [5/5] Entitlements (R-BUILD-4.4 / R-BUILD-3.4)"
   if [ ! -f "$ENTITLEMENTS_FILE" ]; then
     fail "entitlements file '$ENTITLEMENTS_FILE' not found"
     return
@@ -345,6 +452,7 @@ echo "==> Architecture / privacy / entitlement lint (Scripts/lint.sh)"
 check_forbidden
 check_ui_in_pure
 check_dependency_direction
+check_rng_api
 check_entitlements
 
 echo
