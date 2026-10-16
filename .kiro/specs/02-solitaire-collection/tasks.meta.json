@@ -1,0 +1,364 @@
+{
+  "pbtResults": {},
+  "executionHistory": {
+    "**1.1 Create `Packages/SolverKit` + wire the dependency graph.** Add a new **pure** SwiftPM package": [
+      {
+        "executionId": "c703efc9-f0ef-4820-a501-d83d5c55146c",
+        "chatSessionId": "sess_656814ed-58aa-4a62-8c65-5ee8166e075b",
+        "timestamp": 1792119669263
+      },
+      {
+        "executionId": "c703efc9-f0ef-4820-a501-d83d5c55146c",
+        "chatSessionId": "sess_656814ed-58aa-4a62-8c65-5ee8166e075b",
+        "timestamp": 1792119676008
+      },
+      {
+        "executionId": "c703efc9-f0ef-4820-a501-d83d5c55146c",
+        "chatSessionId": "sess_656814ed-58aa-4a62-8c65-5ee8166e075b",
+        "timestamp": 1792119931902
+      }
+    ],
+    "**1.2 Update `Docs/Architecture.md` + finalize ADR 0003.** Apply the exact `design.md` §1.2 edit:": [
+      {
+        "executionId": "c703efc9-f0ef-4820-a501-d83d5c55146c",
+        "chatSessionId": "sess_656814ed-58aa-4a62-8c65-5ee8166e075b",
+        "timestamp": 1792119669333
+      },
+      {
+        "executionId": "c703efc9-f0ef-4820-a501-d83d5c55146c",
+        "chatSessionId": "sess_656814ed-58aa-4a62-8c65-5ee8166e075b",
+        "timestamp": 1792119937119
+      },
+      {
+        "executionId": "c703efc9-f0ef-4820-a501-d83d5c55146c",
+        "chatSessionId": "sess_656814ed-58aa-4a62-8c65-5ee8166e075b",
+        "timestamp": 1792120046052
+      }
+    ],
+    "**1.3 Solver public surface + deterministic budget.** Implement `SolveResult`": [
+      {
+        "executionId": "c703efc9-f0ef-4820-a501-d83d5c55146c",
+        "chatSessionId": "sess_656814ed-58aa-4a62-8c65-5ee8166e075b",
+        "timestamp": 1792119669368
+      },
+      {
+        "executionId": "c703efc9-f0ef-4820-a501-d83d5c55146c",
+        "chatSessionId": "sess_656814ed-58aa-4a62-8c65-5ee8166e075b",
+        "timestamp": 1792120052941
+      },
+      {
+        "executionId": "c703efc9-f0ef-4820-a501-d83d5c55146c",
+        "chatSessionId": "sess_656814ed-58aa-4a62-8c65-5ee8166e075b",
+        "timestamp": 1792120380519
+      }
+    ],
+    "**1.4 Search core: canonical hashing, transposition table, pruning.** Implement `canonicalHash`": [
+      {
+        "executionId": "c703efc9-f0ef-4820-a501-d83d5c55146c",
+        "chatSessionId": "sess_656814ed-58aa-4a62-8c65-5ee8166e075b",
+        "timestamp": 1792119669403
+      },
+      {
+        "executionId": "c703efc9-f0ef-4820-a501-d83d5c55146c",
+        "chatSessionId": "sess_656814ed-58aa-4a62-8c65-5ee8166e075b",
+        "timestamp": 1792120387604
+      },
+      {
+        "executionId": "c703efc9-f0ef-4820-a501-d83d5c55146c",
+        "chatSessionId": "sess_656814ed-58aa-4a62-8c65-5ee8166e075b",
+        "timestamp": 1792120798387
+      }
+    ],
+    "**1.5 Per-game `SolvableGame` conformances + move ordering.** Add compact `SolverNode` encodings and": [
+      {
+        "executionId": "c703efc9-f0ef-4820-a501-d83d5c55146c",
+        "chatSessionId": "sess_656814ed-58aa-4a62-8c65-5ee8166e075b",
+        "timestamp": 1792119669427
+      },
+      {
+        "executionId": "c703efc9-f0ef-4820-a501-d83d5c55146c",
+        "chatSessionId": "sess_656814ed-58aa-4a62-8c65-5ee8166e075b",
+        "timestamp": 1792120806499
+      },
+      {
+        "executionId": "c703efc9-f0ef-4820-a501-d83d5c55146c",
+        "chatSessionId": "sess_656814ed-58aa-4a62-8c65-5ee8166e075b",
+        "timestamp": 1792121668997
+      }
+    ],
+    "**1.6 Solver correctness cross-checks + determinism + #11982 fixture.** Cross-check the solver": [
+      {
+        "executionId": "c703efc9-f0ef-4820-a501-d83d5c55146c",
+        "chatSessionId": "sess_656814ed-58aa-4a62-8c65-5ee8166e075b",
+        "timestamp": 1792119669453
+      },
+      {
+        "executionId": "c703efc9-f0ef-4820-a501-d83d5c55146c",
+        "chatSessionId": "sess_656814ed-58aa-4a62-8c65-5ee8166e075b",
+        "timestamp": 1792121681616
+      },
+      {
+        "executionId": "c703efc9-f0ef-4820-a501-d83d5c55146c",
+        "chatSessionId": "sess_656814ed-58aa-4a62-8c65-5ee8166e075b",
+        "timestamp": 1792122355500
+      }
+    ],
+    "**⛳ CHECKPOINT 1.** The solver classifies the known fixtures correctly (including MS deal #11982 =": [
+      {
+        "executionId": "c703efc9-f0ef-4820-a501-d83d5c55146c",
+        "chatSessionId": "sess_656814ed-58aa-4a62-8c65-5ee8166e075b",
+        "timestamp": 1792119669476
+      },
+      {
+        "executionId": "c703efc9-f0ef-4820-a501-d83d5c55146c",
+        "chatSessionId": "sess_656814ed-58aa-4a62-8c65-5ee8166e075b",
+        "timestamp": 1792122363312
+      }
+    ],
+    "**2.1 FreeCell rules `GameDefinition`.** Deal 8 tableau columns (four of 7, four of 6, all face up),": [
+      {
+        "executionId": "c703efc9-f0ef-4820-a501-d83d5c55146c",
+        "chatSessionId": "sess_656814ed-58aa-4a62-8c65-5ee8166e075b",
+        "timestamp": 1792119669501
+      }
+    ],
+    "**2.2 Supermove capacity (default on).** Implement the capacity rule": [
+      {
+        "executionId": "c703efc9-f0ef-4820-a501-d83d5c55146c",
+        "chatSessionId": "sess_656814ed-58aa-4a62-8c65-5ee8166e075b",
+        "timestamp": 1792119669522
+      }
+    ],
+    "**2.3 Safe autoplay reusing Klondike's \"Safe\".** Wire the **Off / Safe (default) / Always** autoplay": [
+      {
+        "executionId": "c703efc9-f0ef-4820-a501-d83d5c55146c",
+        "chatSessionId": "sess_656814ed-58aa-4a62-8c65-5ee8166e075b",
+        "timestamp": 1792119669558
+      }
+    ],
+    "**2.4 Deal numbering — Parlor + Microsoft.** Implement **Parlor numbering** (deal numbers": [
+      {
+        "executionId": "c703efc9-f0ef-4820-a501-d83d5c55146c",
+        "chatSessionId": "sess_656814ed-58aa-4a62-8c65-5ee8166e075b",
+        "timestamp": 1792119669584
+      }
+    ],
+    "**2.5 FreeCell scenario tests + MS conformance.** Given/When/Then tests per rule/option traceable to": [
+      {
+        "executionId": "c703efc9-f0ef-4820-a501-d83d5c55146c",
+        "chatSessionId": "sess_656814ed-58aa-4a62-8c65-5ee8166e075b",
+        "timestamp": 1792119669604
+      }
+    ],
+    "**2.6 FreeCell layout + catalog registration.** Declarative table layout (8 columns, 4 free cells,": [
+      {
+        "executionId": "c703efc9-f0ef-4820-a501-d83d5c55146c",
+        "chatSessionId": "sess_656814ed-58aa-4a62-8c65-5ee8166e075b",
+        "timestamp": 1792119669627
+      }
+    ],
+    "**⛳ CHECKPOINT 2.** User **plays a FreeCell deal end-to-end** via drag *and* keyboard (supermoves,": [
+      {
+        "executionId": "c703efc9-f0ef-4820-a501-d83d5c55146c",
+        "chatSessionId": "sess_656814ed-58aa-4a62-8c65-5ee8166e075b",
+        "timestamp": 1792119669653
+      }
+    ],
+    "**3.1 Spider rules `GameDefinition`.** Use `spider-104` (two 52-card decks, 104 cards) with the": [
+      {
+        "executionId": "c703efc9-f0ef-4820-a501-d83d5c55146c",
+        "chatSessionId": "sess_656814ed-58aa-4a62-8c65-5ee8166e075b",
+        "timestamp": 1792119669692
+      }
+    ],
+    "**3.2 Spider moves, sequences, auto-flip, auto-collect.** Place any card on a card exactly one rank": [
+      {
+        "executionId": "c703efc9-f0ef-4820-a501-d83d5c55146c",
+        "chatSessionId": "sess_656814ed-58aa-4a62-8c65-5ee8166e075b",
+        "timestamp": 1792119669713
+      }
+    ],
+    "**3.3 Spider stock deal + empty-column rule + scoring.** Clicking the stock deals one card face up": [
+      {
+        "executionId": "c703efc9-f0ef-4820-a501-d83d5c55146c",
+        "chatSessionId": "sess_656814ed-58aa-4a62-8c65-5ee8166e075b",
+        "timestamp": 1792119669736
+      }
+    ],
+    "**3.4 Spider scenario tests + layout + catalog.** Given/When/Then tests for run auto-collection,": [
+      {
+        "executionId": "c703efc9-f0ef-4820-a501-d83d5c55146c",
+        "chatSessionId": "sess_656814ed-58aa-4a62-8c65-5ee8166e075b",
+        "timestamp": 1792119669758
+      }
+    ],
+    "**⛳ CHECKPOINT 3.** User **plays a Spider deal end-to-end** (at least 1-suit and 2-suit) via drag": [
+      {
+        "executionId": "c703efc9-f0ef-4820-a501-d83d5c55146c",
+        "chatSessionId": "sess_656814ed-58aa-4a62-8c65-5ee8166e075b",
+        "timestamp": 1792119669778
+      }
+    ],
+    "**4.1 Pyramid rules `GameDefinition`.** Deal a 28-card pyramid (rows of 1..7, each card overlapping": [
+      {
+        "executionId": "c703efc9-f0ef-4820-a501-d83d5c55146c",
+        "chatSessionId": "sess_656814ed-58aa-4a62-8c65-5ee8166e075b",
+        "timestamp": 1792119669802
+      }
+    ],
+    "**4.2 Pyramid removals + exposure.** Card values A=1, pips face value, J=11, Q=12, K=13; an exposed": [
+      {
+        "executionId": "c703efc9-f0ef-4820-a501-d83d5c55146c",
+        "chatSessionId": "sess_656814ed-58aa-4a62-8c65-5ee8166e075b",
+        "timestamp": 1792119669820
+      }
+    ],
+    "**4.3 Pyramid stock, waste, redeals, win/loss, scoring.** Drawing moves one card face up to the": [
+      {
+        "executionId": "c703efc9-f0ef-4820-a501-d83d5c55146c",
+        "chatSessionId": "sess_656814ed-58aa-4a62-8c65-5ee8166e075b",
+        "timestamp": 1792119669842
+      }
+    ],
+    "**4.4 Pyramid scenario tests + layout + catalog.** Given/When/Then tests for sum-to-13 pairs,": [
+      {
+        "executionId": "c703efc9-f0ef-4820-a501-d83d5c55146c",
+        "chatSessionId": "sess_656814ed-58aa-4a62-8c65-5ee8166e075b",
+        "timestamp": 1792119669867
+      }
+    ],
+    "**⛳ CHECKPOINT 4.** User **plays a Pyramid deal end-to-end** via drag *and* keyboard (sum-to-13": [
+      {
+        "executionId": "c703efc9-f0ef-4820-a501-d83d5c55146c",
+        "chatSessionId": "sess_656814ed-58aa-4a62-8c65-5ee8166e075b",
+        "timestamp": 1792119669886
+      }
+    ],
+    "**5.1 TriPeaks rules `GameDefinition`.** Deal 28 cards into three overlapping peaks (rows of 3, 6, 9,": [
+      {
+        "executionId": "c703efc9-f0ef-4820-a501-d83d5c55146c",
+        "chatSessionId": "sess_656814ed-58aa-4a62-8c65-5ee8166e075b",
+        "timestamp": 1792119669908
+      }
+    ],
+    "**5.2 TriPeaks play + wrap + end of game.** Play an exposed card exactly one rank higher or lower": [
+      {
+        "executionId": "c703efc9-f0ef-4820-a501-d83d5c55146c",
+        "chatSessionId": "sess_656814ed-58aa-4a62-8c65-5ee8166e075b",
+        "timestamp": 1792119669929
+      }
+    ],
+    "**5.3 TriPeaks streak scoring.** Consecutive plays without drawing increase the per-card bonus;": [
+      {
+        "executionId": "c703efc9-f0ef-4820-a501-d83d5c55146c",
+        "chatSessionId": "sess_656814ed-58aa-4a62-8c65-5ee8166e075b",
+        "timestamp": 1792119669953
+      }
+    ],
+    "**5.4 TriPeaks scenario tests + layout + catalog.** Given/When/Then tests for one-rank up/down play": [
+      {
+        "executionId": "c703efc9-f0ef-4820-a501-d83d5c55146c",
+        "chatSessionId": "sess_656814ed-58aa-4a62-8c65-5ee8166e075b",
+        "timestamp": 1792119669976
+      }
+    ],
+    "**⛳ CHECKPOINT 5.** User **plays a TriPeaks deal end-to-end** via drag *and* keyboard (up/down play,": [
+      {
+        "executionId": "c703efc9-f0ef-4820-a501-d83d5c55146c",
+        "chatSessionId": "sess_656814ed-58aa-4a62-8c65-5ee8166e075b",
+        "timestamp": 1792119669996
+      }
+    ],
+    "**6.1 `parlor-seedgen` winnable-deal generator + pool artifacts.** Add the `Scripts/`": [
+      {
+        "executionId": "c703efc9-f0ef-4820-a501-d83d5c55146c",
+        "chatSessionId": "sess_656814ed-58aa-4a62-8c65-5ee8166e075b",
+        "timestamp": 1792119670020
+      }
+    ],
+    "**6.2 \"Winnable deals only\" setup option (all five games).** Add a **\"Winnable deals only\"** setup": [
+      {
+        "executionId": "c703efc9-f0ef-4820-a501-d83d5c55146c",
+        "chatSessionId": "sess_656814ed-58aa-4a62-8c65-5ee8166e075b",
+        "timestamp": 1792119670045
+      }
+    ],
+    "**6.3 Daily Deal (all five games).** Add a per-game **Daily Deal**: the local calendar date is read": [
+      {
+        "executionId": "c703efc9-f0ef-4820-a501-d83d5c55146c",
+        "chatSessionId": "sess_656814ed-58aa-4a62-8c65-5ee8166e075b",
+        "timestamp": 1792119670069
+      }
+    ],
+    "**6.4 Klondike retrofit — solver-backed hints.** Add a `SolverHintProvider` behind the existing": [
+      {
+        "executionId": "c703efc9-f0ef-4820-a501-d83d5c55146c",
+        "chatSessionId": "sess_656814ed-58aa-4a62-8c65-5ee8166e075b",
+        "timestamp": 1792119670092
+      }
+    ],
+    "**6.5 Klondike retrofit — Winnable deals only + Daily Deal.** Add \"Winnable deals only\" (default off,": [
+      {
+        "executionId": "c703efc9-f0ef-4820-a501-d83d5c55146c",
+        "chatSessionId": "sess_656814ed-58aa-4a62-8c65-5ee8166e075b",
+        "timestamp": 1792119670113
+      }
+    ],
+    "**6.6 Extended statistics + Daily Deal streak.** Additively extend the Spec 1 statistics model": [
+      {
+        "executionId": "c703efc9-f0ef-4820-a501-d83d5c55146c",
+        "chatSessionId": "sess_656814ed-58aa-4a62-8c65-5ee8166e075b",
+        "timestamp": 1792119670137
+      }
+    ],
+    "**⛳ CHECKPOINT 6.** User verifies that, for a fixed date/seed, **\"Winnable deals only\"** and the": [
+      {
+        "executionId": "c703efc9-f0ef-4820-a501-d83d5c55146c",
+        "chatSessionId": "sess_656814ed-58aa-4a62-8c65-5ee8166e075b",
+        "timestamp": 1792119670159
+      }
+    ],
+    "**7.1 Tutorials, hints, coach, in-app rules reference.** Add an interactive tutorial with scripted": [
+      {
+        "executionId": "c703efc9-f0ef-4820-a501-d83d5c55146c",
+        "chatSessionId": "sess_656814ed-58aa-4a62-8c65-5ee8166e075b",
+        "timestamp": 1792119670183
+      }
+    ],
+    "**7.2 `parlor-sim` invariants at Spec 1 volumes.** Wire each new game and each Spider suit-count": [
+      {
+        "executionId": "c703efc9-f0ef-4820-a501-d83d5c55146c",
+        "chatSessionId": "sess_656814ed-58aa-4a62-8c65-5ee8166e075b",
+        "timestamp": 1792119670208
+      }
+    ],
+    "**7.3 UI tests — win each game (drag + keyboard) + determinism.** XCUITest that wins one deal of each": [
+      {
+        "executionId": "c703efc9-f0ef-4820-a501-d83d5c55146c",
+        "chatSessionId": "sess_656814ed-58aa-4a62-8c65-5ee8166e075b",
+        "timestamp": 1792119670238
+      }
+    ],
+    "**7.4 Coverage gate.** Enforce ≥ 90% line coverage for each new rules target **and for the solver**": [
+      {
+        "executionId": "c703efc9-f0ef-4820-a501-d83d5c55146c",
+        "chatSessionId": "sess_656814ed-58aa-4a62-8c65-5ee8166e075b",
+        "timestamp": 1792119670270
+      }
+    ],
+    "**7.5 Docs finalize + placeholder audit + Open Questions.** Confirm `Docs/Architecture.md` (incl. the": [
+      {
+        "executionId": "c703efc9-f0ef-4820-a501-d83d5c55146c",
+        "chatSessionId": "sess_656814ed-58aa-4a62-8c65-5ee8166e075b",
+        "timestamp": 1792119670293
+      }
+    ],
+    "**⛳ CHECKPOINT 7 (final).** User runs `make test-long`; all quality gates, solver correctness, sim": [
+      {
+        "executionId": "c703efc9-f0ef-4820-a501-d83d5c55146c",
+        "chatSessionId": "sess_656814ed-58aa-4a62-8c65-5ee8166e075b",
+        "timestamp": 1792119670312
+      }
+    ]
+  }
+}

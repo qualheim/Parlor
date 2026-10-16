@@ -14,12 +14,13 @@
 //   App            -> GamesUI, Persistence, DesignSystem   (thin shell; not built by SwiftPM here — see note)
 //   GamesUI        -> GamesRules, TableKit
 //   TableKit       -> DesignSystem, EngineCore
-//   GamesRules     -> AIKit, EngineCore
-//   AIKit          -> EngineCore
+//   GamesRules     -> AIKit, EngineCore, SolverKit
+//   AIKit          -> EngineCore, SolverKit
+//   SolverKit      -> EngineCore
 //   Persistence    -> EngineCore
-//   SimulationCLI  -> GamesRules, AIKit, EngineCore
+//   SimulationCLI  -> GamesRules, AIKit, EngineCore, SolverKit
 //
-// Pure layer (EngineCore, AIKit, GamesRules) imports only the Swift standard library and Foundation
+// Pure layer (EngineCore, AIKit, SolverKit, GamesRules) imports only the Swift standard library and Foundation
 // — no SwiftUI/AppKit/SpriteKit/Combine — so it stays Linux-portable (tech.md rule 1; R-BUILD-4.3).
 //
 // NOTE ON THE APP TARGET: the SwiftUI `App/` shell is a macOS app bundle target and is defined in
@@ -45,6 +46,7 @@ let package = Package(
     products: [
         .library(name: "EngineCore", targets: ["EngineCore"]),
         .library(name: "AIKit", targets: ["AIKit"]),
+        .library(name: "SolverKit", targets: ["SolverKit"]),
         .library(name: "DesignSystem", targets: ["DesignSystem"]),
         .library(name: "TableKit", targets: ["TableKit"]),
         .library(name: "Persistence", targets: ["Persistence"]),
@@ -71,7 +73,7 @@ let package = Package(
 
         .target(
             name: "AIKit",
-            dependencies: ["EngineCore"],
+            dependencies: ["EngineCore", "SolverKit"],
             path: "Packages/AIKit/Sources/AIKit",
             swiftSettings: sharedSwiftSettings
         ),
@@ -82,11 +84,25 @@ let package = Package(
             swiftSettings: sharedSwiftSettings
         ),
 
+        // SolverKit: pure solver utilities (hints, move evaluation) — depends only on EngineCore.
+        .target(
+            name: "SolverKit",
+            dependencies: ["EngineCore"],
+            path: "Packages/SolverKit/Sources/SolverKit",
+            swiftSettings: sharedSwiftSettings
+        ),
+        .testTarget(
+            name: "SolverKitTests",
+            dependencies: ["SolverKit"],
+            path: "Packages/SolverKit/Tests/SolverKitTests",
+            swiftSettings: sharedSwiftSettings
+        ),
+
         // Games/<Family> rules targets are pure. `GamesRules` is the umbrella rules target that later
-        // families extend; it depends only on AIKit + EngineCore (design.md §1).
+        // families extend; it depends on AIKit + EngineCore + SolverKit (design.md §1).
         .target(
             name: "GamesRules",
-            dependencies: ["AIKit", "EngineCore"],
+            dependencies: ["AIKit", "EngineCore", "SolverKit"],
             path: "Packages/Games/Sources/GamesRules",
             swiftSettings: sharedSwiftSettings
         ),
@@ -166,7 +182,7 @@ let package = Package(
 
         .executableTarget(
             name: "SimulationCLI",
-            dependencies: ["GamesRules", "AIKit", "EngineCore"],
+            dependencies: ["GamesRules", "AIKit", "EngineCore", "SolverKit"],
             path: "Packages/SimulationCLI/Sources/SimulationCLI",
             swiftSettings: sharedSwiftSettings
         ),

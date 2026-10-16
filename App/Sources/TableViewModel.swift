@@ -172,6 +172,7 @@ final class TableViewModel {
         let game = Klondike()
         let initialView = game.redactedView(of: state, for: .seat(klondikeSeat))
         self.session = nil
+        self.statsService = nil
         self.gameID = Klondike.metadata.id
         self.gameTitle = gameTitle
         self.settings = settings
@@ -316,7 +317,7 @@ final class TableViewModel {
 
     /// Record game result to statistics (gap 4 fix)
     private func recordStatisticsIfNeeded() {
-        guard let statsService, let session else { return }
+        guard statsService != nil, session != nil else { return }
 
         let state = controller.latestState
         let game = Klondike()
@@ -335,7 +336,7 @@ final class TableViewModel {
         )
 
         Task {
-            _ = try? await statsService.record(result)
+            _ = try? await statsService?.record(result)
         }
     }
 

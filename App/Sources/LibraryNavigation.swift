@@ -220,16 +220,12 @@ final class LibraryNavigation {
                 saveID: .game(CrazyEights.metadata.id))
             let initialState = game.initialState(options: options, seed: handSeed)
             let initialView = game.redactedView(of: initialState, for: .seat(humanSeat))
-            let aiSeatIDs = Set((1..<options.playerCount).map { SeatID.index($0) })
-            let statsService = StatisticsService(store: saveStore)
             let model = CrazyEightsTableViewModel(
                 session: session,
                 initialState: initialState,
                 initialView: initialView,
                 gameTitle: entry.metadata.name,
                 settings: settings,
-                aiSeats: aiSeatIDs,
-                statsService: statsService,
                 onQuit: { [weak self] in self?.quitToLibrary() })
             activeCrazyEights = model
             activeTable = nil

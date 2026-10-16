@@ -163,9 +163,9 @@ EOF
 # ---------------------------------------------------------------------------------------------------
 # Check 2 — UI-framework imports inside the pure layer (R-BUILD-4.3).
 # ---------------------------------------------------------------------------------------------------
-# Pure-layer source roots: EngineCore, AIKit, and the rules target GamesRules. These must import only
+# Pure-layer source roots: EngineCore, AIKit, SolverKit, and the rules target GamesRules. These must import only
 # the Swift standard library + Foundation (tech.md rule 1; design.md §1).
-PURE_LAYER_DIRS="Packages/EngineCore/Sources Packages/AIKit/Sources Packages/Games/Sources/GamesRules"
+PURE_LAYER_DIRS="Packages/EngineCore/Sources Packages/AIKit/Sources Packages/SolverKit/Sources/SolverKit Packages/Games/Sources/GamesRules"
 
 # Apple-only UI / reactive frameworks disallowed in the pure layer.
 UI_FRAMEWORKS="SwiftUI AppKit UIKit SpriteKit SceneKit Combine CoreGraphics CoreAnimation QuartzCore Metal MetalKit CoreImage ImageIO Charts Cocoa Carbon WatchKit"
@@ -213,13 +213,14 @@ EOF
 #   SimulationCLI  -> GamesRules, AIKit, EngineCore
 #
 # A module may always "import" itself (it can't, but self-name is filtered out harmlessly).
-INTERNAL_MODULES="EngineCore AIKit GamesRules GamesUI TableKit DesignSystem Persistence SimulationCLI"
+INTERNAL_MODULES="EngineCore AIKit SolverKit GamesRules GamesUI TableKit DesignSystem Persistence SimulationCLI"
 
 # Source root for each target.
 target_dir() {
   case "$1" in
     EngineCore)    echo "Packages/EngineCore/Sources/EngineCore" ;;
     AIKit)         echo "Packages/AIKit/Sources/AIKit" ;;
+    SolverKit)     echo "Packages/SolverKit/Sources/SolverKit" ;;
     GamesRules)    echo "Packages/Games/Sources/GamesRules" ;;
     GamesUI)       echo "Packages/Games/Sources/GamesUI" ;;
     TableKit)      echo "Packages/TableKit/Sources/TableKit" ;;
@@ -235,12 +236,13 @@ allowed_deps() {
   case "$1" in
     EngineCore)    echo "" ;;
     DesignSystem)  echo "" ;;
-    AIKit)         echo "EngineCore" ;;
-    GamesRules)    echo "AIKit EngineCore" ;;
+    AIKit)         echo "EngineCore SolverKit" ;;
+    SolverKit)     echo "EngineCore" ;;
+    GamesRules)    echo "AIKit EngineCore SolverKit" ;;
     Persistence)   echo "EngineCore" ;;
     TableKit)      echo "DesignSystem EngineCore" ;;
     GamesUI)       echo "GamesRules TableKit" ;;
-    SimulationCLI) echo "GamesRules AIKit EngineCore" ;;
+    SimulationCLI) echo "GamesRules AIKit EngineCore SolverKit" ;;
     *)             echo "" ;;
   esac
 }

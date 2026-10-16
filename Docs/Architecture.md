@@ -29,20 +29,26 @@ graph TD
     TableKit --> EngineCore
     GamesRules --> AIKit
     GamesRules --> EngineCore
+    GamesRules --> SolverKit
     AIKit --> EngineCore
+    AIKit --> SolverKit
+    SolverKit --> EngineCore
     Persistence --> EngineCore
     SimulationCLI["SimulationCLI (parlor-sim)"] --> GamesRules
     SimulationCLI --> AIKit
     SimulationCLI --> EngineCore
+    SimulationCLI --> SolverKit
 ```
 
 - **One root SwiftPM package** (`Package.swift`) declares every target, with sources under `Packages/`.
   Swift 6 language mode, strict concurrency, and `-warnings-as-errors` apply to all targets (R-BUILD-5).
   The macOS app target is defined only in `project.yml` (XcodeGen), because SwiftPM cannot build a signed
   `.app`.
-- **EngineCore, AIKit, and GamesRules are pure** — Swift standard library and Foundation only — so the
-  same rules can run on a future Linux server (`tech.md` rule 1). `make lint` fails on any UI-framework
-  import in them.
+- **EngineCore, AIKit, GamesRules, and SolverKit are pure** — Swift standard library and Foundation
+  only — so the same rules can run on a future Linux server (`tech.md` rule 1). `make lint` fails on any
+  UI-framework import in them.
+- **SolverKit** — pure deal solver (winnable / unwinnable / unknown) for the solitaire family; depends only
+  on `EngineCore`; used by rules targets, AIKit, `SimulationCLI`, and the `Scripts/` seed-pool generator.
 - **GamesRules and GamesUI are umbrella targets.** Each game is a folder inside them
   (`GamesRules/Klondike/`, `GamesRules/CrazyEights/` with an `AI/` subfolder,
   `GamesRules/Catalog/`; `GamesUI/<Game>TableAdapter|Controller|Layout.swift`). Later families can split

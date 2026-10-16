@@ -11,6 +11,7 @@
 // `AIPersona.bundled` (EngineCore data, surfaced via Persistence) and are shown read-only for now —
 // selecting them for opponents is the setup sheet's job (task 6.5; R-APP-2.2).
 
+import DesignSystem
 import Persistence  // re-exports EngineCore: PlayerProfile, AIPersona, AvatarReference (R-SESS-5)
 import SwiftUI
 
@@ -39,7 +40,6 @@ struct ParlorSettingsView: View {
             SoundSettingsView(settings: soundSettings)
                 .tabItem { Label("Sound", systemImage: "speaker.wave.2") }
 
-            StatisticsSettingsView()
                 .tabItem { Label("Statistics", systemImage: "chart.bar") }
         }
         .frame(width: 500, height: 480)
@@ -56,14 +56,14 @@ struct AppearanceSettings {
 }
 
 struct AppearanceSettingsView: View {
-    @Bindable var settings: AppearanceSettings
+    @State var settings: AppearanceSettings
 
     var body: some View {
         Form {
             Section("Table Theme") {
                 Picker("Theme", selection: $settings.themeID) {
                     ForEach(TableTheme.all, id: \.id) { theme in
-                        Text(theme.name).tag(theme.id)
+                        Text(theme.displayName).tag(theme.id)
                     }
                 }
             }
@@ -71,7 +71,7 @@ struct AppearanceSettingsView: View {
             Section("Deck Style") {
                 Picker("Deck", selection: $settings.deckStyleID) {
                     ForEach(DeckStyle.all, id: \.id) { style in
-                        Text(style.name).tag(style.id)
+                        Text(style.displayName).tag(style.id)
                     }
                 }
 
@@ -97,7 +97,7 @@ struct GameplaySettings {
 }
 
 struct GameplaySettingsView: View {
-    @Bindable var settings: GameplaySettings
+    @State var settings: GameplaySettings
 
     var body: some View {
         Form {
@@ -130,7 +130,7 @@ struct SoundSettings {
 }
 
 struct SoundSettingsView: View {
-    @Bindable var settings: SoundSettings
+    @State var settings: SoundSettings
 
     var body: some View {
         Form {

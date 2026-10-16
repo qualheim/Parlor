@@ -152,26 +152,30 @@ public struct GameplaySettings: Codable, Sendable, Equatable {
     public var hintsEnabled: Bool
     /// Whether destructive/irreversible actions ask for confirmation first (per ux-guidelines.md).
     public var confirmationsEnabled: Bool
+    /// Vegas cumulative bankroll: persists across games (R-KLON-2.2)
+    public var vegasBankroll: Int
 
     public init(
         animationSpeed: AnimationSpeedSetting = .default,
         aiPace: AIPaceSetting = .default,
         autoMoves: AutoMoveSetting = .default,
         hintsEnabled: Bool = true,
-        confirmationsEnabled: Bool = true
+        confirmationsEnabled: Bool = true,
+        vegasBankroll: Int = 0
     ) {
         self.animationSpeed = animationSpeed
         self.aiPace = aiPace
         self.autoMoves = autoMoves
         self.hintsEnabled = hintsEnabled
         self.confirmationsEnabled = confirmationsEnabled
+        self.vegasBankroll = vegasBankroll
     }
 
     /// The default gameplay settings.
     public static var defaults: GameplaySettings { GameplaySettings() }
 
     enum CodingKeys: String, CodingKey {
-        case animationSpeed, aiPace, autoMoves, hintsEnabled, confirmationsEnabled
+        case animationSpeed, aiPace, autoMoves, hintsEnabled, confirmationsEnabled, vegasBankroll
     }
 
     /// Tolerant decode: each field defaults if absent, and any unknown enum raw value falls back to that
