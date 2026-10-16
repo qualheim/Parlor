@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "id": "midnight",
+  "displayName": "Midnight",
+  "table": {
+    "material": "felt",
+    "shader": "parlorFelt",
+    "base": "#102027",
+    "accent": "#1C3A44",
+    "grainScale": 200,
+    "grainStrength": 0.28,
+    "sheenStrength": 0.10,
+    "vignette": 0.45,
+    "shadowInk": "#02080B"
+  },
+  "decks": {
+    "styles": ["classic", "modern", "four-color", "jumbo-index"],
+    "backs": ["lattice", "art-deco", "linen", "checker", "wave", "crest"]
+  },
+  "assets": { "kind": "procedural", "shaderSource": "Shaders/TableMaterials.metal" },
+  "placeholder": true
+}

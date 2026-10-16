@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  PrivacyInfo.xcprivacy — Apple privacy manifest (task 1.3; R-BUILD-3.3).
+
+  Parlor performs no tracking and collects no data; everything stays in the local sandbox
+  container (R-BUILD-3 user story; R-PERS-3.1). This manifest declares that posture and adds a
+  required-reason declaration for every "required reason" API the app uses.
+
+  - NSPrivacyTracking = false          — the app does not track (no cross-app/site linking).
+  - NSPrivacyTrackingDomains = []       — no domains contacted for tracking.
+  - NSPrivacyCollectedDataTypes = []    — no data collected.
+  - NSPrivacyAccessedAPITypes           — required-reason APIs and their reasons:
+      * User Defaults (NSPrivacyAccessedAPICategoryUserDefaults), reason CA92.1:
+        the app accesses UserDefaults to read/write settings and statistics within its own
+        app container only — it does not access defaults shared with other apps.
+
+  Add a new NSPrivacyAccessedAPIType entry here whenever a further required-reason API is
+  introduced (R-BUILD-3.3).
+-->
+<plist version="1.0">
+<dict>
+	<key>NSPrivacyTracking</key>
+	<false/>
+	<key>NSPrivacyTrackingDomains</key>
+	<array/>
+	<key>NSPrivacyCollectedDataTypes</key>
+	<array/>
+	<key>NSPrivacyAccessedAPITypes</key>
+	<array>
+		<dict>
+			<key>NSPrivacyAccessedAPIType</key>
+			<string>NSPrivacyAccessedAPICategoryUserDefaults</string>
+			<key>NSPrivacyAccessedAPITypeReasons</key>
+			<array>
+				<string>CA92.1</string>
+			</array>
+		</dict>
+	</array>
+</dict>
+</plist>

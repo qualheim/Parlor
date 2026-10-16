@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  Parlor.entitlements — App Sandbox + offline posture (task 1.3; R-BUILD-3.1, R-BUILD-3.2).
+
+  Parlor is fully sandboxed and offline: no data ever leaves the Mac (R-BUILD-3 user story).
+
+  - App Sandbox is ON (com.apple.security.app-sandbox).
+  - NO network entitlements are declared — neither the client
+    (com.apple.security.network.client) nor the server
+    (com.apple.security.network.server) (R-BUILD-3.2).
+  - Hardened Runtime is enabled as a build setting (ENABLE_HARDENED_RUNTIME: YES in
+    project.yml; R-BUILD-3.1) and needs no key here.
+
+  Keep this set MINIMAL: any entitlement beyond the expected set makes `make lint` fail
+  (R-BUILD-3.4, R-BUILD-4.4). Do not add capabilities speculatively.
+-->
+<plist version="1.0">
+<dict>
+	<key>com.apple.security.app-sandbox</key>
+	<true/>
+</dict>
+</plist>
